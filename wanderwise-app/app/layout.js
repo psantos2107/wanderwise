@@ -1,4 +1,5 @@
 import "./_styles/globals.css";
+// import { testConnection } from "./_lib/data-service";
 
 export const metadata = {
   title: {
@@ -9,7 +10,9 @@ export const metadata = {
     "The world awaits you... create your dream travel itinerary and plan out your next travel adventure with WonderWise!",
 };
 
-export default function RootLayout({ children }) {
+export default async function RootLayout({ children }) {
+  // await testConnection(); //to be removed in production.
+
   return (
     <html lang="en">
       <body>
