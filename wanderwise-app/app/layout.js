@@ -1,5 +1,12 @@
 import "./_styles/globals.css";
+import Header from "./_components/Header";
+import { Grandstander } from "next/font/google";
 // import { testConnection } from "./_lib/data-service";
+
+const grandstander = Grandstander({
+  subsets: ["latin"],
+  display: "swap",
+});
 
 export const metadata = {
   title: {
@@ -15,7 +22,10 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body className="box-border m-0 p-0 min-h-screen flex flex-col bg-slate-300">
+      <body
+        className={`${grandstander.className} box-border m-0 p-0 min-h-screen flex flex-col bg-slate-300`}
+      >
+        <Header />
         {children}
       </body>
     </html>
