@@ -15,8 +15,7 @@ export default async function RootLayout({ children }) {
 
   return (
     <html lang="en">
-      <body>
-        <h1>This is the root.</h1>
+      <body className="box-border m-0 p-0 min-h-screen flex flex-col bg-slate-300">
         {children}
       </body>
     </html>

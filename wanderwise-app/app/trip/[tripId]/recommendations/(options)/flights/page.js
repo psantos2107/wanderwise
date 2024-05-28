@@ -3,6 +3,7 @@ export const metadata = {
 };
 
 export default async function FlightsPage() {
+  //fields to put on the flight search forms!
   const originLocation = "LAX";
   const destinationLocation = "PAR";
   const departureDate = "2024-06-01";
