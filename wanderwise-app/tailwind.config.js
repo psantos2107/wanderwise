@@ -11,12 +11,21 @@ module.exports = {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
-        "gradient-blue": "linear-gradient(to bottom right, #003366, #00b3b3)",
+        "gradient-blue":
+          "linear-gradient(to bottom right, #6685a3 0%, #1a4775 20%, #1a4775 75%, #6685a3 100%)",
+        "gradient-white": "linear-gradient(to bottom right, #f8f9fa, #f0f0f0)",
       },
       borderRadius: {
         "25p": "25%",
+      },
+      colors: {
+        "theme-color-light": "#ccd6e0",
+        "theme-color-dark": "#000f1f",
       },
     },
   },
   plugins: [],
 };
+
+//"linear-gradient(to bottom right, #1a4775 60%, #00b3b3, #B2F2B2)"
+//"linear-gradient(to bottom right, #00c2c2 0%, #1a4775 15%, #1a4775 80%, #00c2c2 100% #7da97d)"

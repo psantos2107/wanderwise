@@ -1,11 +1,12 @@
 import "./_styles/globals.css";
 import Header from "./_components/Header";
-import { Josefin_Sans } from "next/font/google";
+import { Lato } from "next/font/google";
 // import { testConnection } from "./_lib/data-service";
 
-const josefin = Josefin_Sans({
+const lato = Lato({
   subsets: ["latin"],
   display: "swap",
+  weight: "400",
 });
 
 export const metadata = {
@@ -23,7 +24,7 @@ export default async function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${josefin.className} box-border m-0 p-0 min-h-screen flex flex-col bg-gradient-blue`}
+        className={`${lato.className} box-border m-0 p-0 min-h-screen flex flex-col bg-gradient-blue text-theme-color-light`}
       >
         <Header />
         {children}
