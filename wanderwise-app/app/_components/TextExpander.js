@@ -17,7 +17,6 @@ function TextExpander({ children }) {
       >
         {isExpanded ? "Show less" : "Show more"}
       </button>
-      {/* <Logo /> <- if you render this here, it would be a CLIENT COMPONENT because this client component IMPORTED IT! */}
     </span>
   );
 }

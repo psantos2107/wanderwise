@@ -279,7 +279,7 @@ import RestaurantCard from "./RestaurantCard";
 
 console.log(restaurant);
 
-function FetchRestaurantList() {
+function FetchRestaurants() {
   return (
     <section className="flex flex-col">
       <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>
@@ -296,4 +296,4 @@ function FetchRestaurantList() {
   );
 }
 
-export default FetchRestaurantList;
+export default FetchRestaurants;

@@ -1,5 +1,5 @@
 import RestaurantForm from "@/app/_components/_forms/RestaurantForm";
-import FetchRestaurantList from "@/app/_components/_recommendation-fetching/FetchRestaurantList";
+import FetchRestaurants from "@/app/_components/_recommendation-fetching/FetchRestaurants";
 import RecommendationMessage from "@/app/_components/RecommendationMessage";
 import { Suspense } from "react";
 import Spinner from "@/app/_components/Spinner";
@@ -15,7 +15,7 @@ export default async function RestaurantsPage() {
       <RestaurantForm />
       <div className="w-[80%] mx-auto">
         <Suspense fallback={<Spinner />}>
-          <FetchRestaurantList />
+          <FetchRestaurants />
         </Suspense>
       </div>
     </main>

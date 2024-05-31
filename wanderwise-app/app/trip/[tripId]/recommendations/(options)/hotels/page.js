@@ -1,6 +1,6 @@
 import RecommendationMessage from "@/app/_components/RecommendationMessage";
 import HotelForm from "@/app/_components/_forms/HotelForm";
-import FetchHotels from "@/app/_components/_recommendation-fetching/FetchHotelList";
+import FetchHotels from "@/app/_components/_recommendation-fetching/FetchHotels";
 import { Suspense } from "react";
 import Spinner from "@/app/_components/Spinner";
 
