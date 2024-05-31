@@ -1,6 +1,7 @@
 import "./_styles/globals.css";
 import Header from "./_components/Header";
 import { Lato } from "next/font/google";
+import { TripProvider } from "./_components/_contexts/TripContext";
 // import { testConnection } from "./_lib/data-service";
 
 const lato = Lato({
@@ -27,7 +28,7 @@ export default async function RootLayout({ children }) {
         className={`${lato.className} box-border m-0 p-0 min-h-screen flex flex-col bg-gradient-blue text-theme-color-light`}
       >
         <Header />
-        {children}
+        <TripProvider>{children}</TripProvider>
       </body>
     </html>
   );
