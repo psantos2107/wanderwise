@@ -19,7 +19,7 @@ export const metadata = {
     "The world awaits you... create your dream travel itinerary and plan out your next travel adventure with WonderWise!",
 };
 
-export default async function RootLayout({ children }) {
+export default function RootLayout({ children }) {
   // await testConnection(); //to be removed in production.
 
   return (
