@@ -12,7 +12,7 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
         "gradient-blue":
-          "linear-gradient(to bottom right, #6685a3 0%, #1a4775 20%, #1a4775 75%, #6685a3 100%)",
+          "linear-gradient(to bottom left, #B2F2B2 0%, #1a4775 10%, #1a4775 75%, #B2F2B2 100%)",
         "gradient-white": "linear-gradient(to bottom right, #f8f9fa, #f0f0f0)",
       },
       borderRadius: {

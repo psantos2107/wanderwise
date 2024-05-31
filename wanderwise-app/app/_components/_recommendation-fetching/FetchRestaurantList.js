@@ -252,6 +252,8 @@ const businessesData = {
   },
 };
 
+const restaurant = businessesData.businesses[0];
+
 /*
 const location = encodeURIComponent("Los Angeles, CA".trim()); //will change later
   const searchTerm = encodeURIComponent("Brunch restaurants".trim());
@@ -271,3 +273,21 @@ const location = encodeURIComponent("Los Angeles, CA".trim()); //will change lat
   console.log(restaurants);
 
 */
+
+import React from "react";
+import RestaurantCard from "./RestaurantCard";
+
+console.log(restaurant);
+
+function FetchRestaurantList() {
+  return (
+    <section className="w-[85%] mx-auto flex flex-col">
+      <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>
+      {businessesData.businesses.map((restaurant, index) => {
+        return <RestaurantCard restaurant={restaurant} index={index} />;
+      })}
+    </section>
+  );
+}
+
+export default FetchRestaurantList;

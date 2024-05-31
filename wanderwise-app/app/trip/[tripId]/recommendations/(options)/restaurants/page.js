@@ -1,4 +1,5 @@
 import RestaurantForm from "@/app/_components/_forms/RestaurantForm";
+import FetchRestaurantList from "@/app/_components/_recommendation-fetching/FetchRestaurantList";
 
 export const metadata = {
   title: "Search Restaurants",
@@ -262,6 +263,7 @@ export default async function RestaurantsPage() {
   return (
     <>
       <RestaurantForm />
+      <FetchRestaurantList />
     </>
   );
 }
