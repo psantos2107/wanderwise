@@ -281,10 +281,16 @@ console.log(restaurant);
 
 function FetchRestaurantList() {
   return (
-    <section className="w-[85%] mx-auto flex flex-col">
+    <section className="flex flex-col">
       <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>
       {businessesData.businesses.map((restaurant, index) => {
-        return <RestaurantCard restaurant={restaurant} index={index} />;
+        return (
+          <RestaurantCard
+            restaurant={restaurant}
+            index={index}
+            key={restaurant.id}
+          />
+        );
       })}
     </section>
   );

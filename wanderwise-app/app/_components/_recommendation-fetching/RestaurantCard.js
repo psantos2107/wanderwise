@@ -2,7 +2,10 @@ import Image from "next/image";
 
 function RestaurantCard({ restaurant, index }) {
   return (
-    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4">
+    <article
+      className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4"
+      data-restaurant={JSON.stringify(restaurant)}
+    >
       <h2>
         {index + 1}. {restaurant.name}
       </h2>
@@ -37,6 +40,14 @@ function RestaurantCard({ restaurant, index }) {
           View on yelp!
         </a>
       </figure>
+      <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
+        {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+        Save Recommendation
+      </button>
+      <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
+        {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+        Add to Itinerary
+      </button>
     </article>
   );
 }

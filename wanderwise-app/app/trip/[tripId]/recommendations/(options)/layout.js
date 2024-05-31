@@ -4,9 +4,6 @@ import RecommendationMessage from "@/app/_components/RecommendationMessage";
 
 export default function Layout({ children }) {
   return (
-    <div className="mx-auto max-w-screen-2xl flex flex-col">
-      <RecommendationMessage />
-      {children}
-    </div>
+    <div className="mx-auto max-w-screen-2xl flex flex-col">{children}</div>
   );
 }
