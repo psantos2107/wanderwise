@@ -15,7 +15,7 @@ function RestaurantForm() {
 
   return (
     <form className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
-      <div>
+      <article>
         <label>
           What type of restaurant are you looking for? Please input terms like
           "brunch", "fast-food", "fancy", etc.
@@ -28,8 +28,8 @@ function RestaurantForm() {
             className="px-1"
           />
         </div>
-      </div>
-      <div>
+      </article>
+      <article>
         <label>What is your price?</label>
         <select
           className="ml-2"
@@ -40,7 +40,7 @@ function RestaurantForm() {
           <option value="2">$$: Pricier</option>
           <option value="3">$$$: Expensive</option>
         </select>
-      </div>
+      </article>
       <input
         type="submit"
         value="SUBMIT"

@@ -36,16 +36,16 @@ function HotelCard({ hotel, index }) {
         <p>
           <u className="text-sm">TRIPADVISOR RATING:</u> {hotel.rating} (out of{" "}
           {hotel.num_reviews} reviews){" "}
-          <figure className="w-3/4 mx-auto">
-            <Image
-              src={hotel.rating_image_url}
-              width="30"
-              height="30"
-              layout="responsive"
-              alt={`Rating image for ${hotel.name}`}
-            />
-          </figure>
         </p>
+        <figure className="w-3/4 mx-auto">
+          <Image
+            src={hotel.rating_image_url}
+            width="30"
+            height="30"
+            layout="responsive"
+            alt={`Rating image for ${hotel.name}`}
+          />
+        </figure>
         <a
           href={hotel.see_all_photos}
           target="_blank"

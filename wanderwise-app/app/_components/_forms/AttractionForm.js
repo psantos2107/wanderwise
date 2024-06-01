@@ -12,7 +12,7 @@ function AttractionForm() {
 
   return (
     <form className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
-      <div>
+      <article>
         <label>
           What kind of attractions are you looking for? Please input terms like
           "hiking", "museum", "concerts", etc.
@@ -25,7 +25,7 @@ function AttractionForm() {
             onChange={handleSearchTermChange}
           />
         </div>
-      </div>
+      </article>
       <input
         type="submit"
         value="SUBMIT"
