@@ -14,6 +14,12 @@ const nextConfig = {
         port: "",
         pathname: "/img/cdsi/img2/ratings/traveler/**",
       },
+      {
+        protocol: "https",
+        hostname: "www.avcodes.co.uk",
+        port: "",
+        pathname: "/images/logos/**",
+      },
     ],
   },
 };

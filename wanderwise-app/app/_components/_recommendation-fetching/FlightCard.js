@@ -1,250 +1,111 @@
-const flightOffer = {
-  type: "flight-offer",
-  id: "1",
-  source: "GDS",
-  instantTicketingRequired: false,
-  nonHomogeneous: false,
-  oneWay: false,
-  lastTicketingDate: "2024-05-28",
-  lastTicketingDateTime: "2024-05-28",
-  numberOfBookableSeats: 9,
-  itineraries: [
-    {
-      duration: "PT10H50M",
-      segments: [
-        {
-          departure: {
-            iataCode: "LAX",
-            terminal: "B",
-            at: "2024-06-01T19:45:00",
-          },
-          arrival: {
-            iataCode: "ORY",
-            terminal: "4",
-            at: "2024-06-02T15:35:00",
-          },
-          carrierCode: "BF",
-          number: "731",
-          aircraft: {
-            code: "359",
-          },
-          operating: {
-            carrierCode: "BF",
-          },
-          duration: "PT10H50M",
-          id: "2",
-          numberOfStops: 0,
-          blacklistedInEU: false,
-        },
-      ],
-    },
-    {
-      duration: "PT11H40M",
-      segments: [
-        {
-          departure: {
-            iataCode: "ORY",
-            terminal: "4",
-            at: "2024-06-10T14:50:00",
-          },
-          arrival: {
-            iataCode: "LAX",
-            terminal: "B",
-            at: "2024-06-10T17:30:00",
-          },
-          carrierCode: "BF",
-          number: "730",
-          aircraft: {
-            code: "359",
-          },
-          operating: {
-            carrierCode: "BF",
-          },
-          duration: "PT11H40M",
-          id: "10",
-          numberOfStops: 0,
-          blacklistedInEU: false,
-        },
-      ],
-    },
-  ],
-  price: {
-    currency: "EUR",
-    total: "847.20",
-    base: "461.00",
-    fees: [
-      {
-        amount: "0.00",
-        type: "SUPPLIER",
-      },
-      {
-        amount: "0.00",
-        type: "TICKETING",
-      },
-    ],
-    grandTotal: "847.20",
-    additionalServices: [
-      {
-        amount: "120.00",
-        type: "CHECKED_BAGS",
-      },
-    ],
-  },
-  pricingOptions: {
-    fareType: ["PUBLISHED"],
-    includedCheckedBagsOnly: false,
-  },
-  validatingAirlineCodes: ["BF"],
-  travelerPricings: [
-    {
-      travelerId: "1",
-      fareOption: "STANDARD",
-      travelerType: "ADULT",
-      price: {
-        currency: "EUR",
-        total: "847.20",
-        base: "461.00",
-      },
-      fareDetailsBySegment: [
-        {
-          segmentId: "2",
-          cabin: "ECONOMY",
-          fareBasis: "QBCRTUS",
-          brandedFare: "BASICPLUS",
-          brandedFareLabel: "BASIC PLUS",
-          class: "Q",
-          includedCheckedBags: {
-            quantity: 0,
-          },
-          amenities: [
-            {
-              description: "CHECKED BAG SECOND",
-              isChargeable: true,
-              amenityType: "BAGGAGE",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "CHECKED BAG THIRD",
-              isChargeable: true,
-              amenityType: "BAGGAGE",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "FIRST BAG",
-              isChargeable: true,
-              amenityType: "BAGGAGE",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "PRE RESERVED SEAT ASSIGNMENT",
-              isChargeable: true,
-              amenityType: "PRE_RESERVED_SEAT",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "BASIC MEAL",
-              isChargeable: false,
-              amenityType: "MEAL",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "CHANGE BEFORE DEPARTURE",
-              isChargeable: true,
-              amenityType: "BRANDED_FARES",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "CHANGE AFTER DEPARTURE",
-              isChargeable: true,
-              amenityType: "BRANDED_FARES",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-          ],
-        },
-        {
-          segmentId: "10",
-          cabin: "ECONOMY",
-          fareBasis: "QBCRTUS",
-          brandedFare: "BASICPLUS",
-          brandedFareLabel: "BASIC PLUS",
-          class: "Q",
-          includedCheckedBags: {
-            quantity: 0,
-          },
-          amenities: [
-            {
-              description: "CHECKED BAG SECOND",
-              isChargeable: true,
-              amenityType: "BAGGAGE",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "CHECKED BAG THIRD",
-              isChargeable: true,
-              amenityType: "BAGGAGE",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "FIRST BAG",
-              isChargeable: true,
-              amenityType: "BAGGAGE",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "PRE RESERVED SEAT ASSIGNMENT",
-              isChargeable: true,
-              amenityType: "PRE_RESERVED_SEAT",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "BASIC MEAL",
-              isChargeable: false,
-              amenityType: "MEAL",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "CHANGE BEFORE DEPARTURE",
-              isChargeable: true,
-              amenityType: "BRANDED_FARES",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-            {
-              description: "CHANGE AFTER DEPARTURE",
-              isChargeable: true,
-              amenityType: "BRANDED_FARES",
-              amenityProvider: {
-                name: "BrandedFare",
-              },
-            },
-          ],
-        },
-      ],
-    },
-  ],
-};
+import Image from "next/image";
+import { getAirlineByIata } from "aircodes";
+
+function FlightCard({ flightOffer }) {
+  return (
+    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 w-full">
+      <h2 className="bolder">
+        <u>FLIGHT OFFER 1:</u>
+      </h2>
+      <p>
+        TOTAL PRICE:{" "}
+        <span>
+          {flightOffer.price.total} {flightOffer.price.currency}
+        </span>
+      </p>
+      <p>ONE-WAY FLIGHT: {flightOffer.oneWay ? "True" : "False"}</p>
+      <h3>ADDITIONAL SERVICES</h3>
+      <ul>
+        {flightOffer.price.additionalServices.map((service) => {
+          return (
+            <li className="ml-3" key={service.type + service.amount}>
+              {service.type
+                .split("_")
+                .map((segment) => {
+                  return segment[0] + segment.slice(1).toLowerCase();
+                })
+                .join(" ")}
+              : {service.amount}
+              {flightOffer.price.currency}
+            </li>
+          );
+        })}
+      </ul>
+      <hr
+        style={{
+          border: "1px solid grey",
+          width: "100%",
+          marginTop: "5px",
+          marginBottom: "5px",
+        }}
+      />
+      <h2 className="bolder">
+        <u>FLIGHT DETAILS:</u>
+      </h2>
+      {flightOffer.itineraries.map((itinerary, index) => {
+        return (
+          <article className="w-full">
+            {index === 0 ? (
+              <h2>ITINERARY TO DESTINATION</h2>
+            ) : (
+              <h2>ITINERARY BACK HOME</h2>
+            )}
+            <section className="ml-3 w-full">
+              <p>
+                <u>Total Duration:</u> {itinerary.duration}
+              </p>
+              {itinerary.segments.map((segment, i, arr) => {
+                return (
+                  <section>
+                    Airline: {getAirlineByIata(segment.carrierCode).name}-
+                    Flight #{segment.number} (Flight {i + 1}/{arr.length})
+                    <div className="flex flex-col">
+                      <div>
+                        <h4>DEPARTING:</h4>
+                        <p>IATA Code: {segment.departure.iataCode}</p>
+                        <p>Terminal: {segment.departure.terminal}</p>
+                        <p>Departs at: {segment.departure.at}</p>
+                        <hr
+                          style={{
+                            border: "1px dotted grey",
+                            width: "75%",
+                            marginTop: "3px",
+                            marginBottom: "3px",
+                          }}
+                        />
+                      </div>
+                    </div>
+                    <div>
+                      <h4>ARRIVING:</h4>
+                      <p>IATA Code: {segment.arrival.iataCode}</p>
+                      <p>Terminal: {segment.arrival.terminal}</p>
+                      <p>Departs at: {segment.arrival.at}</p>
+                      <hr
+                        style={{
+                          border: "1px dotted grey",
+                          width: "75%",
+                          marginTop: "3px",
+                          marginBottom: "3px",
+                        }}
+                      />
+                    </div>
+                    <figure className="w-3/4 h-[100px] relative">
+                      <Image
+                        src={getAirlineByIata(segment.carrierCode).logo}
+                        fill
+                        alt={`Image of Airline.`}
+                        className="object-contain"
+                      />
+                    </figure>
+                  </section>
+                );
+              })}
+            </section>
+          </article>
+        );
+      })}
+    </article>
+  );
+}
+
+export default FlightCard;
