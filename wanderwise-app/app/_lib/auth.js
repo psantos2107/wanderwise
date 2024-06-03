@@ -13,10 +13,22 @@ const authConfig = {
     authorized({ auth, request }) {
       return auth?.user ? true : false;
     },
+    //will run before all the sign in processes happen. and so you can run database actions here.
+    signIn({ user, account, profile }) {
+      console.log("done before signing in. return true or false.");
+    },
+    session({ session, user }) {
+      console.log("modify the session here");
+    },
+  },
+  pages: {
+    signIn: "/login",
   },
 };
 
 export const {
   auth,
+  signIn,
+  signOut,
   handlers: { GET, POST },
 } = NextAuth(authConfig);

@@ -1,4 +1,24 @@
+"use client";
 import Image from "next/image";
+
+/* 
+possible solution via server actions. 
+import { saveRestaurant } from "@/actions/saveRestaurant";
+
+function RestaurantCard({ restaurant, index }) {
+  const handleSaveRecommendation = async () => {
+    const restaurantData = JSON.parse(
+      document.querySelector(`article[data-restaurant-id="${index}"]`).dataset.restaurant
+    );
+
+    const response = await saveRestaurant(restaurantData);
+    if (response.message === "Restaurant saved successfully!") {
+      alert(response.message);
+    } else {
+      alert("Error saving restaurant");
+    }
+  };
+*/
 
 function RestaurantCard({ restaurant, index }) {
   return (

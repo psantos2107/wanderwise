@@ -9,3 +9,7 @@ export const middleware = auth; */
 // export const config = {
 //   matcher: [],
 // };
+
+export const middleware = function () {
+  console.log("middleware");
+};
