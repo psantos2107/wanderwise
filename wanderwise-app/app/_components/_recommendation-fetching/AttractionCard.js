@@ -24,14 +24,21 @@ function AttractionCard({ attraction, index }) {
           <strong>
             <u className="text-sm">DESCRIPTION:</u>{" "}
           </strong>{" "}
-          <TextExpander>{attraction.description}</TextExpander>
+          {attraction?.description ? (
+            <TextExpander>{attraction.description}</TextExpander>
+          ) : (
+            "No description provided."
+          )}
         </p>
         <p>
           <u className="text-sm">ADDRESS:</u>{" "}
-          {attraction.address_obj.address_string}
+          {attraction?.address_obj?.address_string ||
+            attraction?.address_string ||
+            "Not available"}
         </p>
         <p>
-          <u className="text-sm">PHONE NUMBER:</u> {attraction.phone}
+          <u className="text-sm">PHONE NUMBER:</u>{" "}
+          {attraction?.phone || "None provided."}
         </p>
         <p>
           <u className="text-sm">TRIPADVISOR RATING:</u> {attraction.rating}{" "}

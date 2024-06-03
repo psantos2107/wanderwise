@@ -317,8 +317,11 @@ const conventionCenter = [
 
 /* INCLUDE: */
 import AttractionCard from "./AttractionCard";
+import { searchAttractions } from "@/app/_lib/data-service";
 
-function FetchAttractions() {
+async function FetchAttractions() {
+  // const attractions = await searchAttractions();
+
   return (
     <section className="flex flex-col">
       <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>

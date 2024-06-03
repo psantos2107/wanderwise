@@ -1,3 +1,4 @@
+//placeholder data
 const businessesData = {
   businesses: [
     {
@@ -252,34 +253,14 @@ const businessesData = {
   },
 };
 
-const restaurant = businessesData.businesses[0];
-
-/*
-const location = encodeURIComponent("Los Angeles, CA".trim()); //will change later
-  const searchTerm = encodeURIComponent("Brunch restaurants".trim());
-  const price = 2;
-
-  const url = `https://api.yelp.com/v3/businesses/search?location=${location}&term=${searchTerm}&price=${price}&attributes=popular&sort_by=rating&limit=10`;
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${process.env.YELP_API_KEY}`,
-    },
-  };
-
-  const res = await fetch(url, options);
-  const restaurants = await res.json();
-  console.log(restaurants);
-
-*/
-
 import React from "react";
 import RestaurantCard from "./RestaurantCard";
+import { searchRestaurants } from "@/app/_lib/data-service";
 
-console.log(restaurant);
+async function FetchRestaurants() {
+  // const restaurants = await searchRestaurants("Las Vegas", "Asian", "2");
+  // console.log(restaurants);
 
-function FetchRestaurants() {
   return (
     <section className="flex flex-col">
       <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>

@@ -1,11 +1,11 @@
 import Image from "next/image";
 import { getAirlineByIata } from "aircodes";
 
-function FlightCard({ flightOffer }) {
+function FlightCard({ flightOffer, index }) {
   return (
     <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 w-full">
       <h2 className="bolder">
-        <u>FLIGHT OFFER 1:</u>
+        <u>FLIGHT OFFER {index + 1}</u>
       </h2>
       <p>
         TOTAL PRICE:{" "}
@@ -16,20 +16,22 @@ function FlightCard({ flightOffer }) {
       <p>ONE-WAY FLIGHT: {flightOffer.oneWay ? "True" : "False"}</p>
       <h3>ADDITIONAL SERVICES</h3>
       <ul>
-        {flightOffer.price.additionalServices.map((service) => {
-          return (
-            <li className="ml-3" key={service.type + service.amount}>
-              {service.type
-                .split("_")
-                .map((segment) => {
-                  return segment[0] + segment.slice(1).toLowerCase();
-                })
-                .join(" ")}
-              : {service.amount}
-              {flightOffer.price.currency}
-            </li>
-          );
-        })}
+        {flightOffer.price.additionalServices
+          ? flightOffer.price.additionalServices.map((service) => {
+              return (
+                <li className="ml-3" key={service.type + service.amount}>
+                  {service.type
+                    .split("_")
+                    .map((segment) => {
+                      return segment[0] + segment.slice(1).toLowerCase();
+                    })
+                    .join(" ")}
+                  : {service.amount}
+                  {flightOffer.price.currency}
+                </li>
+              );
+            })
+          : "None"}
       </ul>
       <hr
         style={{

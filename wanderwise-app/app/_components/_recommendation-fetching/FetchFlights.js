@@ -1,129 +1,3 @@
-/* fields to put on the flight search forms!
-const originLocation = "LAX";
-const destinationLocation = "PAR";
-const departureDate = "2024-06-01";
-const returnDate = "2024-06-10";
-const numAdults = 1;
-const numChildren = 0;
-const numInfants = 0;
-const travelClass = "ECONOMY";
-const nonStop = false;
-const limit = 10;
-
-const url = `https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=${originLocation}&destinationLocationCode=${destinationLocation}&departureDate=${departureDate}&returnDate=${returnDate}&adults=${numAdults}&children=${numChildren}&infants=${numInfants}&travelClass=${travelClass}&nonStop=${
-  nonStop ? "true" : "false"
-}&max=${limit}`;
-
-//THERE MUST BE A POST REQUEST MADE HERE TO OBTAIN CREDENTIALS:
-
-const fetch = require('node-fetch');
-
-const client_id = 'your_client_id'; // Replace with your actual client_id
-const client_secret = 'your_client_secret'; // Replace with your actual client_secret
-
-const data = {
-  grant_type: 'client_credentials',
-  client_id: client_id,
-  client_secret: client_secret
-};
-
-const url2 = 'https://test.api.amadeus.com/v1/security/oauth2/token';
-
-fetch(url2, {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json'
-  },
-  body: JSON.stringify(data)
-})
-.then(response => response.json())
-.then(data => console.log(data))
-.catch(error => console.error('Error:', error));
-------
-
-const options = {
-  method: "GET",
-  headers: {
-    accept: "application/json",
-    Authorization: `Bearer ${process.env.AMADEUS_API_KEY}`,
-  },
-};
-
-const res = await fetch(url, options);
-const flights = await res.json();
-console.log(flights);
-------------------------------------
-ALT:
-var Amadeus = require('amadeus');
-
-var amadeus = new Amadeus({
-  clientId: 'REPLACE_BY_YOUR_API_KEY',
-  clientSecret: 'REPLACE_BY_YOUR_API_SECRET'
-});
-
-amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: 'SYD',
-    destinationLocationCode: 'BKK',
-    departureDate: '2022-06-01',
-    adults: '2'
-}).then(function(response){
-  console.log(response.data);
-}).catch(function(responseError){
-  console.log(responseError.code);
-});
-
------
-Auto refresh token?
-const fetch = require('node-fetch');
-
-let accessToken = null;
-let tokenExpirationTime = null;
-
-const clientId = 'your_client_id';
-const clientSecret = 'your_client_secret';
-
-async function fetchAccessToken() {
-  const response = await fetch('https://test.api.amadeus.com/v1/security/oauth2/token', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      grant_type: 'client_credentials',
-      client_id: clientId,
-      client_secret: clientSecret
-    })
-  });
-
-  const data = await response.json();
-  accessToken = data.access_token;
-  tokenExpirationTime = Date.now() + (data.expires_in * 1000);
-}
-
-async function makeApiRequest(url) {
-  if (!accessToken || Date.now() >= tokenExpirationTime) {
-    await fetchAccessToken();
-  }
-
-  const response = await fetch(url, {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${accessToken}`
-    }
-  });
-
-  return response.json();
-}
-
-// Example usage:
-(async () => {
-  const apiUrl = 'https://test.api.amadeus.com/v2/shopping/flight-offers?originLocationCode=LAX&destinationLocationCode=PAR&departureDate=2024-06-01&returnDate=2024-06-10&adults=1&children=0&infants=0&travelClass=ECONOMY&nonStop=true&max=10';
-  const data = await makeApiRequest(apiUrl);
-  console.log(data);
-})();
-
-*/
-
 const flightOffers = {
   meta: {
     count: 2,
@@ -887,28 +761,12 @@ const flightOffer = {
 };
 
 import React from "react";
-import Amadeus from "amadeus";
 import FlightCard from "./FlightCard";
-
-//VARIABLES TO QUERY FROM. LOOK @ AMADEUS API!
+import { searchFlights } from "@/app/_lib/data-service";
 
 async function FetchFlights() {
-  // const amadeus = new Amadeus({
-  //   clientId: `${process.env.AMADEUS_API_KEY}`,
-  //   clientSecret: `${process.env.AMADEUS_API_SECRET}`,
-  // });
-
-  // console.log(getAirportByIata("LAX"));
-
-  // const res = await amadeus.shopping.flightOffersSearch.get({
-  //   originLocationCode: "SYD",
-  //   destinationLocationCode: "BKK",
-  //   departureDate: "2024-06-01",
-  //   adults: "2",
-  //   max: "3",
-  // });
-
-  // console.log(res.data); //it works -> returns an array similar to the one above!
+  //uncomment below to make it work.
+  // const flightOffers = await searchFlights();
 
   return (
     <section>
