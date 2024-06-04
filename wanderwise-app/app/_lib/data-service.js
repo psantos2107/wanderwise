@@ -1,6 +1,7 @@
 import { supabase } from "./supabase";
 import Amadeus from "amadeus";
 import fetchLocationDetails from "./fetch-attraction-and-hotel-details";
+import { hash, genSalt } from "bcryptjs";
 
 //Code for fetching data will be displayed below.
 export async function testConnection() {
@@ -21,10 +22,34 @@ export async function testConnection() {
   }
 }
 
+//ALL FUNCTIONS RELATED TO USERS:
+export async function createUser(name, email, password) {
+  const newUser = { name, email, password };
+  const { data, error } = await supabase.from("users").insert([newUser]);
+
+  if (error) {
+    console.error(error);
+    throw new Error("Failed to create user.");
+  }
+
+  return data;
+}
+
+export async function getUser(email) {
+  const { data, error } = await supabase
+    .from("users")
+    .select("*")
+    .eq("email", email)
+    .single();
+
+  return data;
+}
+
 export async function grabTripInfo() {
   //code
 }
 
+//ALL FUNCTIONS THAT FETCH DATA ARE HERE
 export async function searchRestaurants(location, searchTerm, price) {
   const encodedLocation = encodeURIComponent(location.trim()) || ""; //will change later
   const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
