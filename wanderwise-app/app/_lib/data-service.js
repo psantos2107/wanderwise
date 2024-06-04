@@ -1,7 +1,7 @@
 import { supabase } from "./supabase";
 import Amadeus from "amadeus";
 import fetchLocationDetails from "./fetch-attraction-and-hotel-details";
-import { hash, genSalt } from "bcryptjs";
+import { hash, genSalt, compare } from "bcryptjs";
 
 //Code for fetching data will be displayed below.
 export async function testConnection() {
@@ -24,7 +24,18 @@ export async function testConnection() {
 
 //ALL FUNCTIONS RELATED TO USERS:
 export async function createUser(name, email, password) {
-  const newUser = { name, email, password };
+  const existingUser = await getUser(email);
+  let hashedPassword = "";
+  if (existingUser) {
+    throw new Error(
+      "A user with that email address already exists. Please try signing up again."
+    );
+  }
+  if (password !== "") {
+    hashedPassword = await hash(password, await genSalt(10));
+  }
+
+  const newUser = { name, email, hashedPassword };
   const { data, error } = await supabase.from("users").insert([newUser]);
 
   if (error) {
@@ -36,13 +47,24 @@ export async function createUser(name, email, password) {
 }
 
 export async function getUser(email) {
-  const { data, error } = await supabase
+  const { data } = await supabase
     .from("users")
     .select("*")
     .eq("email", email)
     .single();
 
   return data;
+}
+
+export async function verifyUser(email, password) {
+  const foundUser = await getUser(email);
+  if (!foundUser) {
+    throw new Error("Username or password is incorrect or not found.");
+  } else if (await compare(password, foundUser.password)) {
+    return { name: foundUser.name, email: foundUser.email, id: foundUser.id };
+  } else {
+    throw new Error("Username or password is incorrect or not found.");
+  }
 }
 
 export async function grabTripInfo() {

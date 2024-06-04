@@ -13,7 +13,7 @@ export async function googleSignOut() {
 }
 
 export async function standardSignIn(formData) {
-  await signIn("credentials", { redirectTo: "/user_page" });
+  await signIn("credentials", { ...formData, redirectTo: "/user_page" });
 }
 
 export async function standardSignOut() {

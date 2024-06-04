@@ -1,25 +1,31 @@
 import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
-import { getUser, createUser } from "./data-service";
+import { getUser, createUser, verifyUser } from "./data-service";
 
-//google OAuth configurations.
+//credentials and google OAuth configurations.
 const authConfig = {
   providers: [
     Google({
       clientId: process.env.AUTH_GOOGLE_ID,
       clientSecret: process.env.AUTH_GOOGLE_SECRET,
     }),
-    // Credentials({
-    //   credentials: {
-    //     email: {},
-    //     password: {},
-    //   },
-    //   authorize: async (credentials) => {
-    //     let user = null;
-    //     const pwHash = await hash(credentials.password, await genSalt(10));
-    //   },
-    // }),
+    Credentials({
+      credentials: {
+        email: { label: "email", type: "email" },
+        password: { label: "password", type: "password" },
+      },
+      authorize: async (credentials) => {
+        let { email, password } = credentials;
+        if (password === "") {
+          throw new Error(
+            'You cannot pass blank text as a password. If you signed up via google authentication, please click on the "Sign in through Google" button to proceed with logging in.'
+          );
+        }
+        const user = await verifyUser(email, password);
+        return user;
+      },
+    }),
   ],
   callbacks: {
     //this is ran on all protected routes to see if there is a user that is logged in.
@@ -31,7 +37,6 @@ const authConfig = {
     async signIn({ user }) {
       try {
         const existingUser = await getUser(user.email);
-        console.log(existingUser);
         if (!existingUser) {
           await createUser(user.name, user.email, user?.password || "");
           console.log("Successfully created user!");
