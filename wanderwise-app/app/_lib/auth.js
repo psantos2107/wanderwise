@@ -36,8 +36,11 @@ const authConfig = {
     //this is a
     async signIn({ user }) {
       try {
-        const existingUser = await getUser(user.email);
-        if (!existingUser) {
+        let existingUser;
+        if (!user?.signedInFromCreds) {
+          existingUser = await getUser(user.email);
+        }
+        if (!existingUser && !user?.signedInFromCreds) {
           await createUser(user.name, user.email, user?.password || "");
           console.log("Successfully created user!");
         }
@@ -53,6 +56,9 @@ const authConfig = {
       console.log(session);
       if (session.user?.password) {
         delete session.user.password;
+      }
+      if (session.user?.signedInFromCreds) {
+        delete session.user.signedInFromCreds;
       }
       return session;
     },

@@ -2,6 +2,7 @@ import { supabase } from "./supabase";
 import Amadeus from "amadeus";
 import fetchLocationDetails from "./fetch-attraction-and-hotel-details";
 import { hash, genSalt, compare } from "bcryptjs";
+import { signIn } from "./auth";
 
 //Code for fetching data will be displayed below.
 export async function testConnection() {
@@ -62,7 +63,11 @@ export async function verifyUser(email, password) {
   if (!foundUser) {
     throw new Error("Username or password is incorrect or not found.");
   } else if (await compare(password, foundUser.password)) {
-    return { name: foundUser.name, email: foundUser.email, id: foundUser.id };
+    return {
+      name: foundUser.name,
+      email: foundUser.email,
+      signedInFromCreds: true,
+    };
   } else {
     throw new Error("Username or password is incorrect or not found.");
   }

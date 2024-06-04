@@ -22,6 +22,7 @@ function LoginForm({ session }) {
       email: emailAdd,
       password: password,
     };
+    console.log(formData);
     await standardSignIn(formData);
   }
 
@@ -38,16 +39,24 @@ function LoginForm({ session }) {
             Please sign in to continue using our web app! Or, you can click on
             the button to sign via your google account.
           </h2>
-          <form>
+          <form onSubmit={handleSubmit}>
             <label>Email Address:</label>
-            <input type="text" value={emailAdd} onChange={handleEmailInput} />
+            <input
+              type="email"
+              value={emailAdd}
+              onChange={handleEmailInput}
+              className="text-black"
+              required
+            />
             <label>Password: </label>
             <input
               type="password"
               value={password}
               onChange={handlePasswordInput}
+              className="text-black"
+              required
             />
-            <input type="submit" value="Submit Form" onSubmit={handleSubmit} />
+            <input type="submit" value="Submit Form" />
           </form>
           <p>OR</p>
           <form action={googleSignIn}>
