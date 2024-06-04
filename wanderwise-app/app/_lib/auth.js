@@ -46,12 +46,14 @@ const authConfig = {
         return false;
       }
     },
-    //ensures that passwords don't get stored in the session object justi n case.
-    session({ session, user }) {
+    //ensures that passwords don't get stored in the session object just in case. also adds ID
+    async session({ session }) {
+      const user = await getUser(session.user.email);
+      session.user.id = user.id;
+      console.log(session);
       if (session.user?.password) {
         delete session.user.password;
       }
-      console.log(session);
       return session;
     },
   },
