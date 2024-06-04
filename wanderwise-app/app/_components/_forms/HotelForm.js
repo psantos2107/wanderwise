@@ -14,8 +14,9 @@ function HotelForm() {
     <form className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
       <article>
         <label>
-          What kind of hotels are you looking for? Please input terms like
-          "fancy", "cheap", "small", etc.
+          Any particular city/location you are looking for hotels in? Fill out
+          the form below and press submit if you do! Otherwise, just press
+          submit to find your hotels!
         </label>
         <div className="flex justify-center mt-2">
           <input

@@ -14,8 +14,9 @@ function AttractionForm() {
     <form className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
       <article>
         <label>
-          What kind of attractions are you looking for? Please input terms like
-          "hiking", "museum", "concerts", etc.
+          Any particular city you are looking for attractions in? Fill out the
+          form below and press submit if you do! Otherwise, just press submit to
+          find some cool places to go to!
         </label>
         <div className="flex justify-center mt-2">
           <input
