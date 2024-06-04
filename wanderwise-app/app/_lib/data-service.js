@@ -35,8 +35,9 @@ export async function createUser(name, email, password) {
     hashedPassword = await hash(password, await genSalt(10));
   }
 
-  const newUser = { name, email, hashedPassword };
+  const newUser = { name, email, password: hashedPassword };
   const { data, error } = await supabase.from("users").insert([newUser]);
+  console.log("User successfully created: ", data);
 
   if (error) {
     console.error(error);
