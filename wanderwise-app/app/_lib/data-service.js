@@ -2,7 +2,7 @@ import { supabase } from "./supabase";
 import Amadeus from "amadeus";
 import fetchLocationDetails from "./fetch-attraction-and-hotel-details";
 import { hash, genSalt, compare } from "bcryptjs";
-import { signIn } from "./auth";
+import { CredentialsSignin } from "next-auth";
 
 //Code for fetching data will be displayed below.
 export async function testConnection() {
@@ -61,7 +61,9 @@ export async function getUser(email) {
 export async function verifyUser(email, password) {
   const foundUser = await getUser(email);
   if (!foundUser) {
-    throw new Error("Username or password is incorrect or not found.");
+    throw new CredentialsSignin(
+      "Username or password is incorrect or not found."
+    );
   } else if (await compare(password, foundUser.password)) {
     return {
       name: foundUser.name,
@@ -69,7 +71,9 @@ export async function verifyUser(email, password) {
       signedInFromCreds: true,
     };
   } else {
-    throw new Error("Username or password is incorrect or not found.");
+    throw new CredentialsSignin(
+      "Username or password is incorrect or not found."
+    );
   }
 }
 

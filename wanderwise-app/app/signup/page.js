@@ -1,9 +1,17 @@
+import { auth } from "../_lib/auth";
+import SignUpForm from "../_components/_forms/SignUpForm";
+
 export const metadata = {
   title: "Sign Up",
 };
 
-function SignupPage() {
-  return <p>SignupPage</p>;
+async function SignupPage() {
+  const session = await auth();
+  return (
+    <main>
+      <SignUpForm session={session} />
+    </main>
+  );
 }
 
 export default SignupPage;

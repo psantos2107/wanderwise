@@ -2,6 +2,7 @@ import NextAuth from "next-auth";
 import Google from "next-auth/providers/google";
 import Credentials from "next-auth/providers/credentials";
 import { getUser, createUser, verifyUser } from "./data-service";
+import { CredentialsSignin } from "next-auth";
 
 //credentials and google OAuth configurations.
 const authConfig = {
@@ -18,7 +19,7 @@ const authConfig = {
       authorize: async (credentials) => {
         let { email, password } = credentials;
         if (password === "") {
-          throw new Error(
+          throw new CredentialsSignin(
             'You cannot pass blank text as a password. If you signed up via google authentication, please click on the "Sign in through Google" button to proceed with logging in.'
           );
         }

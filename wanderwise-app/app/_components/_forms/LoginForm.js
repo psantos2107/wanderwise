@@ -1,12 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { googleSignIn, standardSignIn } from "../_lib/actions";
+import { googleSignIn, standardSignIn } from "../../_lib/actions";
+import Spinner from "../Spinner";
 import Link from "next/link";
 
 function LoginForm({ session }) {
   const [emailAdd, setEmailAdd] = useState("");
   const [password, setPassword] = useState("");
+  const [errorMessage, setErrorMessage] = useState("");
+  const [isLoadingGooglePg, setIsLoadingGooglePg] = useState(false);
+  const [isLoadingCreds, setIsLoadingCreds] = useState(false);
 
   function handleEmailInput(e) {
     setEmailAdd(e.target.value);
@@ -16,14 +20,28 @@ function LoginForm({ session }) {
     setPassword(e.target.value);
   }
 
+  function handleGoogleOnClick() {
+    setIsLoadingGooglePg(true);
+  }
+
   async function handleSubmit(e) {
-    e.preventDefault();
-    const formData = {
-      email: emailAdd,
-      password: password,
-    };
-    console.log(formData);
-    await standardSignIn(formData);
+    try {
+      e.preventDefault();
+      setErrorMessage("");
+      const formData = {
+        email: emailAdd,
+        password: password,
+      };
+      console.log(formData);
+      setIsLoadingCreds(true);
+      await standardSignIn(formData);
+    } catch (error) {
+      setErrorMessage(
+        "Something went wrong. Check your email address and password combination. Note: If you originally signed up via google, you MUST log in via google again."
+      );
+    } finally {
+      setIsLoadingCreds(false);
+    }
   }
 
   return (
@@ -57,10 +75,15 @@ function LoginForm({ session }) {
               required
             />
             <input type="submit" value="Submit Form" />
+            <div>{errorMessage}</div>
           </form>
           <p>OR</p>
           <form action={googleSignIn}>
-            <button>Continue with Google</button>
+            <button onClick={handleGoogleOnClick}>Login with Google</button>
+            <div>
+              {isLoadingGooglePg && <Spinner />}
+              {isLoadingCreds && <Spinner />}
+            </div>
           </form>
         </>
       )}

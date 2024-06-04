@@ -9,7 +9,7 @@ export async function googleSignIn() {
 
 //function to sign out.
 export async function googleSignOut() {
-  await signOut("google", { redirectTo: "/" });
+  await signOut("google", { redirectTo: "/login" });
 }
 
 export async function standardSignIn(formData) {
