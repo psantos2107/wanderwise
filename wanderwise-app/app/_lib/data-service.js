@@ -1,6 +1,6 @@
 import { supabase } from "./supabase";
 import Amadeus from "amadeus";
-import fetchLocationDetails from "./fetch-attraction-and-hotel-details";
+import fetchDetailsAndPics from "./fetch-hotel-details-and-pics";
 import { hash, genSalt, compare } from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
 
@@ -123,21 +123,20 @@ export async function searchFlights() {
   return flightOffers;
 }
 
-export async function searchHotels() {
+export async function searchHotels(location) {
   //ANTICPATED FETCH FUNCTION FOR HOTELS.
-  const location = encodeURIComponent("Los Angeles, CA".trim()); //will change later
-  const searchTerm = "fancy hotels";
+  const locationQuery = encodeURIComponent(location.trim()); //will change later
 
   //URL set-up
-  const url = `https://api.content.tripadvisor.com/api/v1/location/search?key=${process.env.TRIP_ADVISOR_KEY}&searchQuery=${location}&category=${searchTerm}`;
+  const url = `https://api.content.tripadvisor.com/api/v1/location/search?key=${process.env.TRIP_ADVISOR_KEY}&searchQuery=${locationQuery}&category=hotels`;
   const options = { method: "GET", headers: { accept: "application/json" } };
 
   //data fetching!
   const res = await fetch(url, options);
   const hotels = await res.json();
   const hotelIDs = hotels.data.map((hotel) => hotel.location_id);
-  const hotelDataArr = await fetchLocationDetails(hotelIDs);
-  return hotelDataArr;
+  const hotelDataObject = await fetchDetailsAndPics(hotelIDs);
+  return hotelDataObject;
 }
 
 export async function searchAttractions() {

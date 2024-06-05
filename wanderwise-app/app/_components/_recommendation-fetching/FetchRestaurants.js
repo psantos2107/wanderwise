@@ -1,4 +1,3 @@
-import React from "react";
 import RestaurantCard from "./RestaurantCard";
 import { searchRestaurants } from "@/app/_lib/data-service";
 

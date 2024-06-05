@@ -20,6 +20,12 @@ const nextConfig = {
         port: "",
         pathname: "/images/logos/**",
       },
+      {
+        protocol: "https",
+        hostname: "media-cn.tripadvisor.com",
+        port: "",
+        pathname: "/media/**",
+      },
     ],
   },
 };

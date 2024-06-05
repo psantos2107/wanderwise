@@ -8,15 +8,19 @@ export const metadata = {
   title: "Search Hotels",
 };
 
-export default async function HotelsPage() {
-  //then get all details of the hotels afterward! look at HOTEL DETAILS!
+export default async function HotelsPage({ searchParams }) {
+  //grab current trip, derive location there.
+  const location = searchParams?.location
+    ? (searchParams?.location).trim()
+    : "";
+
   return (
     <main>
       <RecommendationMessage category={"hotels"} />
       <HotelForm />
       <div className="w-[80%] mx-auto mt-4">
         <Suspense fallback={<Spinner />}>
-          <FetchHotels />
+          <FetchHotels location={location} />
         </Suspense>
       </div>
     </main>

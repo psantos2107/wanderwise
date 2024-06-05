@@ -3,7 +3,7 @@ import hotelIcon from "@/public/imgs/hotel_icon.jpg";
 import Image from "next/image";
 import TextExpander from "../TextExpander";
 
-function HotelCard({ hotel, index }) {
+function HotelCard({ hotel, index, pictureURL }) {
   return (
     <article
       className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4"
@@ -13,14 +13,18 @@ function HotelCard({ hotel, index }) {
         {index + 1}. {hotel.name}
       </h2>
       <figure className="w-[90%] mx-auto">
-        <Image
-          src={hotelIcon}
-          width="100"
-          height="100"
-          layout="responsive"
-          alt={`Placeholder Image for Hotels`}
-          className="object-cover object-top max-h-44 rounded-sm"
-        />
+        {pictureURL ? (
+          <img
+            src={pictureURL || ""}
+            // width="100"
+            // height="100"
+            // layout="responsive"
+            alt={`Placeholder Image for Hotels`}
+            className="object-cover object-top max-h-44 rounded-sm"
+          />
+        ) : (
+          <h2>Picture not available.</h2>
+        )}
         <p>
           <strong>
             <u className="text-sm">DESCRIPTION:</u>{" "}
@@ -38,13 +42,17 @@ function HotelCard({ hotel, index }) {
           {hotel.num_reviews} reviews){" "}
         </p>
         <figure className="w-3/4 mx-auto">
-          <Image
-            src={hotel.rating_image_url}
-            width="30"
-            height="30"
-            layout="responsive"
-            alt={`Rating image for ${hotel.name}`}
-          />
+          {hotel.rating_image_url ? (
+            <Image
+              src={hotel.rating_image_url}
+              width="30"
+              height="30"
+              layout="responsive"
+              alt={`Rating image for ${hotel.name}`}
+            />
+          ) : (
+            "Rating image not available."
+          )}
         </figure>
         <a
           href={hotel.see_all_photos}

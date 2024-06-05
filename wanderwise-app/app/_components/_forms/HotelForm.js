@@ -1,17 +1,35 @@
 "use client";
 import { useState } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 function HotelForm() {
   const [searchTerm, setSearchTerm] = useState("");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   function handleSearchTermChange(e) {
     setSearchTerm(e.target.value);
   }
 
+  function handleSubmit(e) {
+    e.preventDefault();
+    const params = new URLSearchParams(searchParams);
+    if (searchTerm === "") {
+      setSearchTerm("Los Angeles, CA");
+    }
+    params.set("location", searchTerm);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    //code.
+  }
+
   //add handleSubmit later.
 
   return (
-    <form className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
+    <form
+      className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm"
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <article>
         <label>
           Any particular city/location you are looking for hotels in? Fill out

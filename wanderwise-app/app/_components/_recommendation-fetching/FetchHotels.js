@@ -562,10 +562,10 @@ const hotels = [
 
 //base hotel data ready to be formatted
 
-import fetchLocationDetails from "@/app/_lib/fetch-attraction-and-hotel-details";
+import { searchHotels } from "@/app/_lib/data-service";
 import HotelCard from "./HotelCard";
 
-async function FetchHotels() {
+async function FetchHotels({ location }) {
   //ANTICPATED FETCH FUNCTION FOR HOTELS.
   // const location = encodeURIComponent("Los Angeles, CA".trim()); //will change later
 
@@ -577,12 +577,36 @@ async function FetchHotels() {
   // const hotelIDs = hotels.map((hotel) => hotel.location_id);
   // const hotelDataArr = await fetchLocationDetails(hotelIDs);
 
+  let hotelDetails = [];
+  let hotelPictures = [];
+  if (location) {
+    const { locationDetails, pictures } = await searchHotels(location);
+    hotelDetails = [...locationDetails];
+    hotelPictures = [...pictures];
+  }
+
   return (
     <section>
-      <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>
-      {hotels.map((hotel, index) => (
-        <HotelCard hotel={hotel} index={index} key={hotel.location_id} />
-      ))}
+      {hotelDetails.length > 0 ? (
+        <>
+          <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>
+          {hotelDetails.map((hotel, index) => (
+            <HotelCard
+              hotel={hotel}
+              index={index}
+              pictureURL={hotelPictures[index]}
+              key={hotel.location_id}
+            />
+          ))}
+        </>
+      ) : (
+        <h1>
+          {" "}
+          No results to display. Either no search has been made, or no results
+          were found from the search. If the latter, please re-do your search
+          and try again.
+        </h1>
+      )}
     </section>
   );
 }
