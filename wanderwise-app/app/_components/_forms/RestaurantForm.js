@@ -1,9 +1,13 @@
 "use client";
 import { useState } from "react";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 function RestaurantForm() {
   const [searchTerm, setSearchTerm] = useState("");
   const [priceRange, setPriceRange] = useState("1");
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   const handleInputChange = (e) => {
     setSearchTerm(e.target.value);
@@ -13,12 +17,26 @@ function RestaurantForm() {
     setPriceRange(e.target.value);
   };
 
+  const handleSumbit = (e) => {
+    e.preventDefault();
+
+    //changing the URL is one of the ways to cause a re-render of server components. Thus, this block of code is used in order to change the URL with query parameters that will be derived in order to re-fetch data from the server components with those query terms
+    const params = new URLSearchParams(searchParams);
+    params.set("searchTerm", searchTerm);
+    params.set("priceRange", priceRange);
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   return (
-    <form className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
+    <form
+      className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm"
+      onSubmit={(e) => handleSumbit(e)}
+    >
       <article>
         <label>
           What type of restaurant are you looking for? Please input terms like
-          "brunch", "fast-food", "fancy", etc.
+          "brunch", "fast-food", "fancy", etc. Only use terms that describe a
+          type of restaurant, otherwise, you may not have a valid search.
         </label>
         <div className="flex justify-center mt-2">
           <input
@@ -26,6 +44,7 @@ function RestaurantForm() {
             value={searchTerm}
             onChange={handleInputChange}
             className="px-1"
+            required
           />
         </div>
       </article>
@@ -35,6 +54,7 @@ function RestaurantForm() {
           className="ml-2"
           value={priceRange}
           onChange={handlePriceRangeChange}
+          required
         >
           <option value="1">$: Affordable</option>
           <option value="2">$$: Pricier</option>

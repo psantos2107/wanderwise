@@ -8,14 +8,21 @@ export const metadata = {
   title: "Search Restaurants",
 };
 
-export default async function RestaurantsPage() {
+//searchParams grabs query params from the URL. This prop is only available on page.js
+export default async function RestaurantsPage({ searchParams }) {
+  //query params will be used to share state between client components and server components.
+  const searchTerm = searchParams?.searchTerm
+    ? `${(searchParams?.searchTerm).trim()} restaurants`
+    : "";
+  const priceRange = searchParams?.priceRange ?? "";
+
   return (
     <main>
       <RecommendationMessage category={"restaurants"} />
       <RestaurantForm />
       <div className="w-[80%] mx-auto">
         <Suspense fallback={<Spinner />}>
-          <FetchRestaurants />
+          <FetchRestaurants searchTerm={searchTerm} priceRange={priceRange} />
         </Suspense>
       </div>
     </main>

@@ -80,11 +80,15 @@ function LoginForm({ session }) {
           <p>OR</p>
           <form action={googleSignIn}>
             <button onClick={handleGoogleOnClick}>Login with Google</button>
-            <div>
-              {isLoadingGooglePg && <Spinner />}
-              {isLoadingCreds && <Spinner />}
-            </div>
           </form>
+          <p>
+            Or, if you don't have an account yet click{" "}
+            <Link href={"/signup"}>here</Link> to sign up!
+          </p>
+          <div>
+            {isLoadingGooglePg && <Spinner />}
+            {isLoadingCreds && <Spinner />}
+          </div>
         </>
       )}
     </main>
