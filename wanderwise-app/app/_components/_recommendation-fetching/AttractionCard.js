@@ -6,68 +6,46 @@ function AttractionCard({ attraction, index }) {
   return (
     <article
       className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4"
-      data-attraction={JSON.stringify(attraction)}
+      data-restaurant={JSON.stringify(attraction)}
     >
       <h2>
         {index + 1}. {attraction.name}
       </h2>
-      <div className="w-[90%] mx-auto">
-        <figure className="w-full h-[150px] relative">
+      <figure className="w-[90%] mx-auto">
+        {attraction?.image_url ? (
           <Image
-            src={attractionIcon}
-            fill
-            alt={`Placeholder Image for Attractions`}
-            className="object-cover max-h-44 rounded-sm"
+            src={attraction.image_url}
+            width="100"
+            height="100"
+            layout="responsive"
+            alt={`Image of ${attraction.name}`}
+            className="object-cover max-h-36 rounded-sm"
           />
-        </figure>
+        ) : (
+          "No photo provided by Yelp."
+        )}
         <p>
           <strong>
-            <u className="text-sm">DESCRIPTION:</u>{" "}
+            <u className="text-sm">CATEGORIES:</u>{" "}
           </strong>{" "}
-          {attraction?.description ? (
-            <TextExpander>{attraction.description}</TextExpander>
-          ) : (
-            "No description provided."
-          )}
+          {attraction.categories.map((category) => category.title).join(", ")}
+        </p>
+        <p>
+          <u className="text-sm">YELP RATING:</u> {attraction.rating} (out of{" "}
+          {attraction.review_count} reviews)
         </p>
         <p>
           <u className="text-sm">ADDRESS:</u>{" "}
-          {attraction?.address_obj?.address_string ||
-            attraction?.address_string ||
-            "Not available"}
+          {attraction.location.display_address.join(",")}
         </p>
-        <p>
-          <u className="text-sm">PHONE NUMBER:</u>{" "}
-          {attraction?.phone || "None provided."}
-        </p>
-        <p>
-          <u className="text-sm">TRIPADVISOR RATING:</u> {attraction.rating}{" "}
-          (out of {attraction.num_reviews} reviews){" "}
-        </p>
-        <figure className="w-1/2 h-10 mx-auto relative">
-          <Image
-            src={attraction.rating_image_url}
-            fill
-            alt={`Rating image for ${attraction.name}`}
-            className="object-contain"
-          />
-        </figure>
-
         <a
-          href={attraction.see_all_photos}
+          href={attraction.url}
           target="_blank"
           className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto"
         >
-          See More Photos!
+          View on yelp!
         </a>
-        <a
-          href={attraction.web_url}
-          target="_blank"
-          className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto"
-        >
-          View on TripAdvisor!
-        </a>
-      </div>
+      </figure>
       <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
         {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
         Save Recommendation
@@ -79,5 +57,83 @@ function AttractionCard({ attraction, index }) {
     </article>
   );
 }
+
+// function AttractionCard({ attraction, index }) {
+//   return (
+//     <article
+//       className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4"
+//       data-attraction={JSON.stringify(attraction)}
+//     >
+//       <h2>
+//         {index + 1}. {attraction.name}
+//       </h2>
+//       <div className="w-[90%] mx-auto">
+//         <figure className="w-full h-[150px] relative">
+//           <Image
+//             src={attractionIcon}
+//             fill
+//             alt={`Placeholder Image for Attractions`}
+//             className="object-cover max-h-44 rounded-sm"
+//           />
+//         </figure>
+//         <p>
+//           <strong>
+//             <u className="text-sm">DESCRIPTION:</u>{" "}
+//           </strong>{" "}
+//           {attraction?.description ? (
+//             <TextExpander>{attraction.description}</TextExpander>
+//           ) : (
+//             "No description provided."
+//           )}
+//         </p>
+//         <p>
+//           <u className="text-sm">ADDRESS:</u>{" "}
+//           {attraction?.address_obj?.address_string ||
+//             attraction?.address_string ||
+//             "Not available"}
+//         </p>
+//         <p>
+//           <u className="text-sm">PHONE NUMBER:</u>{" "}
+//           {attraction?.phone || "None provided."}
+//         </p>
+//         <p>
+//           <u className="text-sm">TRIPADVISOR RATING:</u> {attraction.rating}{" "}
+//           (out of {attraction.num_reviews} reviews){" "}
+//         </p>
+//         <figure className="w-1/2 h-10 mx-auto relative">
+//           <Image
+//             src={attraction.rating_image_url}
+//             fill
+//             alt={`Rating image for ${attraction.name}`}
+//             className="object-contain"
+//           />
+//         </figure>
+
+//         <a
+//           href={attraction.see_all_photos}
+//           target="_blank"
+//           className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto"
+//         >
+//           See More Photos!
+//         </a>
+//         <a
+//           href={attraction.web_url}
+//           target="_blank"
+//           className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto"
+//         >
+//           View on TripAdvisor!
+//         </a>
+//       </div>
+//       <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
+//         {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+//         Save Recommendation
+//       </button>
+//       <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
+//         {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+//         Add to Itinerary
+//       </button>
+//     </article>
+//   );
+// }
 
 export default AttractionCard;

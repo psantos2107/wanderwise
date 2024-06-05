@@ -100,23 +100,32 @@ export async function searchRestaurants(location, searchTerm, price) {
   return restaurantData?.businesses || [];
 }
 
-export async function searchFlights() {
+export async function searchFlights(
+  iataOrigin,
+  departureDate,
+  returnDate,
+  numAdults,
+  numChildren,
+  numInfants,
+  travelClass,
+  nonStopOnly
+) {
   const amadeus = new Amadeus({
     clientId: `${process.env.AMADEUS_API_KEY}`,
     clientSecret: `${process.env.AMADEUS_API_SECRET}`,
   });
 
   const res = await amadeus.shopping.flightOffersSearch.get({
-    originLocationCode: "SYD",
-    destinationLocationCode: "BKK",
-    departureDate: "2024-07-01",
-    returnDate: "2024-08-01",
-    adults: "2",
-    children: "0",
-    infants: "0",
-    travelClass: "ECONOMY",
-    nonStop: "false",
-    max: "3",
+    originLocationCode: iataOrigin,
+    destinationLocationCode: "PAR",
+    departureDate: departureDate,
+    returnDate: returnDate,
+    adults: numAdults,
+    children: numChildren,
+    infants: numInfants,
+    travelClass: travelClass,
+    nonStop: nonStopOnly,
+    max: "5",
   });
 
   const flightOffers = res.data;
@@ -139,20 +148,22 @@ export async function searchHotels(location) {
   return hotelDataObject;
 }
 
-export async function searchAttractions() {
+export async function searchAttractions(searchTerm) {
   //CODE TO QUERY THE ATTRACTIONS.
+  const location = "Los Angeles, CA";
+  const encodedLocation = encodeURIComponent(location.trim()) || ""; //will change later
+  const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
 
-  const location = encodeURIComponent("Los Angeles, CA".trim()); //will change later
-  const searchTerm = encodeURIComponent("museums".trim());
-
-  const url = `https://api.content.tripadvisor.com/api/v1/location/search?key=${process.env.TRIP_ADVISOR_KEY}&searchQuery=${location}&category=${searchTerm}`;
-  const options = { method: "GET", headers: { accept: "application/json" } };
+  const url = `https://api.yelp.com/v3/businesses/search?location=${encodedLocation}&term=${encodedSearchTerm}&attributes=popular&sort_by=best_match&limit=10`;
+  const options = {
+    method: "GET",
+    headers: {
+      accept: "application/json",
+      Authorization: `Bearer ${process.env.YELP_API_KEY}`,
+    },
+  };
 
   const res = await fetch(url, options);
-  const attractions = await res.json();
-  const attractionIDs = attractions.data.map(
-    (attraction) => attraction.location_id
-  );
-  const attractionDataArr = await fetchLocationDetails(attractionIDs);
-  return attractionDataArr;
+  const attractionData = await res.json();
+  return attractionData?.businesses || [];
 }

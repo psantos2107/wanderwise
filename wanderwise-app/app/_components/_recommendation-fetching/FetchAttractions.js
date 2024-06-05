@@ -319,21 +319,34 @@ const conventionCenter = [
 import AttractionCard from "./AttractionCard";
 import { searchAttractions } from "@/app/_lib/data-service";
 
-async function FetchAttractions() {
-  // const attractions = await searchAttractions();
+async function FetchAttractions({ searchTerm }) {
+  let attractions = [];
+  if (searchTerm) {
+    attractions = await searchAttractions(searchTerm);
+  }
 
   return (
     <section className="flex flex-col">
       <h1 className="my-2 text-center">RESULTS of SEARCH:</h1>
-      {conventionCenter.map((attraction, index) => {
-        return (
-          <AttractionCard
-            attraction={attraction}
-            index={index}
-            key={attraction.location_id}
-          />
-        );
-      })}
+      {attractions.length > 0 ? (
+        <>
+          {attractions.map((attraction, index) => {
+            return (
+              <AttractionCard
+                attraction={attraction}
+                index={index}
+                key={attraction.location_id}
+              />
+            );
+          })}{" "}
+        </>
+      ) : (
+        <h2>
+          No results to display. Either no search has been conducted yet or no
+          results have come out of your search. If it is the latter, please
+          refine your search and try again.
+        </h2>
+      )}
     </section>
   );
 }

@@ -4,6 +4,7 @@ import { getAirlineByIata } from "aircodes";
 function FlightCard({ flightOffer, index }) {
   return (
     <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 w-full">
+      {console.log(flightOffer, getAirlineByIata(flightOffer.carrierCode))}
       <h2 className="bolder">
         <u>FLIGHT OFFER {index + 1}</u>
       </h2>
@@ -59,8 +60,10 @@ function FlightCard({ flightOffer, index }) {
               {itinerary.segments.map((segment, i, arr) => {
                 return (
                   <section>
-                    Airline: {getAirlineByIata(segment.carrierCode).name}-
-                    Flight #{segment.number} (Flight {i + 1}/{arr.length})
+                    Airline:{" "}
+                    {getAirlineByIata(segment.carrierCode)?.name ||
+                      `Carrier Code: ${segment.carrierCode} (Unable to fetch airline name. You may search for the airline name through its carrier code.)`}
+                    - Flight #{segment.number} (Flight {i + 1}/{arr.length})
                     <div className="flex flex-col">
                       <div>
                         <h4>DEPARTING:</h4>
@@ -92,12 +95,16 @@ function FlightCard({ flightOffer, index }) {
                       />
                     </div>
                     <figure className="w-3/4 h-[100px] relative">
-                      <Image
-                        src={getAirlineByIata(segment.carrierCode).logo}
-                        fill
-                        alt={`Image of Airline.`}
-                        className="object-contain"
-                      />
+                      {getAirlineByIata(segment.carrierCode)?.logo ? (
+                        <Image
+                          src={getAirlineByIata(segment.carrierCode).logo}
+                          fill
+                          alt={`Image of Airline.`}
+                          className="object-contain"
+                        />
+                      ) : (
+                        ""
+                      )}
                     </figure>
                   </section>
                 );

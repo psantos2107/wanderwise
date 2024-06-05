@@ -8,15 +8,18 @@ export const metadata = {
   title: "Search Attractions",
 };
 
-export default async function AttractionsPage() {
-  //then get all details of the hotels afterward! look at HOTEL DETAILS!
+export default async function AttractionsPage({ searchParams }) {
+  const searchTerm = searchParams?.searchTerm
+    ? `${(searchParams?.searchTerm).trim()} attractions`
+    : "";
+
   return (
     <main>
       <RecommendationMessage category={"attractions"} />
       <AttractionForm />
       <div className="w-[80%] mx-auto mt-4">
         <Suspense fallback={<Spinner />}>
-          <FetchAttractions />
+          <FetchAttractions searchTerm={searchTerm} />
         </Suspense>
       </div>
     </main>

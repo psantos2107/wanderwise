@@ -25,6 +25,7 @@ import "react-day-picker/dist/style.css";
 import getCountryList from "@/app/_lib/get-country-list";
 import formatDate from "@/app/_lib/format-date";
 import { findAirport } from "aircodes";
+import { useSearchParams, useRouter, usePathname } from "next/navigation";
 
 function FlightForm() {
   //setting state
@@ -37,6 +38,9 @@ function FlightForm() {
   const [numInfants, setNumInfants] = useState(0);
   const [travelClass, setTravelClass] = useState("ECONOMY");
   const [nonStopOnly, setNonStopOnly] = useState(true);
+  const searchParams = useSearchParams();
+  const router = useRouter();
+  const pathname = usePathname();
 
   //grouping variables related to the calendar
   const [range, setRange] = useState({ from: undefined, to: undefined });
@@ -63,7 +67,7 @@ function FlightForm() {
     setTravelClass(e.target.value);
   }
   function handleNonStopOnly(e) {
-    setNonStopOnly(e.target.value);
+    setNonStopOnly(e.target.checked);
   }
   function handleIataOrigin(e) {
     setIataOrigin(e.target.value);
@@ -90,11 +94,29 @@ function FlightForm() {
     }
   }
 
+  const handleSumbit = (e) => {
+    e.preventDefault();
+
+    const params = new URLSearchParams(searchParams);
+    params.set("iataOrigin", iataOrigin);
+    params.set("departureDate", departureDate);
+    params.set("returnDate", returnDate);
+    params.set("numAdults", numAdults);
+    params.set("numChildren", numChildren);
+    params.set("numInfants", numInfants);
+    params.set("travelClass", travelClass);
+    params.set("nonStopOnly", nonStopOnly.toString());
+    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+  };
+
   const countries = getCountryList();
   const numArray = [...Array(51).keys()]; //creates an array with elements that contain strings/numbers.
 
   return (
-    <form className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
+    <form
+      className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm"
+      onSubmit={(e) => handleSumbit(e)}
+    >
       <article className="flex flex-col md:block">
         <label className="block text-center md:inline">
           Which city are you flying from?
@@ -106,6 +128,7 @@ function FlightForm() {
           value={originCity}
           onChange={handleOriginCity}
           onBlur={displayIataCodes}
+          required
         />
       </article>
       <article className="flex flex-col md:block">

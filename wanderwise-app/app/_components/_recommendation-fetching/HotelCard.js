@@ -1,5 +1,4 @@
 import React from "react";
-import hotelIcon from "@/public/imgs/hotel_icon.jpg";
 import Image from "next/image";
 import TextExpander from "../TextExpander";
 
