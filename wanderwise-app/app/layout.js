@@ -1,13 +1,12 @@
 import "./_styles/globals.css";
 import Header from "./_components/Header";
-import { Lato } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import { TripProvider } from "./_components/_contexts/TripContext";
 // import { testConnection } from "./_lib/data-service";
 
-const lato = Lato({
+const josefin = Josefin_Sans({
   subsets: ["latin"],
   display: "swap",
-  weight: "400",
 });
 
 export const metadata = {
@@ -25,7 +24,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${lato.className} box-border m-0 p-0 min-h-screen flex flex-col bg-gradient-blue text-theme-color-light`}
+        className={`${josefin.className} box-border m-0 p-0 min-h-screen flex flex-col text-slate-950 bg-white`}
       >
         <Header />
         <TripProvider>{children}</TripProvider>

@@ -61,8 +61,10 @@ function FlightCard({ flightOffer, index }) {
                 return (
                   <section>
                     Airline:{" "}
-                    {getAirlineByIata(segment.carrierCode)?.name ||
-                      `Carrier Code: ${segment.carrierCode} (Unable to fetch airline name. You may search for the airline name through its carrier code.)`}
+                    {segment.carrierCode === "B6"
+                      ? "Jet Blue"
+                      : getAirlineByIata(segment.carrierCode)?.name ||
+                        `Carrier Code: ${segment.carrierCode} (Unable to fetch exact airline name. You may search for the airline name through its carrier code.)`}
                     - Flight #{segment.number} (Flight {i + 1}/{arr.length})
                     <div className="flex flex-col">
                       <div>

@@ -23,7 +23,7 @@ export async function testConnection() {
   }
 }
 
-//ALL FUNCTIONS RELATED TO USERS:
+//ALL FUNCTIONS RELATED TO USERS:---------------
 export async function createUser(name, email, password) {
   const existingUser = await getUser(email);
   let hashedPassword = "";
@@ -77,12 +77,35 @@ export async function verifyUser(email, password) {
   }
 }
 
-export async function grabTripInfo() {
-  //code
+//----ALL FUNCTIONS RELATED TO TRIPS ARE HERE--------
+
+export async function getTripsByUserId(id) {
+  const { data, error } = await supabase
+    .from("trips")
+    .select("*")
+    .eq("user_id", id);
+
+  if (error) {
+    throw new Error("Unable to obtain trips.");
+  }
+  return data;
 }
 
-//ALL FUNCTIONS THAT FETCH DATA ARE HERE
+export async function grabTripInfo(id) {
+  const { data, error } = await supabase
+    .from("trips")
+    .select("*")
+    .eq("id", id)
+    .single();
+  if (error) {
+    throw new Error("Unable to obtain trip info.");
+  }
+  return data;
+}
+
+//ALL FUNCTIONS THAT FETCH DATA ROM EXTERNAL APIS ARE HERE
 export async function searchRestaurants(location, searchTerm, price) {
+  console.log("it reached here------------------------");
   const encodedLocation = encodeURIComponent(location.trim()) || ""; //will change later
   const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
 

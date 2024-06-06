@@ -14,6 +14,8 @@ module.exports = {
         "gradient-blue":
           "linear-gradient(to bottom left, #B2F2B2 0%, #1a4775 10%, #1a4775 75%, #B2F2B2 100%)",
         "gradient-white": "linear-gradient(to bottom right, #f8f9fa, #f0f0f0)",
+        "gradient-orange":
+          "linear-gradient(to bottom, rgb(234, 88, 12) 0%, rgb(251, 146, 60) 80%, rgb(254, 215, 170) 90%, rgb(248, 250, 252) 95%)",
       },
       borderRadius: {
         "25p": "25%",

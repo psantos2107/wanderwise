@@ -1,24 +1,5 @@
 "use client";
 
-/*
-const city = "Juneau"; //note: has to be a single string!
-const iata = findAirport(city);
-console.log(iata); 
-
-const originCity = Los Angeles
-const originCountry = United States
-const destinationLocation = "PAR";
-const departureDate = "2024-06-01";
-const returnDate = "2024-06-10";
-const numAdults = 1;
-const numChildren = 0;
-const numInfants = 0;
-const travelClass = "ECONOMY";
-const nonStop = false;
-const limit = 10;
-
-*/
-
 import { useState } from "react";
 import DateRangePicker from "../DateRangePicker";
 import "react-day-picker/dist/style.css";
@@ -38,6 +19,8 @@ function FlightForm() {
   const [numInfants, setNumInfants] = useState(0);
   const [travelClass, setTravelClass] = useState("ECONOMY");
   const [nonStopOnly, setNonStopOnly] = useState(true);
+  const countries = getCountryList(); //gets a list of all countries and stores it in a variable
+  const numArray = [...Array(51).keys()]; //creates an array with elements that contain strings/numbers.
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -94,6 +77,7 @@ function FlightForm() {
     }
   }
 
+  //used to handle form submssion so that the server component can re-render.
   const handleSumbit = (e) => {
     e.preventDefault();
 
@@ -108,9 +92,6 @@ function FlightForm() {
     params.set("nonStopOnly", nonStopOnly.toString());
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
-
-  const countries = getCountryList();
-  const numArray = [...Array(51).keys()]; //creates an array with elements that contain strings/numbers.
 
   return (
     <form
@@ -268,7 +249,7 @@ function FlightForm() {
       <input
         type="submit"
         value="SUBMIT"
-        className="self-center bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 text-sm boldest"
+        className="self-center bg-blue-300 p-1 rounded-md border-2 border-solid border-gray-300 text-sm boldest"
       />
     </form>
   );

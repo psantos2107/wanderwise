@@ -52,7 +52,7 @@ function SignUpForm({ session }) {
             continue using our web app! Or, alternatively, you can simply sign
             up with your Google credentials by pressing on the button below!
           </h2>
-          <form>
+          <form onSubmit={handleFormSubmit}>
             <label>First Name:</label>
             <input
               type="text"
@@ -87,7 +87,7 @@ function SignUpForm({ session }) {
               placeholder="Password"
               required
               value={password}
-              onChange={setPassword}
+              onChange={handlePassword}
             />
             <input type="submit" value="Submit Form" />
             <div>{errorMessage}</div>

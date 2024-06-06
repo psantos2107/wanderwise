@@ -10,10 +10,10 @@ const lato = Lato({
 
 const Header = () => {
   return (
-    <header className="px-4 py-2 mb-6 lg:mb-10 lg:py-5 bg-gradient-white flex justify-center h-1/6 w-full lg:rounded-3xl rounded-b-xl shadow max-w-screen-xl mx-auto border-solid border-grey border-4">
+    <header className="px-4 py-4 mb-6 lg:mb-10 lg:py-5 bg-gradient-orange flex justify-center h-1/6 w-full lg:rounded-3xl rounded-b-xl max-w-screen-xl mx-auto">
       <div className="flex gap-4 lg:gap-12 justify-center">
         <h1
-          className={`self-center text-xl md:text-4xl lg:text-6xl tracking-wide ${lato.className} text-theme-color-dark`}
+          className={`self-center text-2xl md:text-4xl lg:text-6xl tracking-wide ${lato.className} text-theme-color-dark`}
         >
           WANDERWISE
         </h1>
