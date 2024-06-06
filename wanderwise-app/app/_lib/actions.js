@@ -1,5 +1,5 @@
 "use server";
-//will contain all server actions.
+//will contain all server actions specifically related to creating, deleting, and updating data.
 import { signIn, signOut } from "./auth";
 
 //function to sign in.

@@ -1,3 +1,4 @@
+//formats dates obtained from DayPicker and converts them to year-month-day format.
 const formatDate = (date) => {
   if (!date) return "";
   const year = date.getFullYear();

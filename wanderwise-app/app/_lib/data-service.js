@@ -4,7 +4,9 @@ import fetchDetailsAndPics from "./fetch-hotel-details-and-pics";
 import { hash, genSalt, compare } from "bcryptjs";
 import { CredentialsSignin } from "next-auth";
 
-//Code for fetching data will be displayed below.
+//ALL CODE THAT FETCHES DATA FROM THE DATABASE OR FETCHES DATA FROM EXTERNAL APIS WILL BE FOUND HERE.
+
+//for testing the connection out.
 export async function testConnection() {
   try {
     const { data, error } = await supabase.from("test").select("*").limit(1);
@@ -58,6 +60,7 @@ export async function getUser(email) {
   return data;
 }
 
+//if loggedin through credentials, this will verify if the user exists in the DB
 export async function verifyUser(email, password) {
   const foundUser = await getUser(email);
   if (!foundUser) {
@@ -78,7 +81,6 @@ export async function verifyUser(email, password) {
 }
 
 //----ALL FUNCTIONS RELATED TO TRIPS ARE HERE--------
-
 export async function getTripsByUserId(id) {
   const { data, error } = await supabase
     .from("trips")
@@ -105,7 +107,6 @@ export async function grabTripInfo(id) {
 
 //ALL FUNCTIONS THAT FETCH DATA ROM EXTERNAL APIS ARE HERE
 export async function searchRestaurants(location, searchTerm, price) {
-  console.log("it reached here------------------------");
   const encodedLocation = encodeURIComponent(location.trim()) || ""; //will change later
   const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
 

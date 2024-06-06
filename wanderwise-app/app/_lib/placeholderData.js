@@ -1,3 +1,5 @@
+//file to hold dummy data for the different 
+
 export const flightsPlaceholder = {
   meta: {
     count: 2,

@@ -1,4 +1,4 @@
-//creates a client for sup
+//creates a client for supabase (similar to the mongoDB connection string stuff.)
 import { createClient } from "@supabase/supabase-js";
 
 export const supabase = createClient(
