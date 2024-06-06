@@ -5,8 +5,10 @@ import "react-day-picker/dist/style.css";
 import getCountryList from "@/app/_lib/get-country-list";
 import formatDate from "@/app/_lib/format-date";
 import { findAirport } from "aircodes";
+import { createTrip } from "@/app/_lib/actions";
+import { useRouter } from "next/navigation";
 
-function CreateOrEditTrip({ userID, trip }) {
+function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
   const [destinationCity, setDestinationCity] = useState(
     trip?.destination_city || ""
   );
@@ -21,7 +23,9 @@ function CreateOrEditTrip({ userID, trip }) {
     trip?.flight_booked ?? false
   );
   const [hotelBooked, setHotelBooked] = useState(trip?.hotelBooked ?? false);
+  const [errorMessage, setErrorMessage] = useState("");
   const countries = getCountryList();
+  const router = useRouter();
 
   //grouping variables related to the calendar
   const [range, setRange] = useState({ from: undefined, to: undefined });
@@ -58,8 +62,26 @@ function CreateOrEditTrip({ userID, trip }) {
   function handleHotelBooked(e) {
     setHotelBooked(e.target.checked);
   }
-  function handleSumbit() {
-    //....server action code most likely.
+  async function handleSumbit(e) {
+    e.preventDefault();
+    try {
+      const newTrip = await createTrip(
+        destinationCity,
+        destinationCountry,
+        iataOrigin,
+        budget,
+        tripNotes,
+        flightBooked,
+        hotelBooked,
+        departureDate,
+        returnDate,
+        userID
+      );
+      router.push(`/trip/${newTrip[0].id}`);
+    } catch (error) {
+      console.error("Error creating trip: ", error);
+      setErrorMessage("Failed to create the trip. Please try again.");
+    }
   }
 
   function displayIataCodes() {
@@ -219,6 +241,7 @@ function CreateOrEditTrip({ userID, trip }) {
           cols="50"
         ></textarea>
       </article>
+      {errorMessage && <p className="text-red-700 boldest">{errorMessage}</p>}
       <input
         type="submit"
         value="SUBMIT"
