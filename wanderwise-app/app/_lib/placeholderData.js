@@ -1,4 +1,4 @@
-//file to hold dummy data for the different 
+//file to hold dummy data for the different
 
 export const flightsPlaceholder = {
   meta: {
@@ -761,3 +761,26 @@ export const singleFlight = {
     },
   ],
 };
+
+export const tripCardData = [
+  {
+    id: "2",
+    start_date: "2024-06-15",
+    end_date: "2024-06-21",
+    flight_booked: false,
+    hotel_booked: true,
+    destination_city: "Maniila",
+    destination_country: "Philippines",
+    updated_at: "2024-06-06 @ 23:09",
+  },
+  {
+    id: "3",
+    start_date: "2024-06-15",
+    end_date: "2024-06-21",
+    flight_booked: false,
+    hotel_booked: true,
+    destination_city: "Lover Land",
+    destination_country: "Philippines",
+    updated_at: "2024-06-06 @ 23:09",
+  },
+];

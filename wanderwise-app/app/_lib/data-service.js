@@ -1,8 +1,7 @@
 import { supabase } from "./supabase";
 import Amadeus from "amadeus";
 import fetchDetailsAndPics from "./fetch-hotel-details-and-pics";
-import { hash, genSalt, compare } from "bcryptjs";
-import { CredentialsSignin } from "next-auth";
+import { compare } from "bcryptjs";
 
 //ALL CODE THAT FETCHES DATA FROM THE DATABASE OR FETCHES DATA FROM EXTERNAL APIS WILL BE FOUND HERE.
 
@@ -26,30 +25,6 @@ export async function testConnection() {
 }
 
 //ALL FUNCTIONS RELATED TO USERS:---------------
-export async function createUser(name, email, password) {
-  const existingUser = await getUser(email);
-  let hashedPassword = "";
-  if (existingUser) {
-    throw new Error(
-      "A user with that email address already exists. Please try signing up again."
-    );
-  }
-  if (password !== "") {
-    hashedPassword = await hash(password, await genSalt(10));
-  }
-
-  const newUser = { name, email, password: hashedPassword };
-  const { data, error } = await supabase.from("users").insert([newUser]);
-  console.log("User successfully created: ", data);
-
-  if (error) {
-    console.error(error);
-    throw new Error("Failed to create user.");
-  }
-
-  return data;
-}
-
 export async function getUser(email) {
   const { data } = await supabase
     .from("users")
@@ -60,13 +35,11 @@ export async function getUser(email) {
   return data;
 }
 
-//if loggedin through credentials, this will verify if the user exists in the DB
+//if loggedin through s, this will verify if the user exists in the DB
 export async function verifyUser(email, password) {
   const foundUser = await getUser(email);
   if (!foundUser) {
-    throw new CredentialsSignin(
-      "Username or password is incorrect or not found."
-    );
+    throw new Error("Username or password is incorrect or not found.");
   } else if (await compare(password, foundUser.password)) {
     return {
       name: foundUser.name,
@@ -74,9 +47,7 @@ export async function verifyUser(email, password) {
       signedInFromCreds: true,
     };
   } else {
-    throw new CredentialsSignin(
-      "Username or password is incorrect or not found."
-    );
+    throw new Error("Username or password is incorrect or not found.");
   }
 }
 
@@ -93,7 +64,7 @@ export async function getTripsByUserId(id) {
   return data;
 }
 
-export async function grabTripInfo(id) {
+export async function getTripByTripId(id) {
   const { data, error } = await supabase
     .from("trips")
     .select("*")

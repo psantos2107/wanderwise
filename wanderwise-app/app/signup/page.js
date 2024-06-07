@@ -8,7 +8,7 @@ export const metadata = {
 async function SignupPage() {
   const session = await auth();
   return (
-    <main>
+    <main className="w-[95%] mx-auto">
       <SignUpForm session={session} />
     </main>
   );

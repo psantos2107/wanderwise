@@ -9,7 +9,7 @@ export default async function LoginPage() {
   const session = await auth();
 
   return (
-    <main>
+    <main className="w-[90%] mx-auto">
       <LoginForm session={session} />
     </main>
   );

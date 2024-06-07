@@ -30,15 +30,17 @@ export default async function UserPage() {
           below!
         </h1>
       </section>
-      <article className="bg-orange-200 p-2 rounded-md border-2 border-solid border-gray-300 text-sm boldest w-fit mx-auto my-3 transition-transform transform hover:bg-orange-300 active:bg-orange-400 hover:scale-105 active:scale-95 active:shadow-inner">
+      <article className=" bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner mx-auto my-3">
         <Link href="/trip/create">PLAN A NEW TRIP !</Link>
       </article>
       <h2 className="my-2 text-center">
         Or, you may choose to edit among the trips you have already saved below!
       </h2>
-      <Suspense fallback={<Spinner />}>
-        <FetchAllUserTrips id={user.id} />
-      </Suspense>
+      <section className="w-[90%] mx-auto border-black border border-solid">
+        <Suspense fallback={<Spinner />}>
+          <FetchAllUserTrips id={user.id} />
+        </Suspense>
+      </section>
     </main>
   );
 }
