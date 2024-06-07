@@ -341,11 +341,13 @@ async function FetchAttractions({ searchTerm }) {
           })}{" "}
         </>
       ) : (
-        <h2>
-          No results to display. Either no search has been conducted yet or no
-          results have come out of your search. If it is the latter, please
-          refine your search and try again.
-        </h2>
+        <article className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[100%] mx-auto rounded-sm shadow-md leading-6 text-md mt-4">
+          <h2>
+            No results to display. Either no search has been conducted yet or no
+            results have come out of your search. If it is the latter, please
+            refine your search and try again.
+          </h2>
+        </article>
       )}
     </section>
   );

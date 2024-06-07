@@ -60,6 +60,41 @@ export async function createTrip(
   return data;
 }
 
+export async function updateTripDetails(
+  destination_city,
+  destination_country,
+  airline,
+  budget,
+  trip_notes,
+  flight_booked,
+  hotel_booked,
+  start_date,
+  end_date,
+  user_id
+) {
+  const { data, error } = await supabase
+    .from("trips")
+    .update({
+      destination_city,
+      destination_country,
+      airline,
+      budget,
+      trip_notes,
+      flight_booked,
+      hotel_booked,
+      start_date,
+      end_date,
+      updated_at: new Date().toISOString(),
+    })
+    .eq("user_id", user_id)
+    .select();
+
+  if (error) {
+    throw new Error("Failed to update trip. Please try again");
+  }
+  return data;
+}
+
 //----------CRUD FOR USERS----------------------------------
 //create user.
 export async function createUser(name, email, password) {

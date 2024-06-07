@@ -1,5 +1,6 @@
 import { auth } from "@/app/_lib/auth";
 import { getTripByTripId } from "@/app/_lib/data-service";
+import NotAuthorizedMessage from "@/app/_components/NotAuthorizedMessage";
 
 export const metadata = {
   title: "Trip Details",
@@ -15,7 +16,7 @@ export default async function ViewTripPage({ params }) {
       {trip?.user_id === userID ? (
         <p>Here people can view individual trips!</p>
       ) : (
-        <p>YOU ARE NOT AUTHORIZED TO VIEW OR EDIT THIS TRIP.</p>
+        <NotAuthorizedMessage />
       )}
     </main>
   );

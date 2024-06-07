@@ -5,7 +5,7 @@ import "react-day-picker/dist/style.css";
 import getCountryList from "@/app/_lib/get-country-list";
 import formatDate from "@/app/_lib/format-date";
 import { findAirport } from "aircodes";
-import { createTrip } from "@/app/_lib/actions";
+import { createTrip, updateTripDetails } from "@/app/_lib/actions";
 import { useRouter } from "next/navigation";
 
 function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
@@ -65,22 +65,42 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
   async function handleSumbit(e) {
     e.preventDefault();
     try {
-      const newTrip = await createTrip(
-        destinationCity,
-        destinationCountry,
-        iataOrigin,
-        budget,
-        tripNotes,
-        flightBooked,
-        hotelBooked,
-        departureDate,
-        returnDate,
-        userID
-      );
-      router.push(`/trip/${newTrip[0].id}`);
+      let thisTrip;
+      if (isCreatingNewTrip) {
+        thisTrip = await createTrip(
+          destinationCity,
+          destinationCountry,
+          iataOrigin,
+          budget,
+          tripNotes,
+          flightBooked,
+          hotelBooked,
+          departureDate,
+          returnDate,
+          userID
+        );
+      } else {
+        thisTrip = await updateTripDetails(
+          destinationCity,
+          destinationCountry,
+          iataOrigin,
+          budget,
+          tripNotes,
+          flightBooked,
+          hotelBooked,
+          departureDate,
+          returnDate,
+          userID
+        );
+      }
+      router.push(`/trip/${thisTrip[0].id}`);
     } catch (error) {
       console.error("Error creating trip: ", error);
-      setErrorMessage("Failed to create the trip. Please try again.");
+      setErrorMessage(
+        `Failed to ${
+          isCreatingNewTrip ? "create" : "edit"
+        } the trip. Please try again.`
+      );
     }
   }
 

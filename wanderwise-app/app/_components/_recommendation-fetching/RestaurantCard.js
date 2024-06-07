@@ -24,9 +24,9 @@ function RestaurantCard({ restaurant, index }) {
   return (
     <article
       className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4"
-      data-restaurant={JSON.stringify(restaurant)}
+      data-restaurant={restaurant}
     >
-      <h2>
+      <h2 className="text-lg">
         {index + 1}. {restaurant.name}
       </h2>
       <figure className="w-[90%] mx-auto">
@@ -52,22 +52,24 @@ function RestaurantCard({ restaurant, index }) {
           <u className="text-sm">ADDRESS:</u>{" "}
           {restaurant.location.display_address.join(",")}
         </p>
+      </figure>
+      <section className="flex flex-col gap-1 items-center mt-3">
         <a
           href={restaurant.url}
           target="_blank"
-          className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto"
+          className="w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner text-center"
         >
           View on yelp!
         </a>
-      </figure>
-      <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
-        {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
-        Save Recommendation
-      </button>
-      <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
-        {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
-        Add to Itinerary
-      </button>
+        <button className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5">
+          {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+          Save Recommendation
+        </button>
+        <button className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5">
+          {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+          Add to Itinerary
+        </button>
+      </section>
     </article>
   );
 }
