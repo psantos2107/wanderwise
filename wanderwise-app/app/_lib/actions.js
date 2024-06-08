@@ -95,15 +95,30 @@ export async function updateTripDetails(
   }
   return data;
 }
-
+//
 export async function addRestaurantToTrip(tripID, restaurant) {
   const trip = await getTripByTripId(tripID);
   let restaurantList = trip.restaurants || [];
   restaurantList.unshift(restaurant);
-  console.log("-------restaurant list:", restaurantList, restaurantList[0]);
   const { data, error } = await supabase
     .from("trips")
     .update({ restaurants: restaurantList })
+    .eq("id", tripID)
+    .select();
+
+  if (error) {
+    throw new Error("Failed to save to recommendations. Please try again.");
+  }
+  return data;
+}
+
+export async function addAttractionToTrip(tripID, attraction) {
+  const trip = await getTripByTripId(tripID);
+  let activitiesList = trip.activities || [];
+  activitiesList.unshift(attraction);
+  const { data, error } = await supabase
+    .from("trips")
+    .update({ activities: activitiesList })
     .eq("id", tripID)
     .select();
 

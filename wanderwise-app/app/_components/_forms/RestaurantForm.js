@@ -21,7 +21,6 @@ function RestaurantForm() {
 
   const handleSumbit = (e) => {
     e.preventDefault();
-
     //changing the URL is one of the ways to cause a re-render of server components. Thus, this block of code is used in order to change the URL with query parameters that will be derived in order to re-fetch data from the server components with those query terms
     setIsLoading(true);
     setTimeout(() => {
@@ -30,7 +29,7 @@ function RestaurantForm() {
       params.set("searchTerm", searchTerm);
       params.set("priceRange", priceRange);
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    }, 800);
+    }, 500);
   };
 
   return (
@@ -68,13 +67,13 @@ function RestaurantForm() {
             <option value="3">$$$: Expensive</option>
           </select>
         </article>
+        {isLoading ? <Spinner /> : ""}
         <input
           type="submit"
           value="SUBMIT"
           className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
         />
       </form>
-      {isLoading ? <Spinner /> : ""}
     </>
   );
 }

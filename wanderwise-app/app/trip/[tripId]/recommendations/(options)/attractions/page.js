@@ -20,6 +20,7 @@ export default async function AttractionsPage({ params, searchParams }) {
   const searchTerm = searchParams?.searchTerm
     ? `${(searchParams?.searchTerm).trim()} attractions`
     : "";
+
   return (
     <main>
       {trip?.user_id === userID ? (
@@ -34,6 +35,7 @@ export default async function AttractionsPage({ params, searchParams }) {
             <FetchAttractions
               searchTerm={searchTerm}
               tripLocation={tripLocation}
+              tripID={params.tripID}
             />
           </div>
         </>
