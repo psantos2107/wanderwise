@@ -1,3 +1,4 @@
+//converts flight durations obtained from the amadeus API into 'hours, mins'
 export default function convertDuration(isoDuration) {
   const regex = /^PT(?:(\d+)H)?(?:(\d+)M)?/;
   const matches = isoDuration.match(regex);

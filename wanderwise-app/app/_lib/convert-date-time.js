@@ -1,3 +1,4 @@
+//CONVERTS ISODATE to year-month-day @ hrs-min format.
 export default function convertDateTime(isoDateTime) {
   const date = new Date(isoDateTime);
 

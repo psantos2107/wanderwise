@@ -1,3 +1,4 @@
+//CONVERTS TIMESTAMPS stored in supabase to the Date @ time format.
 export default function formatTimestamp(timestamp) {
   // Create a new Date object from the timestamp
   const date = new Date(timestamp);

@@ -174,6 +174,14 @@ export async function editTripNotes(tripID, tripNotes) {
   return data;
 }
 
+export async function deleteTrip(tripID) {
+  const { error } = await supabase.from("trips").delete().eq("id", tripID);
+
+  if (error) {
+    throw new Error("Failed to delete. Please try again.");
+  }
+}
+
 //----------CRUD FOR USERS----------------------------------
 //create user.
 export async function createUser(name, email, password) {

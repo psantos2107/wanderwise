@@ -1,4 +1,5 @@
 //getting information from trip advisor is a two-step process. searching for locations is the first step, and grabbing details + pictures of each location is the second. This function essentially fetches details on the locations and photos of each location and returns arrays for those to be used for rendering.
+
 export default async function fetchDetailsAndPics(idArray) {
   const detailPromiseArray = idArray.map(async (id) => {
     const res = await fetch(

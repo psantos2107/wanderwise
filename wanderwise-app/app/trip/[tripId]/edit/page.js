@@ -3,6 +3,7 @@ import NotAuthorizedMessage from "@/app/_components/NotAuthorizedMessage";
 import { auth } from "@/app/_lib/auth";
 import { getTripByTripId } from "@/app/_lib/data-service";
 import Link from "next/link";
+import DeleteTripButton from "@/app/_components/DeleteTripButton";
 
 export const metadata = {
   title: "Edit Trip",
@@ -34,6 +35,9 @@ export default async function EditPage({ params }) {
             trip={trip}
             isCreatingNewTrip={false}
           />
+          <article className="my-5 ml-2 w-fit">
+            <DeleteTripButton tripID={params.tripID} />
+          </article>
         </>
       ) : (
         <NotAuthorizedMessage />

@@ -1,4 +1,4 @@
-//file to hold dummy data for the different
+//file to hold dummy data for the different things. will delete in production. 
 
 export const flightsPlaceholder = {
   meta: {

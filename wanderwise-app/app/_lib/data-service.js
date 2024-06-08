@@ -1,9 +1,9 @@
+//ALL CODE THAT FETCHES DATA FROM THE DATABASE OR FETCHES DATA FROM EXTERNAL APIS WILL BE FOUND HERE-----------------------.
+
 import { supabase } from "./supabase";
 import Amadeus from "amadeus";
 import fetchDetailsAndPics from "./fetch-hotel-details-and-pics";
 import { compare } from "bcryptjs";
-
-//ALL CODE THAT FETCHES DATA FROM THE DATABASE OR FETCHES DATA FROM EXTERNAL APIS WILL BE FOUND HERE.
 
 //for testing the connection out.
 export async function testConnection() {
