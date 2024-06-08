@@ -15,14 +15,15 @@ export default async function fetchDetailsAndPics(idArray) {
 
   const locationDetails = await Promise.all(detailPromiseArray);
   const picsArr = await Promise.allSettled(picPromiseArray);
-  console.log(picPromiseArray);
-  console.log(picsArr);
   const pictures = picsArr.map((picture) => {
-    if (picture.value.data.length === 0) {
+    if (
+      !picture?.value?.data?.length === 0 ||
+      !picture?.value?.data?.length === undefined
+    ) {
       return "";
     } else {
-      return picture.value.data[0]?.images?.medium?.url
-        ? picture.value.data[0].images.medium.url
+      return picture?.value?.data[0]?.images?.medium?.url
+        ? picture?.value?.data[0]?.images?.medium?.url
         : "";
     }
   });

@@ -128,6 +128,38 @@ export async function addAttractionToTrip(tripID, attraction) {
   return data;
 }
 
+export async function addFlightOfferToTrip(tripID, flightOffer) {
+  const trip = await getTripByTripId(tripID);
+  let flightList = trip.flight_offers || [];
+  flightList.unshift(flightOffer);
+  const { data, error } = await supabase
+    .from("trips")
+    .update({ flight_offers: flightList })
+    .eq("id", tripID)
+    .select();
+
+  if (error) {
+    throw new Error("Failed to save to recommendations. Please try again.");
+  }
+  return data;
+}
+
+export async function addHotelToTrip(tripID, hotel) {
+  const trip = await getTripByTripId(tripID);
+  let hotelList = trip.hotels || [];
+  hotelList.unshift(hotel);
+  const { data, error } = await supabase
+    .from("trips")
+    .update({ hotels: hotelList })
+    .eq("id", tripID)
+    .select();
+
+  if (error) {
+    throw new Error("Failed to save to recommendations. Please try again.");
+  }
+  return data;
+}
+
 //----------CRUD FOR USERS----------------------------------
 //create user.
 export async function createUser(name, email, password) {

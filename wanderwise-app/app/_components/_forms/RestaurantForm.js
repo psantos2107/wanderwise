@@ -24,12 +24,12 @@ function RestaurantForm() {
     //changing the URL is one of the ways to cause a re-render of server components. Thus, this block of code is used in order to change the URL with query parameters that will be derived in order to re-fetch data from the server components with those query terms
     setIsLoading(true);
     setTimeout(() => {
-      setIsLoading(false);
       const params = new URLSearchParams(searchParams);
       params.set("searchTerm", searchTerm);
       params.set("priceRange", priceRange);
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    }, 500);
+      setIsLoading(false);
+    }, 800);
   };
 
   return (

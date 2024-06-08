@@ -1,9 +1,11 @@
 "use client";
 import { useState } from "react";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import Spinner from "../Spinner";
 
-function HotelForm() {
+function HotelForm({ tripLocation }) {
   const [searchTerm, setSearchTerm] = useState("");
+  const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
   const pathname = usePathname();
@@ -11,16 +13,19 @@ function HotelForm() {
   function handleSearchTermChange(e) {
     setSearchTerm(e.target.value);
   }
-
+  //
   function handleSubmit(e) {
     e.preventDefault();
-    const params = new URLSearchParams(searchParams);
-    if (searchTerm === "") {
-      setSearchTerm("Los Angeles, CA");
-    }
-    params.set("location", searchTerm);
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
-    //code.
+    setIsLoading(true);
+    setTimeout(() => {
+      const params = new URLSearchParams(searchParams);
+      if (searchTerm === "") {
+        setSearchTerm(tripLocation);
+      }
+      params.set("location", searchTerm);
+      router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+      setIsLoading(false);
+    }, 800);
   }
 
   //add handleSubmit later.
@@ -45,10 +50,11 @@ function HotelForm() {
           />
         </div>
       </article>
+      {isLoading && <Spinner />}
       <input
         type="submit"
         value="SUBMIT"
-        className="self-center bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 text-sm boldest"
+        className="self-center bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
       />
     </form>
   );
