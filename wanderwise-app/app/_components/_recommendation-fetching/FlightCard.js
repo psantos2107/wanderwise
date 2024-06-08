@@ -1,7 +1,34 @@
+"use client";
+
 import Image from "next/image";
 import { getAirlineByIata } from "aircodes";
+import { addFlightOfferToTrip } from "@/app/_lib/actions";
+import { useState } from "react";
+import SpinnerMini from "../SpinnerMini";
+import convertDuration from "@/app/_lib/convertTripDuration";
+import convertDateTime from "@/app/_lib/convert-date-time";
 
-function FlightCard({ flightOffer, index }) {
+function FlightCard({ flightOffer, index, tripID }) {
+  const [clientMessage, setClientMessage] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
+
+  async function handleSaveRecommendation(e) {
+    e.preventDefault();
+    try {
+      setIsSaving(true);
+      const flightOffer = JSON.parse(e.target.dataset.flight);
+      await addFlightOfferToTrip(tripID, flightOffer);
+      setClientMessage("Successfully added recommendation to your trip.");
+    } catch (error) {
+      console.error("Error: ", error);
+      setClientMessage(
+        "Failed to save recommendation to your trip. Please try again."
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  }
+
   return (
     <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 w-full">
       {console.log(flightOffer, getAirlineByIata(flightOffer.carrierCode))}
@@ -55,7 +82,7 @@ function FlightCard({ flightOffer, index }) {
             )}
             <section className="ml-3 w-full">
               <p>
-                <u>Total Duration:</u> {itinerary.duration}
+                <u>Total Duration:</u> {convertDuration(itinerary.duration)}
               </p>
               {itinerary.segments.map((segment, i, arr) => {
                 return (
@@ -71,7 +98,9 @@ function FlightCard({ flightOffer, index }) {
                         <h4>DEPARTING:</h4>
                         <p>IATA Code: {segment.departure.iataCode}</p>
                         <p>Terminal: {segment.departure.terminal}</p>
-                        <p>Departs at: {segment.departure.at}</p>
+                        <p>
+                          Departs at: {convertDateTime(segment.departure.at)}
+                        </p>
                         <hr
                           style={{
                             border: "1px dotted grey",
@@ -86,7 +115,7 @@ function FlightCard({ flightOffer, index }) {
                       <h4>ARRIVING:</h4>
                       <p>IATA Code: {segment.arrival.iataCode}</p>
                       <p>Terminal: {segment.arrival.terminal}</p>
-                      <p>Departs at: {segment.arrival.at}</p>
+                      <p>Arrives at: {convertDateTime(segment.arrival.at)}</p>
                       <hr
                         style={{
                           border: "1px dotted grey",
@@ -115,6 +144,15 @@ function FlightCard({ flightOffer, index }) {
           </article>
         );
       })}
+      {isSaving && <SpinnerMini />}
+      {clientMessage && <p>{clientMessage}</p>}
+      <button
+        className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5 block mx-auto"
+        data-flight={JSON.stringify(flightOffer)}
+        onClick={handleSaveRecommendation}
+      >
+        Save Recommendation
+      </button>
     </article>
   );
 }

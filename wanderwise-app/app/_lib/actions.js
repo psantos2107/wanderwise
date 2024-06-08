@@ -98,7 +98,10 @@ export async function addRestaurantToTrip(tripID, restaurant) {
   restaurantList.unshift(restaurant);
   const { data, error } = await supabase
     .from("trips")
-    .update({ restaurants: restaurantList })
+    .update({
+      restaurants: restaurantList,
+      updated_at: new Date().toISOString(),
+    })
     .eq("id", tripID)
     .select();
 
@@ -114,7 +117,10 @@ export async function addAttractionToTrip(tripID, attraction) {
   activitiesList.unshift(attraction);
   const { data, error } = await supabase
     .from("trips")
-    .update({ activities: activitiesList })
+    .update({
+      activities: activitiesList,
+      updated_at: new Date().toISOString(),
+    })
     .eq("id", tripID)
     .select();
 
@@ -130,7 +136,7 @@ export async function addFlightOfferToTrip(tripID, flightOffer) {
   flightList.unshift(flightOffer);
   const { data, error } = await supabase
     .from("trips")
-    .update({ flight_offers: flightList })
+    .update({ flight_offers: flightList, updated_at: new Date().toISOString() })
     .eq("id", tripID)
     .select();
 
@@ -146,7 +152,7 @@ export async function addHotelToTrip(tripID, hotel) {
   hotelList.unshift(hotel);
   const { data, error } = await supabase
     .from("trips")
-    .update({ hotels: hotelList })
+    .update({ hotels: hotelList, updated_at: new Date().toISOString() })
     .eq("id", tripID)
     .select();
 

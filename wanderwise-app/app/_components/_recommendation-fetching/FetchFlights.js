@@ -11,6 +11,8 @@ async function FetchFlights({
   numInfants,
   travelClass,
   nonStopOnly,
+  tripID,
+  tripLocation,
 }) {
   let flightOffers = [];
   if (
@@ -25,6 +27,7 @@ async function FetchFlights({
   ) {
     flightOffers = await searchFlights(
       iataOrigin,
+      tripLocation,
       departureDate,
       returnDate,
       numAdults,
@@ -47,6 +50,7 @@ async function FetchFlights({
               flightOffer={flightOffer}
               index={index}
               key={`${flightOffer.price.total}-${flightOffer.price.currency}-${flightOffer.itineraries[0].segments[0].carrierCode}-${flightOffer.itineraries[0].segments[0].number}`}
+              tripID={tripID}
             />
           ))}
         </>

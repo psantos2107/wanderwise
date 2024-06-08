@@ -7,6 +7,7 @@ import getCountryList from "@/app/_lib/get-country-list";
 import formatDate from "@/app/_lib/format-date";
 import { findAirport } from "aircodes";
 import { useSearchParams, useRouter, usePathname } from "next/navigation";
+import Spinner from "../Spinner";
 
 function FlightForm() {
   //setting state
@@ -19,6 +20,8 @@ function FlightForm() {
   const [numInfants, setNumInfants] = useState(0);
   const [travelClass, setTravelClass] = useState("ECONOMY");
   const [nonStopOnly, setNonStopOnly] = useState(true);
+  const [isLoading, setIsLoading] = useState(false);
+  const [errorMessage, setErrorMessage] = useState("");
   const countries = getCountryList(); //gets a list of all countries and stores it in a variable
   const numArray = [...Array(51).keys()]; //creates an array with elements that contain strings/numbers.
   const searchParams = useSearchParams();
@@ -80,17 +83,26 @@ function FlightForm() {
   //used to handle form submssion so that the server component can re-render.
   const handleSumbit = (e) => {
     e.preventDefault();
-
-    const params = new URLSearchParams(searchParams);
-    params.set("iataOrigin", iataOrigin);
-    params.set("departureDate", departureDate);
-    params.set("returnDate", returnDate);
-    params.set("numAdults", numAdults);
-    params.set("numChildren", numChildren);
-    params.set("numInfants", numInfants);
-    params.set("travelClass", travelClass);
-    params.set("nonStopOnly", nonStopOnly.toString());
-    router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+    if (!iataOrigin || !departureDate || !returnDate) {
+      setErrorMessage(
+        "You MUST choose an airline, departure date, and return date before submitting this form!"
+      );
+    } else {
+      setIsLoading(true);
+      setTimeout(() => {
+        const params = new URLSearchParams(searchParams);
+        params.set("iataOrigin", iataOrigin);
+        params.set("departureDate", departureDate);
+        params.set("returnDate", returnDate);
+        params.set("numAdults", numAdults);
+        params.set("numChildren", numChildren);
+        params.set("numInfants", numInfants);
+        params.set("travelClass", travelClass);
+        params.set("nonStopOnly", nonStopOnly.toString());
+        router.replace(`${pathname}?${params.toString()}`, { scroll: false });
+        setIsLoading(false);
+      }, 800);
+    }
   };
 
   return (
@@ -132,7 +144,7 @@ function FlightForm() {
         </select>
       </article>
       {airlines.length > 0 ? (
-        <article className="w-full flex flex-col md:block">
+        <article className="w-fit flex flex-col md:block mx-auto">
           <label className="block text-center md:inline">
             Please choose which airline you want to go to.
           </label>
@@ -140,6 +152,7 @@ function FlightForm() {
             className="max-w-[80%] md:ml-2 block self-center md:inline"
             value={iataOrigin}
             onChange={handleIataOrigin}
+            required
           >
             <option value={""}>PLEASE SELECT AN OPTION</option>
             {airlines.map((airline) => {
@@ -246,6 +259,8 @@ function FlightForm() {
           onChange={handleNonStopOnly}
         />
       </article>
+      {isLoading ? <Spinner /> : ""}
+      {errorMessage && <p className="text-red-700 text-center"></p>}
       <input
         type="submit"
         value="SUBMIT"

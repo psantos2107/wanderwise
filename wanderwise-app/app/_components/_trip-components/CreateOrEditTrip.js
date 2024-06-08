@@ -32,11 +32,10 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
   const departureDate = range?.from ? formatDate(range?.from) : "";
   const returnDate = range?.to ? formatDate(range?.to) : "";
 
-  //in case a user is editing, this will allow the airline menu and airline to be displayed on mount versus having the user need to access the city and country inputs initially.
+  // in case a user is editing, this will allow the airline menu and airline to be displayed on mount versus having the user need to access the city and country inputs initially.
   useEffect(() => {
     if (destinationCity && destinationCountry) {
       displayIataCodes();
-      setIataOrigin(trip?.airline);
     }
   }, []);
 
@@ -66,6 +65,11 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
     e.preventDefault();
     try {
       let thisTrip;
+      if (!iataOrigin) {
+        throw new Error(
+          "You must choose an airline before saving this particular trip."
+        );
+      }
       if (isCreatingNewTrip) {
         thisTrip = await createTrip(
           destinationCity,
@@ -162,6 +166,11 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
           })}
         </select>
       </article>
+      {trip?.airline && (
+        <p className="text-center underline">
+          CURRENTLY CHOSEN AIRLINE: {trip?.airline}
+        </p>
+      )}
       {airlines.length > 0 ? (
         <article className="w-full flex flex-col md:block">
           <label className="block text-center md:inline">
@@ -172,6 +181,7 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
             className="max-w-[80%] md:ml-2 block self-center md:inline"
             value={iataOrigin}
             onChange={handleIataOrigin}
+            required
           >
             <option value={""}>PLEASE SELECT AN OPTION</option>
             {airlines.map((airline) => {

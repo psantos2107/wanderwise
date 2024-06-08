@@ -97,6 +97,7 @@ export async function searchRestaurants(location, searchTerm, price) {
 
 export async function searchFlights(
   iataOrigin,
+  tripLocation,
   departureDate,
   returnDate,
   numAdults,
@@ -112,7 +113,7 @@ export async function searchFlights(
 
   const res = await amadeus.shopping.flightOffersSearch.get({
     originLocationCode: iataOrigin,
-    destinationLocationCode: "PAR",
+    destinationLocationCode: tripLocation,
     departureDate: departureDate,
     returnDate: returnDate,
     adults: numAdults,
