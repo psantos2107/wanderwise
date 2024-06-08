@@ -5,6 +5,7 @@ import { Suspense } from "react";
 import Spinner from "../_components/Spinner";
 import emptyProfilePic from "@/public/imgs/empty_profile_pic.jpg";
 import Image from "next/image";
+import SignOutButton from "../_components/SignOutButton";
 
 export const metadata = {
   title: "Home",
@@ -16,6 +17,7 @@ export default async function UserPage() {
 
   return (
     <main>
+      <SignOutButton />
       <section className="flex flex-col items-center w-full">
         <figure className="w-[100px] h-[100px] relative rounded-lg overflow-hidden border-solid border-black border-1">
           <Image

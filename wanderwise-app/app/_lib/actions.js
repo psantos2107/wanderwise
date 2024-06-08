@@ -10,16 +10,12 @@ export async function googleSignIn() {
   await signIn("google", { redirectTo: "/user_page" });
 }
 
-export async function googleSignOut() {
-  await signOut("google", { redirectTo: "/login" });
-}
-
 export async function standardSignIn(formData) {
   await signIn("credentials", { ...formData, redirectTo: "/user_page" });
 }
 
 export async function standardSignOut() {
-  await signOut("credentials", { redirectTo: "/login" });
+  await signOut();
 }
 
 //-----CRUD FOR TRIPS!!-------------------------------------
