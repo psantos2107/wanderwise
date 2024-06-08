@@ -39,7 +39,7 @@ export default async function UserPage() {
       <h2 className="my-2 text-center">
         Or, you may choose to edit among the trips you have already saved below!
       </h2>
-      <section className="w-[90%] mx-auto border-black border border-solid rounded-lg">
+      <section className="w-full mx-auto">
         <Suspense fallback={<Spinner />}>
           <FetchAllUserTrips id={user.id} />
         </Suspense>

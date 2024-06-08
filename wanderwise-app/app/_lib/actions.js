@@ -162,6 +162,18 @@ export async function addHotelToTrip(tripID, hotel) {
   return data;
 }
 
+export async function editTripNotes(tripID, tripNotes) {
+  const { data, error } = await supabase
+    .from("trips")
+    .update({ trip_notes: tripNotes, updated_at: new Date().toISOString() })
+    .eq("id", tripID)
+    .select();
+  if (error) {
+    throw new Error("Failed to edit notes. Please try again.");
+  }
+  return data;
+}
+
 //----------CRUD FOR USERS----------------------------------
 //create user.
 export async function createUser(name, email, password) {

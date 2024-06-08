@@ -1,20 +1,19 @@
-"use client";
-import Link from "next/link";
+import React from "react";
 import formatTimestamp from "@/app/_lib/format-timestamp";
+import Link from "next/link";
+import ShowAndEditTripNotes from "./ShowAndEditTripNotes";
 
-function TripCard({ trip, index }) {
+function TripDetails({ trip }) {
   return (
-    <article
-      className={`w-full flex flex-col gap-1 p-2 ${
-        (index + 2) % 2 !== 0 ? "bg-orange-50" : "bg-orange-100"
-      }`}
-    >
+    <article className="p-3 flex flex-col text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
       <h1 className="text-center">
-        {index + 1}. TRIP TO {trip.destination_city.toUpperCase()},{" "}
+        YOUR TRIP TO {trip.destination_city.toUpperCase()},{" "}
         {trip.destination_country.toUpperCase()}
       </h1>
       <p>Starts on {trip.start_date}</p>
       <p>Ends on {trip.end_date}</p>
+      <p>Flying From: "{trip.airline}"" Airline</p>
+      <p>Budget For Trip: ${trip.budget}</p>
       <p>
         Flight Booked?:{" "}
         {trip.flight_booked ? (
@@ -32,28 +31,23 @@ function TripCard({ trip, index }) {
         )}
       </p>
       <p>Last Edited At: {formatTimestamp(trip.updated_at)}</p>
-      <section className="w-full flex justify-around">
-        <Link
-          href={`/trip/${trip.id}`}
-          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
-        >
-          View Details
-        </Link>
+      <section className="w-full flex justify-around my-3">
         <Link
           href={`/trip/${trip.id}/edit`}
           className="block  bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
         >
-          Edit Trip
+          Edit Trip Details
         </Link>
         <Link
           href={`/trip/${trip.id}/recommendations`}
-          className="block  bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
         >
-          Find Recs
+          Find More Recs
         </Link>
       </section>
+      <ShowAndEditTripNotes trip={trip} />
     </article>
   );
 }
 
-export default TripCard;
+export default TripDetails;

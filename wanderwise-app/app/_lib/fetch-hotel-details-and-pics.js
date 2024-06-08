@@ -16,7 +16,17 @@ export default async function fetchDetailsAndPics(idArray) {
   const locationDetails = await Promise.all(detailPromiseArray);
   const picsArr = await Promise.allSettled(picPromiseArray);
   const pictures = picsArr.map((picture) => {
-    if (
+    if (!picture?.value?.data || picture.value.data.length === 0) {
+      return "";
+    } else {
+      return picture.value.data[0]?.images?.medium?.url || "";
+    }
+  });
+  return { locationDetails: locationDetails, pictures: pictures };
+}
+
+/* 
+if (
       !picture?.value?.data?.length === 0 ||
       !picture?.value?.data?.length === undefined
     ) {
@@ -25,7 +35,4 @@ export default async function fetchDetailsAndPics(idArray) {
       return picture?.value?.data[0]?.images?.medium?.url
         ? picture?.value?.data[0]?.images?.medium?.url
         : "";
-    }
-  });
-  return { locationDetails: locationDetails, pictures: pictures };
-}
+    }*/

@@ -5,7 +5,7 @@ import { useState } from "react";
 import { addHotelToTrip } from "@/app/_lib/actions";
 import SpinnerMini from "../SpinnerMini";
 
-function HotelCard({ hotel, index, pictureURL, tripID }) {
+function HotelCard({ hotel, index, pictureURL, tripID, savedPicURL }) {
   const [clientMessage, setClientMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -32,9 +32,9 @@ function HotelCard({ hotel, index, pictureURL, tripID }) {
         {index + 1}. {hotel.name}
       </h2>
       <figure className="w-[90%] mx-auto mb-3">
-        {pictureURL ? (
+        {pictureURL || savedPicURL ? (
           <img
-            src={pictureURL || ""}
+            src={pictureURL || savedPicURL || ""}
             // width="100"
             // height="100"
             // layout="responsive"
@@ -93,7 +93,10 @@ function HotelCard({ hotel, index, pictureURL, tripID }) {
         {clientMessage && <p>{clientMessage}</p>}
         <button
           className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
-          data-hotel={JSON.stringify(hotel)}
+          data-hotel={JSON.stringify({
+            ...hotel,
+            pictureURL: `${pictureURL || ""}`,
+          })}
           onClick={handleSaveRecommendation}
         >
           Save Recommendation
