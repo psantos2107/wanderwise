@@ -78,21 +78,21 @@ function HotelCard({ hotel, index, pictureURL, tripID }) {
         <a
           href={hotel.see_all_photos}
           target="_blank"
-          className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
+          className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
         >
           See More Photos!
         </a>
         <a
           href={hotel.web_url}
           target="_blank"
-          className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
+          className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
         >
           View on TripAdvisor!
         </a>
         {isSaving && <SpinnerMini />}
         {clientMessage && <p>{clientMessage}</p>}
         <button
-          className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
+          className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
           data-hotel={JSON.stringify(hotel)}
           onClick={handleSaveRecommendation}
         >

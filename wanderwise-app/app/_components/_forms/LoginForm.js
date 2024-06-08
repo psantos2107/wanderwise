@@ -53,7 +53,7 @@ function LoginForm({ session }) {
           You are already logged in. You may navigate to your user page via{" "}
           <Link
             href="/user_page"
-            className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic"
+            className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic cursor-pointer"
           >
             this link.
           </Link>
@@ -95,7 +95,7 @@ function LoginForm({ session }) {
             <input
               type="submit"
               value="Submit Form"
-              className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
+              className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
             />
           </form>
           <p className="text-center mb-3">OR</p>
@@ -116,7 +116,7 @@ function LoginForm({ session }) {
               </figure>
               <button
                 onClick={handleGoogleOnClick}
-                className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
+                className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
               >
                 Login with Google
               </button>
@@ -126,7 +126,7 @@ function LoginForm({ session }) {
             Or, if you don't have an account yet{" "}
             <Link
               href={"/signup"}
-              className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic"
+              className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic cursor-pointer"
             >
               click here
             </Link>{" "}

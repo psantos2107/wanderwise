@@ -172,7 +172,7 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
         </p>
       )}
       {airlines.length > 0 ? (
-        <article className="w-full flex flex-col md:block">
+        <article className="w-fit mx-auto flex flex-col md:block">
           <label className="block text-center md:inline">
             Based on your city and country, choose which airline you'll be
             likely to use. (You may always edit this at a later time).
@@ -258,7 +258,7 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
           onChange={handleHotelBooked}
         />
       </article>
-      <article>
+      <article className="flex flex-col items-center">
         <label>
           Feel free to add any additional notes that you may have about this
           trip!
@@ -275,7 +275,7 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
       <input
         type="submit"
         value="SUBMIT"
-        className="self-center bg-blue-300 p-1 rounded-md border-2 border-solid border-gray-300 text-sm boldest"
+        className="self-center bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
       />
     </form>
   );
