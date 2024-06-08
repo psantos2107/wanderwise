@@ -1,7 +1,6 @@
 import "./_styles/globals.css";
 import Header from "./_components/Header";
 import { Josefin_Sans } from "next/font/google";
-import { TripProvider } from "./_components/_contexts/TripContext";
 // import { testConnection } from "./_lib/data-service";
 
 const josefin = Josefin_Sans({
@@ -27,7 +26,7 @@ export default function RootLayout({ children }) {
         className={`${josefin.className} box-border m-0 p-0 min-h-screen flex flex-col text-slate-950 bg-white`}
       >
         <Header />
-        <TripProvider>{children}</TripProvider>
+        {children}
       </body>
     </html>
   );

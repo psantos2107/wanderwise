@@ -1,3 +1,4 @@
+import RecommendationButtons from "@/app/_components/RecommendationButtons";
 import { auth } from "@/app/_lib/auth";
 import { getTripByTripId } from "@/app/_lib/data-service";
 import Link from "next/link";
@@ -24,30 +25,7 @@ export default async function RecommendationsPage({ params }) {
             trip to {trip.destination_city}, {trip.destination_country}! Please
             click on any of the buttons below to find recommendations!
           </h2>
-          <Link
-            className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
-            href={`/trip/${params.tripID}/recommendations/flights`}
-          >
-            Flights
-          </Link>
-          <Link
-            className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
-            href={`/trip/${params.tripID}/recommendations/hotels`}
-          >
-            Hotels
-          </Link>
-          <Link
-            className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
-            href={`/trip/${params.tripID}/recommendations/restaurants`}
-          >
-            Restaurants
-          </Link>
-          <Link
-            className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner"
-            href={`/trip/${params.tripID}/recommendations/attractions`}
-          >
-            Attractions
-          </Link>
+          <RecommendationButtons tripID={params.tripID} />
           <p>
             Or you may also navigate back to your user page using the home icon
             above!

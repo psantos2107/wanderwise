@@ -3,6 +3,7 @@
 import { signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { hash, genSalt } from "bcryptjs";
+import { getTripByTripId } from "./data-service";
 
 //-----SIGN IN AND OUT FUNCTIONS---------------------------
 export async function googleSignIn() {
@@ -91,6 +92,23 @@ export async function updateTripDetails(
 
   if (error) {
     throw new Error("Failed to update trip. Please try again");
+  }
+  return data;
+}
+
+export async function addRestaurantToTrip(tripID, restaurant) {
+  const trip = await getTripByTripId(tripID);
+  let restaurantList = trip.restaurants || [];
+  restaurantList.unshift(restaurant);
+  console.log("-------restaurant list:", restaurantList, restaurantList[0]);
+  const { data, error } = await supabase
+    .from("trips")
+    .update({ restaurants: restaurantList })
+    .eq("id", tripID)
+    .select();
+
+  if (error) {
+    throw new Error("Failed to save to recommendations. Please try again.");
   }
   return data;
 }

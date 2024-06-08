@@ -17,11 +17,12 @@ export default async function UserPage() {
   return (
     <main>
       <section className="flex flex-col items-center w-full">
-        <figure className="w-1/5 h-[100px] relative rounded-lg">
+        <figure className="w-[100px] h-[100px] relative rounded-lg overflow-hidden border-solid border-black border-1">
           <Image
-            className="rounded-lg object-contain"
+            className="rounded-lg object-cover"
             fill
             src={user?.image || emptyProfilePic}
+            alt="User Profile pic"
           />
         </figure>
         <h1 className="text-center mt-2">
@@ -36,7 +37,7 @@ export default async function UserPage() {
       <h2 className="my-2 text-center">
         Or, you may choose to edit among the trips you have already saved below!
       </h2>
-      <section className="w-[90%] mx-auto border-black border border-solid">
+      <section className="w-[90%] mx-auto border-black border border-solid rounded-lg">
         <Suspense fallback={<Spinner />}>
           <FetchAllUserTrips id={user.id} />
         </Suspense>

@@ -1,7 +1,12 @@
 import RestaurantCard from "./RestaurantCard";
 import { searchRestaurants } from "@/app/_lib/data-service";
 
-async function FetchRestaurants({ searchTerm, priceRange, tripLocation }) {
+async function FetchRestaurants({
+  searchTerm,
+  priceRange,
+  tripLocation,
+  tripID,
+}) {
   let restaurants = [];
 
   if (searchTerm && priceRange) {
@@ -19,6 +24,7 @@ async function FetchRestaurants({ searchTerm, priceRange, tripLocation }) {
                 restaurant={restaurant}
                 index={index}
                 key={restaurant.id}
+                tripID={tripID}
               />
             );
           })}

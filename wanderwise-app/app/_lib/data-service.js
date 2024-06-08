@@ -143,9 +143,8 @@ export async function searchHotels(location) {
   return hotelDataObject;
 }
 
-export async function searchAttractions(searchTerm) {
+export async function searchAttractions(location, searchTerm) {
   //CODE TO QUERY THE ATTRACTIONS.
-  const location = "Los Angeles, CA";
   const encodedLocation = encodeURIComponent(location.trim()) || ""; //will change later
   const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
 

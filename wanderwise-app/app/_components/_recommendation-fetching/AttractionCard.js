@@ -1,6 +1,4 @@
-import attractionIcon from "@/public/imgs/attraction_icon.jpg";
 import Image from "next/image";
-import TextExpander from "../TextExpander";
 
 function AttractionCard({ attraction, index }) {
   return (
@@ -38,22 +36,24 @@ function AttractionCard({ attraction, index }) {
           <u className="text-sm">ADDRESS:</u>{" "}
           {attraction.location.display_address.join(",")}
         </p>
+      </figure>
+      <section className="flex flex-col gap-1 items-center mt-3">
         <a
           href={attraction.url}
           target="_blank"
-          className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto"
+          className="w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner text-center"
         >
           View on yelp!
         </a>
-      </figure>
-      <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
-        {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
-        Save Recommendation
-      </button>
-      <button className="block text-center  bg-green-300 p-1 rounded-md border-2 border-solid border-gray-300 w-fit mx-auto">
-        {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
-        Add to Itinerary
-      </button>
+        <button className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5">
+          {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+          Save Recommendation
+        </button>
+        <button className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5">
+          {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+          Add to Itinerary
+        </button>
+      </section>
     </article>
   );
 }

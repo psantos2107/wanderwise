@@ -319,10 +319,10 @@ const conventionCenter = [
 import AttractionCard from "./AttractionCard";
 import { searchAttractions } from "@/app/_lib/data-service";
 
-async function FetchAttractions({ searchTerm }) {
+async function FetchAttractions({ searchTerm, tripLocation }) {
   let attractions = [];
   if (searchTerm) {
-    attractions = await searchAttractions(searchTerm);
+    attractions = await searchAttractions(tripLocation, searchTerm);
   }
 
   return (

@@ -1,5 +1,8 @@
 "use client";
 import Image from "next/image";
+import { addRestaurantToTrip } from "@/app/_lib/actions";
+import { useState } from "react";
+import SpinnerMini from "../SpinnerMini";
 
 /* 
 possible solution via server actions. 
@@ -19,13 +22,28 @@ function RestaurantCard({ restaurant, index }) {
     }
   };
 */
+function RestaurantCard({ restaurant, index, tripID }) {
+  const [clientMessage, setClientMessage] = useState("");
+  const [isSaving, setIsSaving] = useState(false);
 
-function RestaurantCard({ restaurant, index }) {
+  async function handleSaveRecommendation(e) {
+    e.preventDefault();
+    try {
+      setIsSaving(true);
+      const restaurant = JSON.parse(e.target.dataset.restaurant);
+      await addRestaurantToTrip(tripID, restaurant);
+      setClientMessage("Successfully added recommendation to your trip.");
+    } catch (error) {
+      console.error("Error: ", error);
+      setClientMessage(
+        "Failed to save recommendation to your trip. Please try again."
+      );
+    } finally {
+      setIsSaving(false);
+    }
+  }
   return (
-    <article
-      className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4"
-      data-restaurant={restaurant}
-    >
+    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4">
       <h2 className="text-lg">
         {index + 1}. {restaurant.name}
       </h2>
@@ -61,13 +79,14 @@ function RestaurantCard({ restaurant, index }) {
         >
           View on yelp!
         </a>
-        <button className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5">
-          {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
+        {isSaving && <SpinnerMini />}
+        {clientMessage && <p>{clientMessage}</p>}
+        <button
+          className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5"
+          data-restaurant={JSON.stringify(restaurant)}
+          onClick={handleSaveRecommendation}
+        >
           Save Recommendation
-        </button>
-        <button className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5">
-          {/* GRAB THE JSON FROM THE DATASET OF THE PARENT NODE. */}
-          Add to Itinerary
         </button>
       </section>
     </article>
