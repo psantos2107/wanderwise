@@ -2,7 +2,7 @@ import AttractionForm from "@/app/_components/_forms/AttractionForm";
 import { Suspense } from "react";
 import FetchAttractions from "@/app/_components/_recommendation-fetching/FetchAttractions";
 import RecommendationMessage from "@/app/_components/RecommendationMessage";
-import BackToRecommendations from "@/app/_components/BackToRecommendations";
+import BackToRecommendations from "@/app/_components/BackToRecommendations.js";
 import { auth } from "@/app/_lib/auth";
 import { getTripByTripId } from "@/app/_lib/data-service";
 import NotAuthorizedMessage from "@/app/_components/NotAuthorizedMessage";
