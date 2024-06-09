@@ -12,3 +12,5 @@ function BackToRecommendations({ tripID }) {
 }
 
 export default BackToRecommendations;
+
+export const __dummy = {};
