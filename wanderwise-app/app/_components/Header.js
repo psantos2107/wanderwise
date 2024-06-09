@@ -1,10 +1,10 @@
 import Image from "next/image";
 import logo from "@/public/imgs/airplane_logo.jpg";
-import { Lato } from "next/font/google";
+import { Josefin_Sans } from "next/font/google";
 import { HomeIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-const lato = Lato({
+const josefin = Josefin_Sans({
   subsets: ["latin"],
   display: "swap",
   weight: "700",
@@ -15,7 +15,7 @@ const Header = () => {
     <header className="px-4 py-4 mb-6 lg:mb-10 lg:py-5 bg-gradient-orange flex justify-between md:justify-around h-1/6 w-full lg:rounded-3xl rounded-b-xl max-w-screen-xl mx-auto">
       <section className="flex gap-4 lg:gap-12 justify-center">
         <h1
-          className={`self-center text-2xl md:text-4xl lg:text-6xl tracking-wide ${lato.className} text-theme-color-dark`}
+          className={`self-center text-2xl md:text-4xl lg:text-6xl tracking-wide ${josefin.className} text-theme-color-dark`}
         >
           WANDERWISE
         </h1>
