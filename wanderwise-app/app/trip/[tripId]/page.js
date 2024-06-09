@@ -13,7 +13,6 @@ export default async function ViewTripPage({ params, searchParams }) {
   const userID = session.user.id;
   const trip = await getTripByTripId(params.tripID);
   let recommendationArray;
-  console.log("---------- trips", trip.flight_offers);
   if (!searchParams?.category) {
     recommendationArray = [];
   } else if (searchParams.category === "attractions") {

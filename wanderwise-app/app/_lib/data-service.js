@@ -71,7 +71,9 @@ export async function getTripByTripId(id) {
     .eq("id", id)
     .single();
   if (error) {
-    throw new Error("Unable to obtain trip info.");
+    console.error(error.message);
+    console.error(error);
+    throw new Error(error.message);
   }
   return data;
 }
