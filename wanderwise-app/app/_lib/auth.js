@@ -30,7 +30,7 @@ const authConfig = {
     }),
   ],
   callbacks: {
-    //this is ran on all protected routes to see if there is a user that is logged in.
+    //this is ran on all protected routes to see if there is a user that is logged in. //
     authorized({ auth }) {
       //if not logged in, return false, and get redirected to the signIn page (defined as /login in page below.)
       return !!auth?.user;
