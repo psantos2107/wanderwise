@@ -1,6 +1,5 @@
 import FlightCard from "./FlightCard";
 import { searchFlights } from "@/app/_lib/data-service";
-import { flightsPlaceholder, singleFlight } from "@/app/_lib/placeholderData";
 
 async function FetchFlights({
   iataOrigin,
