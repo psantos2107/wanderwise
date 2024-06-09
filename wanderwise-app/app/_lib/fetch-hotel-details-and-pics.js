@@ -25,15 +25,3 @@ export default async function fetchDetailsAndPics(idArray) {
   });
   return { locationDetails: locationDetails, pictures: pictures };
 }
-
-/* 
-if (
-      !picture?.value?.data?.length === 0 ||
-      !picture?.value?.data?.length === undefined
-    ) {
-      return "";
-    } else {
-      return picture?.value?.data[0]?.images?.medium?.url
-        ? picture?.value?.data[0]?.images?.medium?.url
-        : "";
-    }*/

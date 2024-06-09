@@ -20,20 +20,20 @@ function ToggleRecommendations({ trip }) {
   }
 
   return (
-    <article>
+    <article className="sm:text-lg">
       <h2>
         Please select which set of saved recommendations you'd like to view!
       </h2>
       {isLoading && <SpinnerMini />}
-      <section className="flex justify-evenly mt-3">
+      <section className="flex justify-evenly mt-3 sm:text-lg">
         <button
-          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-sm border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-sm border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer sm:text-lg"
           onClick={() => handleClick("flights")}
         >
           Flights
         </button>
         <button
-          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-sm border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-sm border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer sm:text-lg"
           onClick={() => handleClick("hotels")}
         >
           Hotels

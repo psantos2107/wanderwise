@@ -5,11 +5,11 @@ import formatTimestamp from "@/app/_lib/format-timestamp";
 function TripCard({ trip, index }) {
   return (
     <article
-      className={`w-full flex flex-col gap-1 p-2 ${
+      className={`w-full sm:max-w-[1000px] sm:mx-auto flex flex-col gap-1 p-2 sm:text-lg sm:p-5 ${
         (index + 2) % 2 !== 0 ? "bg-orange-50" : "bg-orange-100"
       }`}
     >
-      <h1 className="text-center">
+      <h1 className="text-center sm:text-xl sm:mb-2">
         {index + 1}. TRIP TO {trip.destination_city.toUpperCase()},{" "}
         {trip.destination_country.toUpperCase()}
       </h1>
@@ -32,22 +32,22 @@ function TripCard({ trip, index }) {
         )}
       </p>
       <p>Last Edited At: {formatTimestamp(trip.updated_at)}</p>
-      <section className="w-full flex justify-around">
+      <section className="w-full flex justify-around sm:mt-4">
         <Link
           href={`/trip/${trip.id}`}
-          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+          className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer sm:text-xl"
         >
           View Details
         </Link>
         <Link
           href={`/trip/${trip.id}/edit`}
-          className="block  bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+          className="block  bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer sm:text-xl"
         >
           Edit Trip
         </Link>
         <Link
           href={`/trip/${trip.id}/recommendations`}
-          className="block  bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+          className="block  bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer sm:text-xl"
         >
           Find Recs
         </Link>

@@ -45,7 +45,7 @@ function ShowAndEditTripNotes({ trip }) {
             "Cancel" to edit editting mode.
           </label>
           <textarea
-            className="ml-2"
+            className="ml-2 p-2"
             value={tripNotes}
             onChange={handleTripNotes}
             rows="8"

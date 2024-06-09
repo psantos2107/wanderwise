@@ -28,7 +28,7 @@ function AttractionForm() {
 
   return (
     <form
-      className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm"
+      className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm sm:text-lg"
       onSubmit={(e) => handleSumbit(e)}
     >
       <article>

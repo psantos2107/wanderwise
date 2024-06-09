@@ -12,7 +12,7 @@ export default async function CreateTripPage() {
 
   return (
     <main>
-      <h1 className="text-center mb-3">
+      <h1 className="text-center mb-3 sm:text-2xl">
         Let's plan your next trip, {firstName}! ✈️
       </h1>
       <CreateOrEditTrip userID={userID} isCreatingNewTrip={true} trip={{}} />

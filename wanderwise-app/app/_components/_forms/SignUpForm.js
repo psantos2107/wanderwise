@@ -56,9 +56,9 @@ function SignUpForm({ session }) {
   }
 
   return (
-    <main className="w-full">
+    <main className="w-full sm:flex sm:flex-col sm:items-center">
       {session?.user ? (
-        <h2 className="p-3 text-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3">
+        <h2 className="p-3 text-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3 sm:text-2xl sm:mt-10">
           You are already logged in. You may navigate to your user page via{" "}
           <Link
             href="/user_page"
@@ -69,14 +69,14 @@ function SignUpForm({ session }) {
         </h2>
       ) : (
         <>
-          <h2 className="mb-3">
+          <h2 className="mb-3 sm:text-center sm:text-3xl max-w-4xl sm:mt-8">
             Welcome to WanderWise! Please fill out the form to sign up and
             continue using our web app! Or, alternatively, you can simply sign
             up with your Google credentials by pressing on the button below!
           </h2>
           <form
             onSubmit={handleFormSubmit}
-            className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-4"
+            className="p-3 flex flex-col gap-3 sm:gap-8 items-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-4 sm:text-2xl sm:p-10 max-w-xl sm:mt-10"
           >
             <article className="flex gap-2">
               <label>First Name:</label>
@@ -131,33 +131,34 @@ function SignUpForm({ session }) {
               className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
             />
           </form>
-          <p className="text-center mb-3">OR</p>
+          <p className="text-center mb-3 sm:text-2xl">OR</p>
           <form
             action={googleSignIn}
-            className="p-1 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[80%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3"
+            className="p-1 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[80%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3 max-w-xl"
           >
             <article className="w-full flex justify-center">
-              <figure className="relative w-[15%] h-auto ">
+              <figure className="relative w-[15%] h-auto">
                 <Image
                   src={googleIcon}
                   loading="lazy"
                   fill
                   className="object-contain"
+                  alt="Google Icon"
                 />
               </figure>
               <button
                 onClick={handleGoogleOnClick}
-                className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+                className="block bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer sm:text-2xl sm:p-2"
               >
                 Sign Up with Google
               </button>
             </article>
           </form>
-          <p>
+          <p className="sm:text-xl sm:mt-6">
             Or, if you already have an account,{" "}
             <Link
               href={"/login"}
-              className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic cursor-pointer"
+              className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic cursor-pointer sm:text-2xl"
             >
               click here
             </Link>{" "}

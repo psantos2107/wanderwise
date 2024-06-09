@@ -4,6 +4,7 @@ import TextExpander from "../TextExpander";
 import { useState } from "react";
 import { addHotelToTrip } from "@/app/_lib/actions";
 import SpinnerMini from "../SpinnerMini";
+import tripAdvisorLogo from "@/public/imgs/trip_advisor_logo.png";
 
 function HotelCard({ hotel, index, pictureURL, tripID, savedPicURL }) {
   const [clientMessage, setClientMessage] = useState("");
@@ -27,8 +28,8 @@ function HotelCard({ hotel, index, pictureURL, tripID, savedPicURL }) {
   }
 
   return (
-    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-3 mb-4">
-      <h2>
+    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-3 mb-4 sm:text-lg sm:p-6">
+      <h2 className="sn:text-xl">
         {index + 1}. {hotel.name}
       </h2>
       <figure className="w-[90%] mx-auto mb-3">
@@ -47,27 +48,27 @@ function HotelCard({ hotel, index, pictureURL, tripID, savedPicURL }) {
       </figure>
       <p>
         <strong>
-          <u className="text-sm">DESCRIPTION:</u>{" "}
+          <u className="text-sm sm:text-lg">DESCRIPTION:</u>{" "}
         </strong>{" "}
         <TextExpander>{hotel.description}</TextExpander>
       </p>
       <p>
-        <u className="text-sm">ADDRESS:</u> {hotel.address_obj.address_string}
+        <u className="text-sm sm:text-lg">ADDRESS:</u>{" "}
+        {hotel.address_obj?.address_string || "Not available"}
       </p>
       <p>
-        <u className="text-sm">PHONE NUMBER:</u> {hotel.phone}
+        <u className="text-sm sm:text-lg">PHONE NUMBER:</u> {hotel.phone}
       </p>
       <p>
-        <u className="text-sm">TRIPADVISOR RATING:</u> {hotel.rating} (out of{" "}
-        {hotel.num_reviews} reviews){" "}
+        <u className="text-sm sm:text-lg">TRIPADVISOR RATING:</u> {hotel.rating}{" "}
+        (out of {hotel.num_reviews} reviews){" "}
       </p>
-      <figure className="w-3/4 mx-auto">
+      <figure className="w-3/4 h-[50px] max-w-md mx-auto relative">
         {hotel.rating_image_url ? (
           <Image
             src={hotel.rating_image_url}
-            width="30"
-            height="30"
-            layout="responsive"
+            fill
+            className="object-contain"
             alt={`Rating image for ${hotel.name}`}
           />
         ) : (

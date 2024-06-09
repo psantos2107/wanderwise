@@ -30,9 +30,8 @@ function FlightCard({ flightOffer, index, tripID }) {
   }
 
   return (
-    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 w-full">
-      {console.log(flightOffer, getAirlineByIata(flightOffer.carrierCode))}
-      <h2 className="bolder">
+    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 w-full sm:text-lg">
+      <h2 className="bolder sm:text-lg mb-3">
         <u>FLIGHT OFFER {index + 1}</u>
       </h2>
       <p>
@@ -74,7 +73,7 @@ function FlightCard({ flightOffer, index, tripID }) {
       </h2>
       {flightOffer.itineraries.map((itinerary, index) => {
         return (
-          <article className="w-full">
+          <article className="w-full" key={`Itinerary #${index}`}>
             {index === 0 ? (
               <h2>ITINERARY TO DESTINATION</h2>
             ) : (
@@ -86,7 +85,7 @@ function FlightCard({ flightOffer, index, tripID }) {
               </p>
               {itinerary.segments.map((segment, i, arr) => {
                 return (
-                  <section>
+                  <section key={`Segment of itinerary. Flight #${i}`}>
                     Airline:{" "}
                     {segment.carrierCode === "B6"
                       ? "Jet Blue"
@@ -147,7 +146,7 @@ function FlightCard({ flightOffer, index, tripID }) {
       {isSaving && <SpinnerMini />}
       {clientMessage && <p>{clientMessage}</p>}
       <button
-        className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5 block mx-auto cursor-pointer"
+        className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5 block mx-auto cursor-pointer max-w-lg mt-4"
         data-flight={JSON.stringify(flightOffer)}
         onClick={handleSaveRecommendation}
       >

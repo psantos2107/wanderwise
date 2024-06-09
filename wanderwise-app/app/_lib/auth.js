@@ -55,7 +55,6 @@ const authConfig = {
     async session({ session }) {
       const user = await getUser(session.user.email);
       session.user.id = user.id;
-      console.log(session);
       if (session.user?.password) {
         delete session.user.password;
       }

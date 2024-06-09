@@ -25,34 +25,32 @@ function RestaurantCard({ restaurant, index, tripID }) {
     }
   }
   return (
-    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4">
-      <h2 className="text-lg">
+    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 sm:text-lg sm:p-4">
+      <h2 className="text-lg sm:text-xl">
         {index + 1}. {restaurant.name}
       </h2>
-      <figure className="w-[90%] mx-auto">
+      <figure className="w-[90%] relative h-[100px] sm:w-3/4 sm:h-[150px] mx-auto">
         <Image
           src={restaurant.image_url}
-          width="100"
-          height="100"
-          layout="responsive"
+          fill
           alt={`Image of ${restaurant.name}`}
           className="object-cover max-h-36 rounded-sm"
         />
-        <p>
-          <strong>
-            <u className="text-sm">CATEGORIES:</u>{" "}
-          </strong>{" "}
-          {restaurant.categories.map((category) => category.title).join(", ")}
-        </p>
-        <p>
-          <u className="text-sm">YELP RATING:</u> {restaurant.rating} (out of{" "}
-          {restaurant.review_count} reviews)
-        </p>
-        <p>
-          <u className="text-sm">ADDRESS:</u>{" "}
-          {restaurant.location.display_address.join(",")}
-        </p>
       </figure>
+      <p>
+        <strong>
+          <u className="text-sm sm:text-lg">CATEGORIES:</u>{" "}
+        </strong>{" "}
+        {restaurant.categories.map((category) => category.title).join(", ")}
+      </p>
+      <p>
+        <u className="text-sm sm:text-lg">YELP RATING:</u> {restaurant.rating}{" "}
+        (out of {restaurant.review_count} reviews)
+      </p>
+      <p>
+        <u className="text-sm sm:text-lg">ADDRESS:</u>{" "}
+        {restaurant.location.display_address.join(",")}
+      </p>
       <section className="flex flex-col gap-1 items-center mt-3">
         <a
           href={restaurant.url}

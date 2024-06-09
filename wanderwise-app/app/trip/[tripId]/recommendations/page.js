@@ -14,11 +14,11 @@ export default async function RecommendationsPage({ params }) {
 
   return (
     <main className="w-full">
-      <h1 className="text-center mb-3 text-lg">
+      <h1 className="text-center mb-3 text-lg sm:text-2xl">
         <u>RECOMMENDATIONS:</u>
       </h1>
       {trip?.user_id === userID ? (
-        <article className="w-4/5 mx-auto flex flex-col gap-4 items-center">
+        <article className="w-4/5 mx-auto flex flex-col gap-4 sm:gap-6 items-center sm:text-xl sm:mt-4">
           <h2>
             Hey {session.user.name.split(" ")[0]}! Let's try to find some
             restaurant, hotel, flight, or attraction recommendations for your
@@ -26,7 +26,7 @@ export default async function RecommendationsPage({ params }) {
             click on any of the buttons below to find recommendations!
           </h2>
           <RecommendationButtons tripID={params.tripID} />
-          <p>
+          <p className="sm:mt-4">
             Or you may also navigate back to your user page using the home icon
             above!
           </p>

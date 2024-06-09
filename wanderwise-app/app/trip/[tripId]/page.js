@@ -30,13 +30,13 @@ export default async function ViewTripPage({ params, searchParams }) {
     <main>
       {trip?.user_id === userID ? (
         <>
-          <h1 className="text-center text-lg">
+          <h1 className="text-center text-lg sm:text-2xl sm:mb-4">
             <strong>
               <u>TRIP DETAILS</u>
             </strong>
           </h1>
           <TripDetails trip={trip} />
-          <h2 className="text-center text-lg mt-3">
+          <h2 className="text-center text-lg mt-3 sm:text-xl sm:my-4">
             <strong>
               <u>SAVED RECOMMENDATIONS</u>
             </strong>

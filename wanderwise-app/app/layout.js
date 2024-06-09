@@ -23,7 +23,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${josefin.className} box-border m-0 p-0 min-h-screen flex flex-col text-slate-950 bg-white`}
+        className={`${josefin.className} box-border m-0 p-0 min-h-screen flex flex-col text-slate-950 bg-white max-w-screen-xl sm:mx-auto mb-12`}
       >
         <Header />
         {children}

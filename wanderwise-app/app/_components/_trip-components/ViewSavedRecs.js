@@ -12,11 +12,11 @@ async function ViewSavedRecs({ trip, recArray, searchParamsExist, category }) {
       !["attractions", "hotels", "restaurants", "flights"].includes(
         category
       ) ? (
-        <p className="mt-3">
+        <p className="mt-3 sm:text-lg">
           Please click on one of the buttons above to view your recommendations.
         </p>
       ) : recArray.length === 0 ? (
-        <p className="mt-3">
+        <p className="mt-3 sm:text-lg">
           No recommendations saved yet. Please click on "find more recs" to
           search for more recommendations for your trip!
         </p>
@@ -70,47 +70,3 @@ async function ViewSavedRecs({ trip, recArray, searchParamsExist, category }) {
 }
 //
 export default ViewSavedRecs;
-
-/* 
-<>
-          {recArray.map((recommendation, index) => {
-            if (category === "attractions") {
-              return (
-                <AttractionCard
-                  attraction={recommendation}
-                  index={index}
-                  tripID={trip.id}
-                />
-              );
-            } else if (searchParams.category === "hotels") {
-              return (
-                <HotelCard
-                  hotel={recommendation}
-                  index={index}
-                  pictureURL={null}
-                  tripID={trip.id}
-                  savedPicURL={recommendation?.pictureURL}
-                />
-              );
-            } else if (searchParams.category === "restaurants") {
-              return (
-                <RestaurantCard
-                  restaurant={recommendation}
-                  tripID={trip.id}
-                  index={index}
-                />
-              );
-            } else {
-              return (
-                <FlightCard
-                  flightOffer={recommendation}
-                  index={index}
-                  tripID={trip.id}
-                />
-              );
-            }
-          })}
-        </>
-      )}
-    </>
-*/

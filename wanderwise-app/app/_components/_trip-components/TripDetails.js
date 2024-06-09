@@ -5,8 +5,8 @@ import ShowAndEditTripNotes from "./ShowAndEditTripNotes";
 
 function TripDetails({ trip }) {
   return (
-    <article className="p-3 flex flex-col text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm">
-      <h1 className="text-center">
+    <article className="p-3 flex flex-col text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm sm:text-lg">
+      <h1 className="text-center sm:text-xl">
         YOUR TRIP TO {trip.destination_city.toUpperCase()},{" "}
         {trip.destination_country.toUpperCase()}
       </h1>

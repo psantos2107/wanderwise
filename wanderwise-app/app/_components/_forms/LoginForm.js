@@ -34,7 +34,6 @@ function LoginForm({ session }) {
         email: emailAdd,
         password: password,
       };
-      console.log(formData);
       setIsLoadingCreds(true);
       await standardSignIn(formData);
     } catch (error) {
@@ -47,9 +46,9 @@ function LoginForm({ session }) {
   }
 
   return (
-    <main>
+    <main className="sm:flex sm:flex-col sm:items-center py-4">
       {session?.user ? (
-        <h2 className="p-3 text-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3">
+        <h2 className="p-3 text-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3 sm:text-lg">
           You are already logged in. You may navigate to your user page via{" "}
           <Link
             href="/user_page"
@@ -60,18 +59,18 @@ function LoginForm({ session }) {
         </h2>
       ) : (
         <>
-          <h2 className="mb-2">
+          <h2 className="mb-2 sm:text-3xl sm:mt-10 max-w-4xl sm:text-center">
             Please login in to continue using our web app! Or, you can click on
             the button to sign via your google account.
           </h2>
-          <p className="text-xs text-center mb-3">
+          <p className="text-xs text-center mb-3 sm:text-lg">
             (Note: If you were just re-directed from the sign-in page, you may
             use this login form with the credentials you just made to proceed
             with the app!)
           </p>
           <form
             onSubmit={handleSubmit}
-            className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3"
+            className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[85%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-3 sm:text-2xl sm:mt-10 max-w-xl"
           >
             <label>Email Address:</label>
             <input
@@ -90,7 +89,7 @@ function LoginForm({ session }) {
               required
             />
             {errorMessage && (
-              <p className="text-red-700 boldest">{errorMessage}</p>
+              <p className="text-red-700 boldest sm:text-xl">{errorMessage}</p>
             )}
             <input
               type="submit"
@@ -98,12 +97,12 @@ function LoginForm({ session }) {
               className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest w-fit transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
             />
           </form>
-          <p className="text-center mb-3">OR</p>
+          <p className="text-center mb-3 sm:text-xl sm:mt-6">OR</p>
           {isLoadingGooglePg && <Spinner />}
           {isLoadingCreds && <Spinner />}
           <form
             action={googleSignIn}
-            className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-4"
+            className="p-3 flex flex-col gap-6 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm mb-4 sm:text-xl sm:mt-6 max-w-xl"
           >
             <article className="w-full flex justify-center">
               <figure className="relative w-[15%] h-auto ">
@@ -112,6 +111,7 @@ function LoginForm({ session }) {
                   loading="lazy"
                   fill
                   className="object-contain"
+                  alt="Google Icon"
                 />
               </figure>
               <button
@@ -122,11 +122,11 @@ function LoginForm({ session }) {
               </button>
             </article>
           </form>
-          <p>
+          <p className="sm:text-lg">
             Or, if you don't have an account yet{" "}
             <Link
               href={"/signup"}
-              className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic cursor-pointer"
+              className="underline transition-transform transform hover:bg-blue-300 active:bg-blue-400  hover:scale-105 active:scale-95 active:shadow-inner hover:italic active:italic cursor-pointer sm:text-xl"
             >
               click here
             </Link>{" "}

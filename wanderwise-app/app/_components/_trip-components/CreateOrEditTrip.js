@@ -130,7 +130,7 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
 
   return (
     <form
-      className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm"
+      className="p-3 flex flex-col gap-3 items-center text-theme-color-dark bg-gradient-white w-[90%] mx-auto rounded-sm shadow-md leading-6 text-sm sm:text-xl sm:gap-5"
       onSubmit={(e) => handleSumbit(e)}
     >
       <article className="flex flex-col md:block">
@@ -264,7 +264,7 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
           trip!
         </label>
         <textarea
-          className="ml-2"
+          className="ml-2 p-2"
           value={tripNotes}
           onChange={handleTripNotes}
           rows="8"

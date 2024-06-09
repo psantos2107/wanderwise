@@ -26,38 +26,34 @@ function AttractionCard({ attraction, index, tripID }) {
   }
 
   return (
-    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4">
-      <h2>
+    <article className="bg-gradient-white text-theme-color-dark rounded-sm p-2 mb-4 sm:text-lg sm:p-5">
+      <h2 className="sm:text-xl">
         {index + 1}. {attraction.name}
       </h2>
-      <figure className="w-[90%] mx-auto">
+      <figure className="w-[90%] h-[150px] sm:w-4/5 relative mx-auto my-4">
         {attraction?.image_url ? (
           <Image
             src={attraction.image_url}
-            width="100"
-            height="100"
-            layout="responsive"
+            fill
             alt={`Image of ${attraction.name}`}
             className="object-cover max-h-36 rounded-sm"
           />
         ) : (
           "No photo provided by Yelp."
         )}
-        <p>
-          <strong>
-            <u className="text-sm">CATEGORIES:</u>{" "}
-          </strong>{" "}
-          {attraction.categories.map((category) => category.title).join(", ")}
-        </p>
-        <p>
-          <u className="text-sm">YELP RATING:</u> {attraction.rating} (out of{" "}
-          {attraction.review_count} reviews)
-        </p>
-        <p>
-          <u className="text-sm">ADDRESS:</u>{" "}
-          {attraction.location.display_address.join(",")}
-        </p>
       </figure>
+      <p className="sm:text-lg">
+        <u className="text-sm sm:text-lg">CATEGORIES:</u>{" "}
+        {attraction.categories.map((category) => category.title).join(", ")}
+      </p>
+      <p className="sm:text-lg">
+        <u className="text-sm sm:text-lg">YELP RATING:</u> {attraction.rating}{" "}
+        (out of {attraction.review_count} reviews)
+      </p>
+      <p className="sm:text-lg">
+        <u className="text-sm sm:text-lg">ADDRESS:</u>{" "}
+        {attraction.location.display_address.join(",")}
+      </p>
       <section className="flex flex-col gap-1 items-center mt-3">
         <a
           href={attraction.url}

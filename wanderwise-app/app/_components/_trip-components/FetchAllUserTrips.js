@@ -15,7 +15,7 @@ async function FetchAllUserTrips({ id }) {
           })}
         </section>
       ) : (
-        <h1 className="text-center p-5 bg-orange-100">
+        <h1 className="text-center p-5 bg-orange-100 sm:text-2xl">
           You have no trips to display quite yet!
         </h1>
       )}

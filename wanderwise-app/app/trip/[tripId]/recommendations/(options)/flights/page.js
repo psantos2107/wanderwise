@@ -35,7 +35,6 @@ export default async function FlightsPage({ params, searchParams }) {
             tripLocation={tripLocation}
           />
           <FlightForm />
-          {console.log(trip.airline)}
           <div className="w-[90%] mx-auto mt-4">
             <FetchFlights
               iataOrigin={iataOrigin}
