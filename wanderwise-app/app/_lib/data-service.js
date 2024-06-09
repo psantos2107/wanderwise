@@ -109,6 +109,7 @@ export async function searchFlights(
   const amadeus = new Amadeus({
     clientId: `${process.env.AMADEUS_API_KEY}`,
     clientSecret: `${process.env.AMADEUS_API_SECRET}`,
+    hostname: "production",
   });
 
   const res = await amadeus.shopping.flightOffersSearch.get({
@@ -121,7 +122,7 @@ export async function searchFlights(
     infants: numInfants,
     travelClass: travelClass,
     nonStop: nonStopOnly,
-    max: "5",
+    max: "10",
   });
 
   const flightOffers = res.data;
