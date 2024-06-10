@@ -14,6 +14,7 @@ export const metadata = {
 export default async function RestaurantsPage({ params, searchParams }) {
   const session = await auth();
   const userID = session.user.id;
+  console.log("this is the param in server component: ", params.trip_id);
   const trip = await getTripByTripId(params.trip_id);
   //query params will be used to share state between client components and server components.
   const tripLocation = `${trip.destination_city}, ${trip.destination_country}`;
