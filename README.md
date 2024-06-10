@@ -9,7 +9,7 @@ Established in 2024, WanderWise is designed for those who love to travel and wan
 <img width="1288" alt="Screenshot 2024-06-09 at 10 06 55 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/cbb73e39-4b53-458f-a7ee-0d732c46fd51">
 <img width="1289" alt="Screenshot 2024-06-09 at 10 08 49 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/98df0154-8837-4ea5-a1fa-53990751dca0">
 <img width="1305" alt="Screenshot 2024-06-09 at 10 08 11 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/34a5064d-62d3-459d-a5a8-ed00bce22abb">
-<img width="1286" alt="Screenshot 2024-06-09 at 10 07 39 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/53bab0bb-1e8e-46ec-82fe-7f192019b929">
+<img width="1303" alt="Screenshot 2024-06-10 at 4 16 28 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/e7a299a9-e7d0-4708-b7a9-3e9dd4ae49cf">
 
 ## Wireframes
 <img width="730" alt="capstone_wireframe" src="https://github.com/psantos2107/wanderwise/assets/146752384/f3c8ef2c-07fa-4837-b1ba-d9af9b785fb1">
