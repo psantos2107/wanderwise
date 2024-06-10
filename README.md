@@ -67,7 +67,10 @@ Once you have these steps down, you should be ready to go.
 - Use of three external APIs that users can query right from the app in order to add on to a user's trip plan
 - Skillful use of NextJS' server components, server actions, and client components in order to implement full CRUD for user trips
 
-# Thoughts/IceBox/Areas of Improvement
+## Approach Taken:
+Initially, I first set up the directory structure for this project in order to ensure that routing for this project goes well. After setting up the routing, I started fleshing out all the part of the project that required fetching from external APIs, in order to learn and reinforce how server components work on NextJS. Then, I worked on authentication/authorization using NextJS. And then, I worked on trip CRUD. Backend was interwoven as I fleshed out the front-end as they are interwoven in NextJS.
+
+## Thoughts/IceBox/Areas of Improvement
 - Looking back and after learning about NextJS, I realize that the application I tried to produce with this project does not take full advantage of NextJS's advantages for static site generation (SSG), ISR (incremental static regeneration), server side rendering (SSR), SEO (search engine optimization), and faster initial load times. Thus, I would likely re-use NextJS for an E-Commerce or blog site in the future. This kind of project would have been better suited using the MERN stack.
 - To be done later: add Multer to allow for manual picture uploads for those logging in via credentials
 - Implementing pagination for when a user has 10+ trips saved
