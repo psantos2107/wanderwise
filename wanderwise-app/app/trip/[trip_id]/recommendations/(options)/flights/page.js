@@ -13,7 +13,7 @@ export const metadata = {
 export default async function FlightsPage({ params, searchParams }) {
   const session = await auth();
   const userID = session.user.id;
-  const trip = await getTripByTripId(params.tripID);
+  const trip = await getTripByTripId(params.trip_id);
   const tripLocation = `${trip.destination_city}, ${trip.destination_country}`;
   const iataOrigin = searchParams?.iataOrigin ?? "";
   const departureDate = searchParams?.departureDate ?? "";
@@ -29,7 +29,7 @@ export default async function FlightsPage({ params, searchParams }) {
       {trip?.user_id === userID ? (
         <>
           {" "}
-          <BackToRecommendations tripID={params.tripID} />
+          <BackToRecommendations tripID={params.trip_id} />
           <RecommendationMessage
             category={"flights"}
             tripLocation={tripLocation}
@@ -46,7 +46,7 @@ export default async function FlightsPage({ params, searchParams }) {
               travelClass={travelClass}
               nonStopOnly={nonStopOnly}
               tripLocation={trip.airline}
-              tripID={params.tripID}
+              tripID={params.trip_id}
             />
           </div>{" "}
         </>

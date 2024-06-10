@@ -10,7 +10,7 @@ export const metadata = {
 export default async function RecommendationsPage({ params }) {
   const session = await auth();
   const userID = session.user.id;
-  const trip = await getTripByTripId(params.tripID);
+  const trip = await getTripByTripId(params.trip_id);
 
   return (
     <main className="w-full">
@@ -25,7 +25,7 @@ export default async function RecommendationsPage({ params }) {
             trip to {trip.destination_city}, {trip.destination_country}! Please
             click on any of the buttons below to find recommendations!
           </h2>
-          <RecommendationButtons tripID={params.tripID} />
+          <RecommendationButtons tripID={params.trip_id} />
           <p className="sm:mt-4">
             Or you may also navigate back to your user page using the home icon
             above!

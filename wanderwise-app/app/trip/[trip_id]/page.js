@@ -11,7 +11,7 @@ export const metadata = {
 export default async function ViewTripPage({ params, searchParams }) {
   const session = await auth();
   const userID = session.user.id;
-  const trip = await getTripByTripId(params.tripID);
+  const trip = await getTripByTripId(params.trip_id);
   let recommendationArray;
   if (!searchParams?.category) {
     recommendationArray = [];

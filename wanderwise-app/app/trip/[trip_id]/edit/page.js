@@ -12,7 +12,7 @@ export const metadata = {
 export default async function EditPage({ params }) {
   const session = await auth();
   const userID = session.user.id;
-  const trip = await getTripByTripId(parseInt(params.tripID));
+  const trip = await getTripByTripId(parseInt(params.trip_id));
   return (
     <main>
       {trip?.user_id === userID ? (
@@ -26,7 +26,7 @@ export default async function EditPage({ params }) {
           <article className="flex justify-center mb-3">
             <Link
               className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner sm:text-lg sm:my-4"
-              href={`/trip/${params.tripID}`}
+              href={`/trip/${params.trip_id}`}
             >
               View Entire Trip
             </Link>
@@ -37,7 +37,7 @@ export default async function EditPage({ params }) {
             isCreatingNewTrip={false}
           />
           <article className="my-5 sm:my-8 ml-2 w-fit sm:text-lg sm:p-2">
-            <DeleteTripButton tripID={params.tripID} />
+            <DeleteTripButton tripID={params.trip_id} />
           </article>
         </>
       ) : (

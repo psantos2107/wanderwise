@@ -13,7 +13,7 @@ export const metadata = {
 export default async function AttractionsPage({ params, searchParams }) {
   const session = await auth();
   const userID = session.user.id;
-  const trip = await getTripByTripId(params.tripID);
+  const trip = await getTripByTripId(params.trip_id);
   //query params will be used to share state between client components and server components.
   const tripLocation = `${trip.destination_city}, ${trip.destination_country}`;
   const searchTerm = searchParams?.searchTerm
@@ -24,7 +24,7 @@ export default async function AttractionsPage({ params, searchParams }) {
     <main>
       {trip?.user_id === userID ? (
         <>
-          <BackToRecommendations tripID={params.tripID} />
+          <BackToRecommendations tripID={params.trip_id} />
           <RecommendationMessage
             category={"attractions"}
             tripLocation={tripLocation}
@@ -34,7 +34,7 @@ export default async function AttractionsPage({ params, searchParams }) {
             <FetchAttractions
               searchTerm={searchTerm}
               tripLocation={tripLocation}
-              tripID={params.tripID}
+              tripID={params.trip_id}
             />
           </div>
         </>
