@@ -1,10 +1,24 @@
 # wanderwise
+## Description
+
+LINK TO PROJECT: https://wanderwise-project.vercel.app/
+
+Established in 2024, WanderWise is designed for those who love to travel and want to have an application to make the planning process a little bit easier! When you sign up for the app, you will have the ability to "create a trip", where you can input your destination city, desired travel dates, travel budgets, and more, in order to get the planning process going. Then, utilizing the search engines provided by Yelp, Trip Advisor, and Amadeus, you will be able to search for restaurants, activities, hotels, and even flights all in one centralized place! Plan your dream vacation and indulge in all your wanderlust fantasies, now easier than ever! You can also add trip notes to further personalize and strategize your planning!
+
+## Screenshots
+<img width="1288" alt="Screenshot 2024-06-09 at 10 06 55 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/cbb73e39-4b53-458f-a7ee-0d732c46fd51">
+<img width="1289" alt="Screenshot 2024-06-09 at 10 08 49 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/98df0154-8837-4ea5-a1fa-53990751dca0">
+<img width="1305" alt="Screenshot 2024-06-09 at 10 08 11 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/34a5064d-62d3-459d-a5a8-ed00bce22abb">
+<img width="1286" alt="Screenshot 2024-06-09 at 10 07 39 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/53bab0bb-1e8e-46ec-82fe-7f192019b929">
+
 ## Technologies Used
 - Front-End: NextJS (app router) with React
 - Back-End: NextJS (app router) with React
 - Auth: NextAuth.js v5, implementing both OAuth (via Google) and credential-based authorization and authentication.
 - Database: Supabase (SQL Database)
 - Deployment: Vercel
+- TailwindCSS (for styling)
+
 ## External APIs and other Dependencies
 - Yelp Developer API: To obtain information on attractions/activities and restaurants
 - TripAdvisor API: To obtain information on hotels
@@ -14,3 +28,35 @@
 - BCrypt: For password hashing for credential-based authorization
 - Countries-List: To obtain information on the world's countries
 - React-Day-Picker: To display a calendar for when the user picks dates for their trips
+
+## Other Features:
+- Implementation of Google OAuth and credential-based authentication/authorization system utilizing the latest version (version 5) of NextAuth (soon to be Auth.js)
+- Successul use of image optimizations via NextJS' Image component
+- Utilization of NextJS file conventions (such as page.js, layout.js, error.js, loading.js, etc) in order to streamline loading states during page transitions, create error boundaries when errors are thrown, and more
+- Use of three external APIs that users can query right from the app in order to add on to a user's trip plan
+- Skillful use of NextJS' server components, server actions, and client components in order to implement full CRUD for user trips
+
+## View My Previous Projects!
+POKEMON TRIVA
+- Live Site: https://psantos2107.github.io/pokemon-trivia-game
+- Github Repo: https://github.com/psantos2107/pokemon-trivia-game)
+  
+SWEATSHARE (Fitness Application)
+- Live Site: https://sweatshare-6d68a7df5043.herokuapp.com
+- Github Repo: https://github.com/psantos2107/sweat-share)
+  
+ORDER EATZ (Mobile Food Ordering Application) - Group Project
+- Live Site: https://order-eatz.netlify.app/
+- Github Repo: https://github.com/psantos2107/order-eatz-frontend
+
+## Contact
+- Email: paul.santos2107@gmail.com
+- LinkedIn: https://www.linkedin.com/in/paulsantos2107/
+
+Feel free to reach out if you have questions, suggestions, or just want to chat!
+
+## Acknowledgements
+- Jonas Schmedtmann: Creator of "The Ultimate React Course 2024: React, Next.js, Redux & More", for creating the absolute best tutorial I could have ever asked for about NextJS (and about React in general)
+- ChatGPT: for debugging purposes
+- StackOverflow- For helping me answer those debugging/deployment questions that chatGPT couldn't
+
