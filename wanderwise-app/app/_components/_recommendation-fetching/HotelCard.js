@@ -4,9 +4,15 @@ import TextExpander from "../TextExpander";
 import { useState } from "react";
 import { addHotelToTrip } from "@/app/_lib/actions";
 import SpinnerMini from "../SpinnerMini";
-import tripAdvisorLogo from "@/public/imgs/trip_advisor_logo.png";
 
-function HotelCard({ hotel, index, pictureURL, tripID, savedPicURL }) {
+function HotelCard({
+  hotel,
+  index,
+  pictureURL,
+  tripID,
+  savedPicURL,
+  isASavedRec,
+}) {
   const [clientMessage, setClientMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -92,16 +98,18 @@ function HotelCard({ hotel, index, pictureURL, tripID, savedPicURL }) {
         </a>
         {isSaving && <SpinnerMini />}
         {clientMessage && <p>{clientMessage}</p>}
-        <button
-          className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
-          data-hotel={JSON.stringify({
-            ...hotel,
-            pictureURL: `${pictureURL || ""}`,
-          })}
-          onClick={handleSaveRecommendation}
-        >
-          Save Recommendation
-        </button>
+        {!isASavedRec && (
+          <button
+            className="block text-center w-4/5 bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer"
+            data-hotel={JSON.stringify({
+              ...hotel,
+              pictureURL: `${pictureURL || ""}`,
+            })}
+            onClick={handleSaveRecommendation}
+          >
+            Save Recommendation
+          </button>
+        )}
       </section>
     </article>
   );

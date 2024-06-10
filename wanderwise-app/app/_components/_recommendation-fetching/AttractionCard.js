@@ -4,7 +4,7 @@ import { addAttractionToTrip } from "@/app/_lib/actions";
 import { useState } from "react";
 import SpinnerMini from "../SpinnerMini";
 
-function AttractionCard({ attraction, index, tripID }) {
+function AttractionCard({ attraction, index, tripID, isASavedRec }) {
   const [clientMessage, setClientMessage] = useState("");
   const [isSaving, setIsSaving] = useState(false);
 
@@ -64,13 +64,15 @@ function AttractionCard({ attraction, index, tripID }) {
         </a>
         {isSaving && <SpinnerMini />}
         {clientMessage && <p>{clientMessage}</p>}
-        <button
-          className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5 cursor-pointer"
-          data-attraction={JSON.stringify(attraction)}
-          onClick={handleSaveRecommendation}
-        >
-          Save Recommendation
-        </button>
+        {!isASavedRec && (
+          <button
+            className="bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner w-4/5 cursor-pointer"
+            data-attraction={JSON.stringify(attraction)}
+            onClick={handleSaveRecommendation}
+          >
+            Save Recommendation
+          </button>
+        )}
       </section>
     </article>
   );

@@ -30,6 +30,7 @@ async function ViewSavedRecs({ trip, recArray, searchParamsExist, category }) {
                   attraction={recommendation}
                   index={index}
                   tripID={trip.id}
+                  isASavedRec={true}
                 />
               );
             } else if (category === "hotels") {
@@ -41,6 +42,7 @@ async function ViewSavedRecs({ trip, recArray, searchParamsExist, category }) {
                   pictureURL={null}
                   tripID={trip.id}
                   savedPicURL={recommendation?.pictureURL}
+                  isASavedRec={true}
                 />
               );
             } else if (category === "restaurants") {
@@ -50,6 +52,7 @@ async function ViewSavedRecs({ trip, recArray, searchParamsExist, category }) {
                   restaurant={recommendation}
                   tripID={trip.id}
                   index={index}
+                  isASavedRec={true}
                 />
               );
             } else if (category === "flights") {
@@ -59,6 +62,7 @@ async function ViewSavedRecs({ trip, recArray, searchParamsExist, category }) {
                   flightOffer={recommendation}
                   index={index}
                   tripID={trip.id}
+                  isASavedRec={true}
                 />
               );
             }
