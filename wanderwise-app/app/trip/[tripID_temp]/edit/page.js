@@ -12,8 +12,6 @@ export const metadata = {
 export default async function EditPage({ params }) {
   const session = await auth();
   const userID = session.user.id;
-  console.log(params);
-  console.log(params.tripID);
   const trip = await getTripByTripId(parseInt(params.tripID));
   return (
     <main>
