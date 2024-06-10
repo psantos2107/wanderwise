@@ -11,7 +11,13 @@ Established in 2024, WanderWise is designed for those who love to travel and wan
 <img width="1305" alt="Screenshot 2024-06-09 at 10 08 11 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/34a5064d-62d3-459d-a5a8-ed00bce22abb">
 <img width="1286" alt="Screenshot 2024-06-09 at 10 07 39 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/53bab0bb-1e8e-46ec-82fe-7f192019b929">
 
-## Trello Board
+## Wireframes
+<img width="730" alt="capstone_wireframe" src="https://github.com/psantos2107/wanderwise/assets/146752384/f3c8ef2c-07fa-4837-b1ba-d9af9b785fb1">
+
+## Entity Relationship Diagram
+<img width="698" alt="capstone_ERD" src="https://github.com/psantos2107/wanderwise/assets/146752384/0db0691b-7055-4d6b-a1f2-0547607897d9">
+
+## Trello Board (Contains User Stories)
 
 Link: https://trello.com/b/v8qebKwf/wanderwise
 
@@ -60,6 +66,16 @@ Once you have these steps down, you should be ready to go.
 - Utilization of NextJS file conventions (such as page.js, layout.js, error.js, loading.js, etc) in order to streamline loading states during page transitions, create error boundaries when errors are thrown, and more
 - Use of three external APIs that users can query right from the app in order to add on to a user's trip plan
 - Skillful use of NextJS' server components, server actions, and client components in order to implement full CRUD for user trips
+
+# Thoughts/IceBox/Areas of Improvement
+- Looking back and after learning about NextJS, I realize that the application I tried to produce with this project does not take full advantage of NextJS's advantages for static site generation (SSG), ISR (incremental static regeneration), server side rendering (SSR), SEO (search engine optimization), and faster initial load times. Thus, I would likely re-use NextJS for an E-Commerce or blog site in the future. This kind of project would have been better suited using the MERN stack.
+- To be done later: add Multer to allow for manual picture uploads for those logging in via credentials
+- Implementing pagination for when a user has 10+ trips saved
+- Implementing more flexibility for the user to input how many results they want to get back or to see more results in case the fetch results don't satisfy the user
+- Implement a social aspect of the application so that multiple users can use the site and work on the same trip at the same time (for group trips)
+- Implement more categories for recommendations
+- Rather than simply view their planning board, allow users to create an actual itinerary that allows users to organize their recommendations based on when they plan to visit them
+- Implement more robust styling
 
 ## View My Previous Projects!
 POKEMON TRIVIA (Trivia game based on Pokemon knowledge)
