@@ -5,7 +5,7 @@ import Link from "next/link";
 
 export default async function Home() {
   return (
-    <main className="w-full flex-grow flex flex-col max-w-screen-xl mx-auto md:justify-evenly">
+    <main className="w-full flex flex-col max-w-screen-xl mx-auto md:justify-evenly">
       <section>
         <h2 className="text-3xl leading-8 text-left ml-4 mb-3 my-0 md:text-4xl md:py-5">
           Plan the vacation of your wildest dreams.....
@@ -53,13 +53,12 @@ export default async function Home() {
           Sign Up
         </Link>
         <Link
-          href="#"
+          href="/about"
           className=" bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer md:px-8"
         >
           Learn More
         </Link>
       </section>
-      <footer className="bg-gradient-orange-reverse w-full h-1/5 md:h-[50px] p-5 mt-auto"></footer>
     </main>
   );
 }

@@ -16,7 +16,7 @@ export default async function UserPage() {
   const { user } = await auth();
 
   return (
-    <main className="">
+    <main className="mb-4">
       <article className="sm:text-xl sm:px-3">
         <SignOutButton />
       </article>
