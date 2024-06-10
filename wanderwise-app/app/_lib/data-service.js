@@ -65,6 +65,7 @@ export async function getTripsByUserId(id) {
 }
 
 export async function getTripByTripId(id) {
+  console.log(id);
   const { data, error } = await supabase
     .from("trips")
     .select("*")
