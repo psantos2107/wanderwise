@@ -67,7 +67,7 @@ export async function updateTripDetails(
   hotel_booked,
   start_date,
   end_date,
-  user_id
+  tripID
 ) {
   const { data, error } = await supabase
     .from("trips")
@@ -83,7 +83,7 @@ export async function updateTripDetails(
       end_date,
       updated_at: new Date().toISOString(),
     })
-    .eq("user_id", user_id)
+    .eq("id", tripID)
     .select();
 
   if (error) {

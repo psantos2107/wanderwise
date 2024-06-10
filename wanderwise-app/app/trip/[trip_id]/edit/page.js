@@ -35,6 +35,7 @@ export default async function EditPage({ params }) {
             userID={userID}
             trip={trip}
             isCreatingNewTrip={false}
+            tripID={params.trip_id}
           />
           <article className="my-5 sm:my-8 ml-2 w-fit sm:text-lg sm:p-2">
             <DeleteTripButton tripID={params.trip_id} />

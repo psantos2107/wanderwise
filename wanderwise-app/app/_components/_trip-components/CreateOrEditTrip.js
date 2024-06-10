@@ -8,7 +8,7 @@ import { findAirport } from "aircodes";
 import { createTrip, updateTripDetails } from "@/app/_lib/actions";
 import { useRouter } from "next/navigation";
 
-function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
+function CreateOrEditTrip({ userID, trip, isCreatingNewTrip, tripID }) {
   const [destinationCity, setDestinationCity] = useState(
     trip?.destination_city || ""
   );
@@ -94,7 +94,7 @@ function CreateOrEditTrip({ userID, trip, isCreatingNewTrip }) {
           hotelBooked,
           departureDate,
           returnDate,
-          userID
+          tripID
         );
       }
       router.push(`/trip/${thisTrip[0].id}`);
