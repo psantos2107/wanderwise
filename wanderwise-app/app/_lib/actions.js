@@ -4,6 +4,7 @@ import { signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { hash, genSalt } from "bcryptjs";
 import { getTripByTripId } from "./data-service";
+import { revalidatePath } from "next/cache";
 
 //-----SIGN IN AND OUT FUNCTIONS---------------------------
 export async function googleSignIn() {
@@ -89,6 +90,7 @@ export async function updateTripDetails(
   if (error) {
     throw new Error("Failed to update trip. Please try again");
   }
+  revalidatePath("/user_page");
   return data;
 }
 //
@@ -108,6 +110,7 @@ export async function addRestaurantToTrip(tripID, restaurant) {
   if (error) {
     throw new Error("Failed to save to recommendations. Please try again.");
   }
+  revalidatePath("/user_page");
   return data;
 }
 
@@ -127,6 +130,7 @@ export async function addAttractionToTrip(tripID, attraction) {
   if (error) {
     throw new Error("Failed to save to recommendations. Please try again.");
   }
+  revalidatePath("/user_page");
   return data;
 }
 
@@ -143,6 +147,7 @@ export async function addFlightOfferToTrip(tripID, flightOffer) {
   if (error) {
     throw new Error("Failed to save to recommendations. Please try again.");
   }
+  revalidatePath("/user_page");
   return data;
 }
 
@@ -159,6 +164,7 @@ export async function addHotelToTrip(tripID, hotel) {
   if (error) {
     throw new Error("Failed to save to recommendations. Please try again.");
   }
+  revalidatePath("/user_page");
   return data;
 }
 
@@ -171,6 +177,7 @@ export async function editTripNotes(tripID, tripNotes) {
   if (error) {
     throw new Error("Failed to edit notes. Please try again.");
   }
+  revalidatePath("/user_page");
   return data;
 }
 
@@ -180,6 +187,7 @@ export async function deleteTrip(tripID) {
   if (error) {
     throw new Error("Failed to delete. Please try again.");
   }
+  revalidatePath("/user_page");
 }
 
 //----------CRUD FOR USERS----------------------------------
