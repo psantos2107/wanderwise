@@ -81,21 +81,29 @@ export async function getTripByTripId(id) {
 
 //ALL FUNCTIONS THAT FETCH DATA ROM EXTERNAL APIS ARE HERE
 export async function searchRestaurants(location, searchTerm, price) {
+  //google places API works and is operational atm.
   const encodedLocation = encodeURIComponent(location.trim()) || ""; //will change later
-  const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
+  const foodQuery = `Sushi in ${encodedLocation}`;
+  const radius = "80000";
+  const language = "en-US";
+  // const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
 
-  const url = `https://api.yelp.com/v3/businesses/search?location=${encodedLocation}&term=${encodedSearchTerm}&price=${price}&attributes=popular&sort_by=rating&limit=10`;
-  const options = {
-    method: "GET",
-    headers: {
-      accept: "application/json",
-      Authorization: `Bearer ${process.env.YELP_API_KEY}`,
-    },
-  };
+  const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${foodQuery}&radius=${radius}&language=${language}&key=${process.env.PLACES_GOOGLE_API_KEY}`;
 
-  const res = await fetch(url, options);
+  // const url = `https://api.yelp.com/v3/businesses/search?location=${encodedLocation}&term=${encodedSearchTerm}&price=${price}&attributes=popular&sort_by=rating&limit=10`;
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     accept: "application/json",
+  //     Authorization: `Bearer ${process.env.YELP_API_KEY}`,
+  //   },
+  // };
+
+  // const res = await fetch(url, options);
+  const res = await fetch(url);
   const restaurantData = await res.json();
-  return restaurantData?.businesses || [];
+  // return restaurantData?.businesses || [];
+  return restaurantData;
 }
 
 export async function searchFlights(

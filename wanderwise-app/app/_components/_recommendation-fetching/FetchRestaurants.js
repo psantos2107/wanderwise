@@ -2,6 +2,7 @@ import RestaurantCard from "./RestaurantCard";
 import { searchRestaurants } from "@/app/_lib/data-service";
 import Image from "next/image";
 import yelpLogo from "@/public/imgs/yelp_logo.jpg";
+import ConsoleLogger from "./ConsoleLogger";
 
 async function FetchRestaurants({
   searchTerm,
@@ -10,9 +11,11 @@ async function FetchRestaurants({
   tripID,
 }) {
   let restaurants = [];
+  let googleRestaurants;
 
   if (searchTerm && priceRange) {
-    restaurants = await searchRestaurants(tripLocation, searchTerm, priceRange);
+    // restaurants = await searchRestaurants(tripLocation, searchTerm, priceRange);
+    googleRestaurants = await searchRestaurants(tripLocation);
   }
 
   return (
@@ -50,6 +53,7 @@ async function FetchRestaurants({
             results have come out of your search. If it is the latter, please
             refine your search and try again.
           </h2>
+          <ConsoleLogger googleRestaurants={googleRestaurants} />
         </article>
       )}
     </section>
