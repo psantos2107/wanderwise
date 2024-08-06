@@ -4,6 +4,7 @@ import { supabase } from "./supabase";
 import Amadeus from "amadeus";
 import fetchDetailsAndPics from "./fetch-hotel-details-and-pics";
 import { compare } from "bcryptjs";
+import fetchRestaurantDetails from "./fetch-restaurant-details-and-pics";
 
 //for testing the connection out.
 export async function testConnection() {
@@ -102,8 +103,22 @@ export async function searchRestaurants(location, searchTerm, price) {
   // const res = await fetch(url, options);
   const res = await fetch(url);
   const restaurantData = await res.json();
+
+  //pack into separate function.
+  //sort by rating, then limit to up to 8 suggestions (will increase the number of suggestions later.)
+  const sortedRestaurants = [...restaurantData.results]
+    .sort((a, b) => b.rating - a.rating)
+    .slice(0, 8)
+    .map((restaurant) => restaurant.place_id);
+
+  const placesDetails = await fetchRestaurantDetails(sortedRestaurants);
+  //With a separate funciton, find details of all of the places based on their placeIDs -> photoIDs will be found here.
+  //create logic in the client side that will be able to query for the photo based on the below src.
+  /* 
+  https://places.googleapis.com/v1/places/ChIJ2fzCmcW7j4AR2JzfXBBoh6E/photos/AUacShh3_Dd8yvV2JZMtNjjbbSbFhSv-0VmUN-uasQ2Oj00XB63irPTks0-A_1rMNfdTunoOVZfVOExRRBNrupUf8TY4Kw5iQNQgf2rwcaM8hXNQg7KDyvMR5B-HzoCE1mwy2ba9yxvmtiJrdV-xBgO8c5iJL65BCd0slyI1/media?maxHeightPx=400&maxWidthPx=400&key=API_KEY
+  */
   // return restaurantData?.businesses || [];
-  return restaurantData;
+  return placesDetails;
 }
 
 export async function searchFlights(
