@@ -112,12 +112,6 @@ export async function searchRestaurants(location, searchTerm, price) {
     .map((restaurant) => restaurant.place_id);
 
   const placesDetails = await fetchRestaurantDetails(sortedRestaurants);
-  //With a separate funciton, find details of all of the places based on their placeIDs -> photoIDs will be found here.
-  //create logic in the client side that will be able to query for the photo based on the below src.
-  /* 
-  https://places.googleapis.com/v1/places/ChIJ2fzCmcW7j4AR2JzfXBBoh6E/photos/AUacShh3_Dd8yvV2JZMtNjjbbSbFhSv-0VmUN-uasQ2Oj00XB63irPTks0-A_1rMNfdTunoOVZfVOExRRBNrupUf8TY4Kw5iQNQgf2rwcaM8hXNQg7KDyvMR5B-HzoCE1mwy2ba9yxvmtiJrdV-xBgO8c5iJL65BCd0slyI1/media?maxHeightPx=400&maxWidthPx=400&key=API_KEY
-  */
-  // return restaurantData?.businesses || [];
   return placesDetails;
 }
 

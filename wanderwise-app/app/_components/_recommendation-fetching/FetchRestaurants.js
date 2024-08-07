@@ -16,6 +16,9 @@ async function FetchRestaurants({
   if (searchTerm && priceRange) {
     // restaurants = await searchRestaurants(tripLocation, searchTerm, priceRange);
     googleRestaurants = await searchRestaurants(tripLocation);
+    if (googleRestaurants && googleRestaurants?.length > 0) {
+      restaurants = [...googleRestaurants];
+    }
   }
 
   return (
