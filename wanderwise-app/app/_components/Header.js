@@ -12,7 +12,7 @@ const josefin = Josefin_Sans({
 
 const Header = () => {
   return (
-    <header className="px-4 py-4 mb-6 lg:py-5 bg-gradient-orange flex justify-between md:justify-around h-1/6 w-full lg:rounded-3xl rounded-b-xl max-w-screen-xl mx-auto">
+    <header className="px-4 py-4 mb-6 lg:py-5 bg-gradient-orange flex justify-between md:justify-around h-1/6 w-full lg:rounded-3xl rounded-b-xl mx-auto">
       <section className="flex gap-4 lg:gap-12 justify-center">
         <h1
           className={`self-center text-2xl md:text-4xl lg:text-6xl tracking-wide ${josefin.className} text-theme-color-dark`}

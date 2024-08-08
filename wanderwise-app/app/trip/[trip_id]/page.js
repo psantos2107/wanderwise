@@ -3,6 +3,7 @@ import { getTripByTripId } from "@/app/_lib/data-service";
 import NotAuthorizedMessage from "@/app/_components/NotAuthorizedMessage";
 import TripDetails from "@/app/_components/_trip-components/TripDetails";
 import ViewSavedRecs from "@/app/_components/_trip-components/ViewSavedRecs";
+import fetchRestaurantDetails from "@/app/_lib/fetch-restaurant-details-and-pics";
 
 export const metadata = {
   title: "Trip Details",
@@ -20,7 +21,13 @@ export default async function ViewTripPage({ params, searchParams }) {
   } else if (searchParams.category === "hotels") {
     recommendationArray = trip?.hotels ? [...trip.hotels] : [];
   } else if (searchParams.category === "restaurants") {
-    recommendationArray = trip?.restaurants ? [...trip.restaurants] : [];
+    const restaurantIDArray = trip?.restaurants ? [...trip.restaurants] : [];
+    if (restaurantIDArray.length > 0) {
+      const restaurantArray = await fetchRestaurantDetails(restaurantIDArray);
+      recommendationArray = [...restaurantArray];
+    } else {
+      recommendationArray = [];
+    }
   } else {
     recommendationArray = trip?.flight_offers ? [...trip.flight_offers] : [];
   }
