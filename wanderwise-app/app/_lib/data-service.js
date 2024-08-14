@@ -81,13 +81,14 @@ export async function getTripByTripId(id) {
 }
 
 //ALL FUNCTIONS THAT FETCH DATA ROM EXTERNAL APIS ARE HERE
-export async function searchRestaurants(location, searchTerm, price) {
+export async function searchRestaurants(location, searchTerm, type) {
   //google places API works and is operational atm.
   const encodedLocation = encodeURIComponent(location.trim()) || ""; //will change later
-  const foodQuery = `Sushi in ${encodedLocation}`;
+  const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
+  const encodedType = encodeURIComponent(type.trim() || "");
+  const foodQuery = `${encodedSearchTerm} ${encodedType} in ${encodedLocation}`;
   const radius = "80000";
   const language = "en-US";
-  // const encodedSearchTerm = encodeURIComponent(searchTerm.trim()) || "";
 
   const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${foodQuery}&radius=${radius}&language=${language}&key=${process.env.PLACES_GOOGLE_API_KEY}`;
 
@@ -106,6 +107,7 @@ export async function searchRestaurants(location, searchTerm, price) {
 
   //pack into separate function.
   //sort by rating, then limit to up to 8 suggestions (will increase the number of suggestions later.)
+  //only records the place ID
   const sortedRestaurants = [...restaurantData.results]
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 8)

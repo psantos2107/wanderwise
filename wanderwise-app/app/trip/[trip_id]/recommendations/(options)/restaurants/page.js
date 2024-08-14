@@ -21,7 +21,7 @@ export default async function RestaurantsPage({ params, searchParams }) {
   const searchTerm = searchParams?.searchTerm
     ? `${(searchParams?.searchTerm).trim()} restaurants`
     : "";
-  const priceRange = searchParams?.priceRange ?? "";
+  const type = searchParams?.type ?? "";
 
   return (
     <main>
@@ -36,7 +36,7 @@ export default async function RestaurantsPage({ params, searchParams }) {
           <div className="w-[80%] mx-auto">
             <FetchRestaurants
               searchTerm={searchTerm}
-              priceRange={priceRange}
+              type={type}
               tripLocation={tripLocation}
               tripID={params.trip_id}
             />

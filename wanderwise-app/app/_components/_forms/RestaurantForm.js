@@ -5,7 +5,7 @@ import Spinner from "../Spinner";
 
 function RestaurantForm() {
   const [searchTerm, setSearchTerm] = useState("");
-  const [priceRange, setPriceRange] = useState("1");
+  const [type, setType] = useState("restaurants");
   const [isLoading, setIsLoading] = useState(false);
   const searchParams = useSearchParams();
   const router = useRouter();
@@ -15,8 +15,8 @@ function RestaurantForm() {
     setSearchTerm(e.target.value);
   };
 
-  const handlePriceRangeChange = (e) => {
-    setPriceRange(e.target.value);
+  const handleTypeChange = (e) => {
+    setType(e.target.value);
   };
 
   const handleSumbit = (e) => {
@@ -26,7 +26,7 @@ function RestaurantForm() {
     setTimeout(() => {
       const params = new URLSearchParams(searchParams);
       params.set("searchTerm", searchTerm);
-      params.set("priceRange", priceRange);
+      params.set("type", type);
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
       setIsLoading(false);
     }, 800);
@@ -40,9 +40,11 @@ function RestaurantForm() {
       >
         <article>
           <label>
-            What type of restaurant are you looking for? Please input terms like
-            "brunch", "fast-food", "fancy", etc. Only use terms that describe a
-            type of restaurant, otherwise, you may not have a valid search.
+            For the first term, please input what kind of restaurant you want to
+            go to. Please input terms like "brunch", "Chinese", "fancy", etc.
+            Any descriptive term will suffice. Second, please choose in the
+            dropdown what you want to search for, whether it's "restaurant",
+            "food", or "cuisine."
           </label>
           <div className="flex justify-center mt-2">
             <input
@@ -52,21 +54,21 @@ function RestaurantForm() {
               className="px-1"
               required
             />
+            <select
+              className="ml-2"
+              value={type}
+              onChange={handleTypeChange}
+              required
+            >
+              <option value="Restaurants">Restaurants</option>
+              <option value="Cuisine">Cuisine</option>
+              <option value="Food">Food</option>
+            </select>
           </div>
         </article>
-        <article>
-          <label>What is your price?</label>
-          <select
-            className="ml-2"
-            value={priceRange}
-            onChange={handlePriceRangeChange}
-            required
-          >
-            <option value="1">$: Affordable</option>
-            <option value="2">$$: Pricier</option>
-            <option value="3">$$$: Expensive</option>
-          </select>
-        </article>
+        <p>
+          Currently searching for {searchTerm || "___"} {type}
+        </p>
         {isLoading ? <Spinner /> : ""}
         <input
           type="submit"
