@@ -1,9 +1,13 @@
 # wanderwise
+
+## Important Notice
+Updated 08/13/24: Project is currently under re-construction. In the initial iteration, the ability to search for "restaurants" and "attractions" was reliant on the Yelp API. However, my Yelp API key no longer works as the trial period has lapsed. I have made the decision to replace usage of the Yelp API with Google Places API when users search for restaurants or attractions. I have refactored the project already to make the search for "restaurants" work. However, you will not be able to search for "attractions" yet. Ongoing fixes will be made throughout this month to manage that. Please do go ahead and obtain a Google Places API key for yourself if you wish to clone this repo. 
+
 ## Description
 
 LINK TO LIVE SITE: https://wanderwise-project.vercel.app/
 
-Established in 2024, WanderWise is designed for those who love to travel and want to have an application to make the planning process a little bit easier! When you sign up for the app, you will have the ability to "create a trip", where you can input your destination city, desired travel dates, travel budgets, and more, in order to get the planning process going. Then, utilizing the search engines provided by Yelp, Trip Advisor, and Amadeus, you will be able to search for restaurants, activities, hotels, and even flights all in one centralized place! Plan your dream vacation and indulge in all your wanderlust fantasies, now easier than ever! You can also add trip notes to further personalize and strategize your planning!
+Established in 2024, WanderWise is designed for those who love to travel and want to have an application to make the planning process a little bit easier! When you sign up for the app, you will have the ability to "create a trip", where you can input your destination city, desired travel dates, travel budgets, and more, in order to get the planning process going. Then, utilizing the search engines provided by Google Places, Trip Advisor, and Amadeus, you will be able to search for restaurants, activities, hotels, and even flights all in one centralized place! Plan your dream vacation and indulge in all your wanderlust fantasies, now easier than ever! You can also add trip notes to further personalize and strategize your planning!
 
 ## Screenshots
 <img width="1288" alt="Screenshot 2024-06-09 at 10 06 55 PM" src="https://github.com/psantos2107/wanderwise/assets/146752384/cbb73e39-4b53-458f-a7ee-0d732c46fd51">
@@ -25,7 +29,7 @@ Link: https://trello.com/b/v8qebKwf/wanderwise
 
 1. SET UP DATABASE AND OBTAIN EXTERNAL API KEYS
 - Obtain an account with Supabase (via this link: https://supabase.com/), and obtain a supabase URL and supbase key, both of which are to be stored in your env.local file as SUPABASE_URL and SUPABASE_KEY, respectively.
-- Navigate to (https://docs.developer.yelp.com/) and follow the steps to obtain a Yelp Developer API key. Store the Yelp developer API key into a variable in your env.local file called YELP_API_KEY.
+- Navigate to (https://developers.google.com/maps/documentation/places/web-service/overview) and follow the steps to obtain a Google Places API key. Store the Google Places API key into a variable in your env.local file called PLACES_GOOGLE_API_KEY.
 - Navigate to (https://www.tripadvisor.com/developers) and follow the steps to obtain a Trip Advisor API Key. Store the TripAdvisor Key into a variable in env.local called TRIP_ADVISOR_KEY
 - Navigate to (https://developers.amadeus.com/) and follow the steps to obtain an Amadeus API key and an Amadeus Secret key. Store both into variables in env.local called AMADEUS_API_KEY and AMADEUS_API_SECRET respectively.
 
@@ -51,7 +55,7 @@ Once you have these steps down, you should be ready to go.
 - TailwindCSS (for styling)
 
 ## External APIs and other Dependencies
-- Yelp Developer API: To obtain information on attractions/activities and restaurants
+- Google Places API: To obtain information on attractions/activities and restaurants
 - TripAdvisor API: To obtain information on hotels
 - Amadeus API: To obtain information on flights
 - Heroicons: To obtain home icon in the header
@@ -62,7 +66,7 @@ Once you have these steps down, you should be ready to go.
 
 ## Other Features:
 - Implementation of Google OAuth and credential-based authentication/authorization system utilizing the latest version (version 5) of NextAuth (soon to be Auth.js)
-- Successul use of image optimizations via NextJS' Image component
+- Successful use of image optimizations via NextJS' Image component
 - Utilization of NextJS file conventions (such as page.js, layout.js, error.js, loading.js, etc) in order to streamline loading states during page transitions, create error boundaries when errors are thrown, and more
 - Use of three external APIs that users can query right from the app in order to add on to a user's trip plan
 - Skillful use of NextJS' server components, server actions, and client components in order to implement full CRUD for user trips
