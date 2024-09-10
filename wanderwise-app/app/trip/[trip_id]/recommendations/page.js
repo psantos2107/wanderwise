@@ -19,11 +19,12 @@ export default async function RecommendationsPage({ params }) {
       </h1>
       {trip?.user_id === userID ? (
         <article className="w-4/5 mx-auto flex flex-col gap-4 sm:gap-6 items-center sm:text-xl sm:mt-4">
+          {/* MAKE SURE TO ADD BACK ATTRACTIONS WHEN APPROPRIATE! */}
           <h2>
             Hey {session.user.name.split(" ")[0]}! Let's try to find some
-            restaurant, hotel, flight, or attraction recommendations for your
-            trip to {trip.destination_city}, {trip.destination_country}! Please
-            click on any of the buttons below to find recommendations!
+            restaurant, hotel, or flight recommendations for your trip to{" "}
+            {trip.destination_city}, {trip.destination_country}! Please click on
+            any of the buttons below to find recommendations!
           </h2>
           <RecommendationButtons tripID={params.trip_id} />
           <p className="sm:mt-4">

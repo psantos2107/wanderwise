@@ -37,13 +37,13 @@ function RecommendationButtons({ tripID }) {
       >
         Restaurants
       </Link>
-      <Link
+      {/* <Link
         className="w-full text-center bg-blue-200 p-1 rounded-md border-2 border-solid text-md border-gray-300 boldest transition-transform transform hover:bg-blue-300 active:bg-blue-400 hover:scale-105 active:scale-95 active:shadow-inner cursor-pointer max-w-xl"
         href={`/trip/${tripID}/recommendations/attractions`}
         onClick={() => handleClick(`/trip/${tripID}/recommendations/flights`)}
       >
         Attractions
-      </Link>
+      </Link> */}
       {isNavigatingToNewPage && <Spinner text={"Loading Page..."} />}
     </>
   );

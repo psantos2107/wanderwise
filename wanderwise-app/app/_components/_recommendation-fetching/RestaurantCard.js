@@ -2,9 +2,6 @@
 import { addRestaurantToTrip } from "@/app/_lib/actions";
 import { useState } from "react";
 import SpinnerMini from "../SpinnerMini";
-import Image from "next/image";
-
-const apiKey = process.env.PLACES_GOOGLE_API_KEY;
 
 function RestaurantCard({ restaurant, index, tripID, isASavedRec }) {
   const [clientMessage, setClientMessage] = useState("");
@@ -30,14 +27,6 @@ function RestaurantCard({ restaurant, index, tripID, isASavedRec }) {
       <h2 className="text-lg sm:text-xl">
         {index + 1}. {restaurant.displayName.text}
       </h2>
-      {/* <figure className="w-[90%] relative h-[100px] sm:w-3/4 sm:h-[150px] mx-auto flex items-center justify-center">
-        <Image
-          src={`https://places.googleapis.com/v1/${restaurant.photos[0].name}/media?maxHeightPx=400&maxWidthPx=400&key=${apiKey}`}
-          fill
-          alt={`Image of ${restaurant.displayName.text}`}
-          className="object-cover max-h-36 rounded-sm"
-        />
-      </figure> */}
       <p>
         <strong>
           <u className="text-sm sm:text-lg">CATEGORIES:</u>{" "}

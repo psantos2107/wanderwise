@@ -92,15 +92,6 @@ export async function searchRestaurants(location, searchTerm, type) {
 
   const url = `https://maps.googleapis.com/maps/api/place/textsearch/json?query=${foodQuery}&radius=${radius}&language=${language}&key=${process.env.PLACES_GOOGLE_API_KEY}`;
 
-  // const url = `https://api.yelp.com/v3/businesses/search?location=${encodedLocation}&term=${encodedSearchTerm}&price=${price}&attributes=popular&sort_by=rating&limit=10`;
-  // const options = {
-  //   method: "GET",
-  //   headers: {
-  //     accept: "application/json",
-  //     Authorization: `Bearer ${process.env.YELP_API_KEY}`,
-  //   },
-  // };
-
   // const res = await fetch(url, options);
   const res = await fetch(url);
   const restaurantData = await res.json();
@@ -108,6 +99,7 @@ export async function searchRestaurants(location, searchTerm, type) {
   //pack into separate function.
   //sort by rating, then limit to up to 8 suggestions (will increase the number of suggestions later.)
   //only records the place ID
+  //formattedAddress:
   const sortedRestaurants = [...restaurantData.results]
     .sort((a, b) => b.rating - a.rating)
     .slice(0, 8)
@@ -185,3 +177,15 @@ export async function searchAttractions(location, searchTerm) {
   const attractionData = await res.json();
   return attractionData?.businesses || [];
 }
+
+//old code:
+/*
+  // const url = `https://api.yelp.com/v3/businesses/search?location=${encodedLocation}&term=${encodedSearchTerm}&price=${price}&attributes=popular&sort_by=rating&limit=10`;
+  // const options = {
+  //   method: "GET",
+  //   headers: {
+  //     accept: "application/json",
+  //     Authorization: `Bearer ${process.env.YELP_API_KEY}`,
+  //   },
+  // };
+*/

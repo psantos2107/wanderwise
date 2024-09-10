@@ -18,6 +18,8 @@ function AttractionForm() {
     e.preventDefault();
     //changing the URL is one of the ways to cause a re-render of server components. Thus, this block of code is used in order to change the URL with query parameters that will be derived in order to re-fetch data from the server components with those query terms
     setIsLoading(true);
+
+    //setTimeOut in order to allow enough time for the loading spinner to pop up (for visual effect. this is not necessary for function)
     setTimeout(() => {
       setIsLoading(false);
       const params = new URLSearchParams(searchParams);
@@ -46,6 +48,7 @@ function AttractionForm() {
           />
         </div>
       </article>
+      {/* Will display after the user clicks on submit, for user feedback. */}
       {isLoading ? <Spinner /> : ""}
       <input
         type="submit"

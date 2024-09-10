@@ -13,16 +13,18 @@ function HotelForm({ tripLocation }) {
   function handleSearchTermChange(e) {
     setSearchTerm(e.target.value);
   }
-  //
+
   function handleSubmit(e) {
     e.preventDefault();
     setIsLoading(true);
     setTimeout(() => {
       const params = new URLSearchParams(searchParams);
+      //fallback in case the user didn't provide a searchterm.
       if (searchTerm === "") {
         setSearchTerm(tripLocation);
       }
-      params.set("location", searchTerm);
+      params.set("location", searchTerm); //set the param location to the searchterm.
+      //re-routes the page so that the params can be included in the URL. Router.replace allows for no full page re-load.
       router.replace(`${pathname}?${params.toString()}`, { scroll: false });
       setIsLoading(false);
     }, 800);
