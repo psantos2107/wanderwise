@@ -1,0 +1,26 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - echo "Starting install phase..."
+      - cd wanderwise-app/
+      - npm install
+
+  pre_build:
+    commands:
+      - echo "Running pre-build tasks..."
+
+  build:
+    commands:
+      - echo "Building the project..."
+      - npm run build
+
+artifacts:
+  base-directory: wanderwise-app/.next #
+  files:
+    - "**/*"
+
+cache:
+  paths:
+    - wanderwise-app/node_modules/**/*
