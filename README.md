@@ -1,7 +1,7 @@
 # wanderwise
 
 ## Important Notice
-Updated 08/13/24: Project is currently under re-construction. In the initial iteration, the ability to search for "restaurants" and "attractions" was reliant on the Yelp API. However, my Yelp API key no longer works as the trial period has lapsed. I have made the decision to replace usage of the Yelp API with Google Places API when users search for restaurants or attractions. I have refactored the project already to make the search for "restaurants" work. However, you will not be able to search for "attractions" yet. Ongoing fixes will be made throughout this month to manage that. Please do go ahead and obtain a Google Places API key for yourself if you wish to clone this repo. 
+Updated 08/13/24: Project is currently undergoing re-factoring (though the live link still works). In the initial iteration, the ability to search for "restaurants" and "attractions" was reliant on the Yelp API. However, my Yelp API key no longer works as the trial period has lapsed. I have made the decision to replace usage of the Yelp API with Google Places API when users search for restaurants or attractions. I have refactored the project already to make the search for "restaurants" work. However, you will not be able to search for "attractions" yet. Ongoing fixes will be made throughout this month to manage that. Please do go ahead and obtain a Google Places API key for yourself if you wish to clone this repo. 
 
 ## Description
 
