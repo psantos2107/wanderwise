@@ -10,10 +10,12 @@ phases:
   pre_build:
     commands:
       - echo "Running pre-build tasks..."
+      - cd wanderwise-app/
 
   build:
     commands:
       - echo "Building the project..."
+      - cd wanderwise-app/
       - npm run build
 
 artifacts:
