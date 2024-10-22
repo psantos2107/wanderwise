@@ -36,6 +36,29 @@ export async function getUser(email) {
   return data;
 }
 
+export async function createUser(name, email, password) {
+  try {
+    // Insert a new user into the 'users' table
+    const { data, error } = await supabase
+      .from("users")
+      .insert([
+        { name: name, email: email, password: password }, // Insert name, email, password into the table
+      ])
+      .select(); // Optionally, return the newly created user
+
+    if (error) {
+      console.error("Error creating user:", error);
+      throw new Error("Error creating user");
+    }
+
+    console.log("User created successfully:", data);
+    return data[0]; // Return the created user
+  } catch (err) {
+    console.error("Error in createUser function:", err.message);
+    return null; // Return null in case of error
+  }
+}
+
 //if loggedin through s, this will verify if the user exists in the DB
 export async function verifyUser(email, password) {
   const foundUser = await getUser(email);

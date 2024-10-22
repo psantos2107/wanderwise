@@ -47,7 +47,8 @@ const authConfig = {
           console.log("Successfully created user!");
         }
         return true;
-      } catch {
+      } catch (error) {
+        console.error("ERROR: ", error.message);
         return false;
       }
     },
