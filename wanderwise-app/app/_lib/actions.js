@@ -1,5 +1,5 @@
 "use server";
-//will contain all server actions specifically related to creating, deleting, and updating data, as well as to signing in and out of the application.
+//will contain all server actions specifically related to creating, deleting, and updating data, as well as to signing in and out of the application!
 import { signIn, signOut } from "./auth";
 import { supabase } from "./supabase";
 import { hash, genSalt } from "bcryptjs";
